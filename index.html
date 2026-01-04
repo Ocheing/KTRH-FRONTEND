@@ -7,8 +7,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-     <link rel="stylesheet" href="css/doctors.css">
+    <link rel="stylesheet" href="css/doctors.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Additional CSS for doctor image fixes */
+        .doctor-img {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .doctor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .doctor-card:hover .doctor-img img {
+            transform: scale(1.05);
+        }
+        
+        /* Fix for hero section fallback */
+        .video-fallback {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Ensure all doctor images have consistent sizing */
+        .doctors-grid .doctor-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .doctor-info {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -49,34 +90,20 @@
                             <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
                             <ul class="dropdown-menu">
                                  <li><a href="careers.html">Careers</a></li>
-            
                                 <li><a href="services.html">Services</a></li>
                             </ul>
                         </li>
                         <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
-                   <!--  <li><a href="doctors.html" class="nav-link"><i class="fas fa-person"></i> Doctors</a></li>-->
-
-                         <li class="nav-dropdown">
+                        <li class="nav-dropdown">
                             <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a href="gallery.html">Media&Gallery</a></li>
                                 <li><a href="projects.html">Projects</a></li>
-                                >
-                                
                             </ul>
                         </li>
                         <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
                         <li><a href="appointment.html" class="nav-link appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
-                        
                     </ul>
-
-                    <!-- Quick Actions -->
-                    <!--<div class="nav-actions">
-                        <a href="contact.html" class="nav-link contact-btn"><i class="fas fa-phone-alt"></i> Contact</a>
-                        <a href="tel:+254758721997" class="emergency-btn">
-                            <i class="fas fa-phone"></i> Emergency: +254 758 721 997
-                        </a>
-                    </div>-->
                 </nav>
             </div>
         </div>
@@ -96,8 +123,8 @@
                             allowfullscreen></iframe>
                 </div>
             </div>
-            <!-- Fallback Image -->
-            <div class="video-fallback" style="background-image: url('https://nation.africa/kenya/counties/kisii/kisii-medics-down-tools-over-delayed-salaries-3906740');">
+            <!-- Fallback Image - Changed to local webp -->
+            <div class="video-fallback" style="background-image: url('img/herosection.webp');">
                 <div class="video-overlay"></div>
             </div>
         </div>
@@ -344,9 +371,9 @@
             <div class="doctors-grid">
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="img/drondari.png" alt="Dr. Ondari">
+                        <img src="img/drondari.png" alt="Dr. Ondari" style="object-fit: cover; object-position: center;">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-johnson" class="view-profile">View Profile</a>
+                            <a href="doctors.html#dr-ondari" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
@@ -366,13 +393,13 @@
 
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="img/Dr orina.jpg" alt="Dr. Orina">
+                        <img src="img/dr-orina.jpg" alt="Dr. Orina" style="object-fit: cover; object-position: center;">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-chen" class="view-profile">View Profile</a>
+                            <a href="doctors.html#dr-orina" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Michael Chen</h3>
+                        <h3>Dr. Orina</h3>
                         <p class="specialty">Neurologist</p>
                         <p class="experience">12+ years experience</p>
                         <div class="doctor-rating">
@@ -388,14 +415,14 @@
 
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="images/doctor3.jpg" alt="Dr. Lisa Williams">
+                        <img src="img/dr-oimeke.jpg" alt="Dr. Oimeke Mariita" style="object-fit: cover; object-position: center;">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-williams" class="view-profile">View Profile</a>
+                            <a href="doctors.html#dr-oimeke" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
                         <h3>Dr. Oimeke Mariita</h3>
-                        <p class="specialty">Cardiologist</p>
+                        <p class="specialty">Pediatrician</p>
                         <p class="experience">10+ years experience</p>
                         <div class="doctor-rating">
                             <i class="fas fa-star"></i>
@@ -530,19 +557,16 @@
                     <h3>Find Us on Map</h3>
                     <p>Visit our hospital located in the heart of Kisii Town</p>
                 </div>
-                <div class="map-placeholder">
-                    <!-- You can add Google Maps embed code here -->
-                    <div class="map-frame">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.032263233091!2d34.77911117466527!3d-0.6817273352783043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b3f2e3d3b3b3b%3A0x3d3d3d3d3d3d3d3d!2sKisii%20Town%2C%20Kenya!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus"
-                            width="100%" 
-                            height="400" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
+                <div class="map-frame">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.032263233091!2d34.77911117466527!3d-0.6817273352783043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b3f2e3d3b3b3b%3A0x3d3d3d3d3d3d3d3d!2sKisii%20Town%2C%20Kenya!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -659,26 +683,28 @@
     </div>
 
     <script src="JS/strapi-api.js"></script>
-<script src="JS/utils/helpers.js"></script>
-<script src="JS/utils/form-handler.js"></script>
-<script src="JS/pages/home.js"></script>
-
+    <script src="JS/utils/helpers.js"></script>
+    <script src="JS/utils/form-handler.js"></script>
+    <script src="JS/pages/home.js"></script>
     <script src="js/script.js"></script>
     <script src="js/home.js"></script>
 
     <script>
-  // Register Service Worker
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
-          console.log('✅ Service Worker registered:', registration.scope);
-        })
-        .catch(error => {
-          console.log('❌ Service Worker registration failed:', error);
-        });
-    });
-  }
-</script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker registered:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+        
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
