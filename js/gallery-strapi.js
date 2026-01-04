@@ -1,10 +1,10 @@
-// ===========================================
+﻿// ===========================================
 // GALLERY PAGE - STRAPI INTEGRATION
 // ===========================================
 
 // Strapi API Configuration
-const STRAPI_API_URL = 'http://127.0.0.1:1337/api';
-const STRAPI_IMAGE_URL = 'http://127.0.0.1:1337';
+const STRAPI_API_URL = 'http://https://better-friend-c539968cc5.strapiapp.com/api';
+const STRAPI_IMAGE_URL = 'http://https://better-friend-c539968cc5.strapiapp.com';
 
 // DOM Elements
 let galleryGrid;
