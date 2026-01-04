@@ -17,6 +17,180 @@ let homeStats = {};
 let featuredDoctors = [];
 let heroVideoId = 'IzZeZbr7Jf0'; // Default video ID
 
+// Function to inject CSS for image handling
+function injectHomeImageStyles() {
+    // Check if styles already exist
+    if (document.getElementById('home-image-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'home-image-styles';
+    style.textContent = `
+        /* Home page doctor card image optimization */
+        .doctors-grid .doctor-card {
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .doctors-grid .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .doctors-grid .doctor-img {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .doctors-grid .doctor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            transition: transform 0.5s ease;
+            min-width: 100%;
+            min-height: 100%;
+        }
+        
+        .doctors-grid .doctor-card:hover .doctor-img img {
+            transform: scale(1.05);
+        }
+        
+        .doctors-grid .doctor-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .doctors-grid .doctor-card:hover .doctor-overlay {
+            opacity: 1;
+        }
+        
+        .doctors-grid .view-profile {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .doctors-grid .doctor-card:hover .view-profile {
+            transform: translateY(0);
+        }
+        
+        .doctors-grid .doctor-info {
+            padding: 15px;
+        }
+        
+        .doctors-grid .doctor-info h3 {
+            font-size: 18px;
+            margin: 0 0 5px 0;
+            color: #333;
+        }
+        
+        .doctors-grid .doctor-info .specialty {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 14px;
+            margin: 0 0 5px 0;
+        }
+        
+        .doctors-grid .doctor-info .experience {
+            color: #666;
+            font-size: 13px;
+            margin: 0 0 10px 0;
+        }
+        
+        .doctors-grid .doctor-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .doctors-grid .doctor-rating i {
+            color: #FFD700;
+            font-size: 14px;
+        }
+        
+        .doctors-grid .doctor-rating span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Image loading animation */
+        .doctor-img img.loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Responsive grid */
+        @media (max-width: 768px) {
+            .doctors-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .doctors-grid .doctor-img {
+                height: 180px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .doctors-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
+
+// Function to setup image loading for home page
+function setupHomeImageLoading() {
+    // Listen for image load events
+    document.addEventListener('load', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.target.classList.remove('loading');
+            e.target.classList.add('loaded');
+        }
+    }, true);
+    
+    // Add error handling for images
+    document.addEventListener('error', function(e) {
+        if (e.target.tagName === 'IMG') {
+            console.warn('Image failed to load:', e.target.src);
+            e.target.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70';
+            e.target.classList.remove('loading');
+        }
+    }, true);
+}
+
 // Function to fetch home page data from Strapi
 async function fetchHomePageData() {
     try {
@@ -109,6 +283,7 @@ function getFallbackDoctors() {
                 name: "Dr. Ondari",
                 title: "Chief Cardiologist",
                 specialty: "Cardiology",
+                department: "Cardiology",
                 experience: "15+ years",
                 image: {
                     data: {
@@ -127,6 +302,7 @@ function getFallbackDoctors() {
                 name: "Dr. Michael Orina",
                 title: "Senior Neurologist",
                 specialty: "Neurology",
+                department: "Neurology",
                 experience: "12+ years",
                 image: {
                     data: {
@@ -145,6 +321,7 @@ function getFallbackDoctors() {
                 name: "Dr. Oimeke Mariita",
                 title: "Lead Cardiologist",
                 specialty: "Cardiology",
+                department: "Cardiology",
                 experience: "10+ years",
                 image: {
                     data: {
@@ -160,22 +337,32 @@ function getFallbackDoctors() {
     ];
 }
 
-// Helper function to get doctor image URL
+// Helper function to get doctor image URL (optimized for home page)
 function getDoctorImageUrl(imageData) {
     if (!imageData) {
         return 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70';
     }
     
     let imageUrl = '';
+    let format = imageData.data?.attributes?.formats || imageData.formats;
     
-    if (imageData.data?.attributes?.url) {
-        imageUrl = imageData.data.attributes.url;
-    } else if (imageData.attributes?.url) {
-        imageUrl = imageData.attributes.url;
-    } else if (imageData.url) {
-        imageUrl = imageData.url;
+    // Try to get medium format first
+    if (format) {
+        imageUrl = format.medium?.url || format.small?.url || format.large?.url;
     }
     
+    // Fallback to regular URL
+    if (!imageUrl) {
+        if (imageData.data?.attributes?.url) {
+            imageUrl = imageData.data.attributes.url;
+        } else if (imageData.attributes?.url) {
+            imageUrl = imageData.attributes.url;
+        } else if (imageData.url) {
+            imageUrl = imageData.url;
+        }
+    }
+    
+    // Prepend base URL if needed
     if (imageUrl && !imageUrl.startsWith('http')) {
         imageUrl = `${STRAPI_IMAGE_URL}${imageUrl}`;
     }
@@ -326,34 +513,6 @@ function addResponsiveGridStyles() {
                 max-width: 350px;
             }
         }
-        
-        /* Make doctor cards more compact */
-        .doctor-card .doctor-img {
-            height: 220px;
-        }
-        
-        .doctor-card .doctor-info h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        .doctor-card .doctor-info .specialty {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        
-        .doctor-card .doctor-info .experience {
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-        
-        .doctor-card .doctor-rating {
-            font-size: 14px;
-        }
-        
-        .doctor-card .doctor-rating i {
-            font-size: 14px;
-        }
     `;
     
     document.head.appendChild(style);
@@ -402,8 +561,12 @@ function renderFeaturedDoctors(doctors) {
         return `
             <div class="doctor-card" data-id="${doctorId}">
                 <div class="doctor-img">
-                    <img src="${imageUrl}" alt="${name}" loading="lazy" 
-                         onerror="this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70'">
+                    <img src="${imageUrl}" 
+                         alt="${name}" 
+                         loading="lazy"
+                         class="loading"
+                         onload="this.classList.remove('loading'); this.classList.add('loaded')"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70'; this.classList.remove('loading')">
                     <div class="doctor-overlay">
                         <a href="doctors.html" class="view-profile">View Profile</a>
                     </div>
@@ -534,6 +697,10 @@ function setupContactForm() {
 // Function to initialize home page
 async function initializeHomePage() {
     console.log('Initializing home page...');
+    
+    // Inject image styles first
+    injectHomeImageStyles();
+    setupHomeImageLoading();
     
     // Get DOM elements
     doctorsGrid = document.querySelector('.doctors-grid');
