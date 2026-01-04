@@ -7,237 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/doctors.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    
-    <!-- Enhanced Image Styling for Doctors Section -->
-    <style>
-        /* Doctors Section - Image Optimization */
-        .doctors-section .doctor-card {
-            border-radius: 15px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        
-        .doctors-section .doctor-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-        
-        .doctors-section .doctor-img {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
-            background: linear-gradient(45deg, #f5f7fa 0%, #c3cfe2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .doctors-section .doctor-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            min-width: 100%;
-            min-height: 100%;
-            display: block;
-        }
-        
-        .doctors-section .doctor-card:hover .doctor-img img {
-            transform: scale(1.08);
-        }
-        
-        .doctors-section .doctor-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            padding: 20px;
-        }
-        
-        .doctors-section .doctor-card:hover .doctor-overlay {
-            opacity: 1;
-        }
-        
-        .doctors-section .view-profile {
-            background: var(--primary-color, #2a6ecc);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(42, 110, 204, 0.3);
-        }
-        
-        .doctors-section .view-profile:hover {
-            background: #1a5eb8;
-            transform: translateY(0) scale(1.05);
-            box-shadow: 0 6px 20px rgba(42, 110, 204, 0.4);
-        }
-        
-        .doctors-section .view-profile i {
-            font-size: 12px;
-        }
-        
-        .doctors-section .doctor-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .doctors-section .doctor-info h3 {
-            font-size: 20px;
-            margin: 0 0 5px 0;
-            color: #333;
-            font-weight: 700;
-        }
-        
-        .doctors-section .doctor-info .specialty {
-            color: var(--primary-color, #2a6ecc);
-            font-weight: 600;
-            font-size: 14px;
-            margin: 0 0 8px 0;
-            display: inline-block;
-            background: rgba(42, 110, 204, 0.1);
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-        
-        .doctors-section .doctor-info .experience {
-            color: #666;
-            font-size: 13px;
-            margin: 0 0 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .doctors-section .doctor-info .experience:before {
-            content: "📅";
-            font-size: 12px;
-        }
-        
-        .doctors-section .doctor-rating {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: auto;
-        }
-        
-        .doctors-section .doctor-rating i {
-            color: #FFD700;
-            font-size: 14px;
-        }
-        
-        .doctors-section .doctor-rating span {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            background: #f8f9fa;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
-        
-        /* Image loading animation */
-        .doctors-section .doctor-img img.loading {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
-        /* Responsive design for doctors section */
-        @media (max-width: 992px) {
-            .doctors-section .doctor-img {
-                height: 250px;
-            }
-            
-            .doctors-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .doctors-section .doctor-img {
-                height: 220px;
-            }
-            
-            .doctors-section .doctor-info {
-                padding: 15px;
-            }
-            
-            .doctors-section .doctor-info h3 {
-                font-size: 18px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .doctors-section .doctor-img {
-                height: 200px;
-            }
-            
-            .doctors-grid {
-                grid-template-columns: 1fr;
-                max-width: 350px;
-                margin: 0 auto;
-            }
-            
-            .doctors-section .view-profile {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-        }
-        
-        /* Special styling for the third doctor to ensure consistency */
-        .doctors-section .doctor-card:nth-child(3) .doctor-img img {
-            object-position: center top;
-        }
-        
-        /* Ensure all images maintain aspect ratio */
-        .doctors-section img {
-            aspect-ratio: 3/4;
-        }
-        
-        /* Fallback for browsers that don't support aspect-ratio */
-        @supports not (aspect-ratio: 3/4) {
-            .doctors-section .doctor-img {
-                height: 280px;
-            }
-        }
-        
-        /* Strapi image optimization */
-        .doctor-card[data-id] .doctor-img img {
-            object-fit: cover !important;
-            object-position: center center !important;
-        }
-    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -278,21 +49,19 @@
                             <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
                             <ul class="dropdown-menu">
                                  <li><a href="careers.html">Careers</a></li>
-                                <li><a href="services.html#cardiology">Cardiology</a></li>
-                                <li><a href="services.html#neurology">Neurology</a></li>
-                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
-                                <li><a href="services.html#emergency">Emergency Care</a></li>
-                                <li><a href="services.html">View All</a></li>
+            
+                             <li><a href="services.html">Services</a></li>
                             </ul>
                         </li>
                         <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
-                   <!--    <li><a href="doctors.html" class="nav-link"><i class="fas fa-person"></i> Doctors</a></li>-->
+                   <!--  <li><a href="doctors.html" class="nav-link"><i class="fas fa-person"></i> Doctors</a></li>-->
 
                          <li class="nav-dropdown">
                             <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a href="gallery.html">Media&Gallery</a></li>
                                 <li><a href="projects.html">Projects</a></li>
+                                >
                                 
                             </ul>
                         </li>
@@ -328,7 +97,7 @@
                 </div>
             </div>
             <!-- Fallback Image -->
-            <div class="video-fallback" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80');">
+            <div class="video-fallback" style="background-image: url('https://nation.africa/kenya/counties/kisii/kisii-medics-down-tools-over-delayed-salaries-3906740');">
                 <div class="video-overlay"></div>
             </div>
         </div>
@@ -575,15 +344,9 @@
             <div class="doctors-grid">
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="img/drondari.png" alt="Dr. Ondari"
-                             onload="this.classList.remove('loading'); this.classList.add('loaded')"
-                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70'; this.classList.remove('loading')"
-                             class="loading"
-                             style="object-fit: cover; object-position: center center; width: 100%; height: 100%;">
+                        <img src="img/drondari.png" alt="Dr. Ondari">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-johnson" class="view-profile">
-                                <i class="fas fa-user-md"></i> View Profile
-                            </a>
+                            <a href="doctors.html#dr-johnson" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
@@ -603,19 +366,13 @@
 
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="img/Dr orina.jpg" alt="Dr. Orina"
-                             onload="this.classList.remove('loading'); this.classList.add('loaded')"
-                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70'; this.classList.remove('loading')"
-                             class="loading"
-                             style="object-fit: cover; object-position: center center; width: 100%; height: 100%;">
+                        <img src="img/Dr orina.jpg" alt="Dr. Orina">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-chen" class="view-profile">
-                                <i class="fas fa-user-md"></i> View Profile
-                            </a>
+                            <a href="doctors.html#dr-chen" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Michael Orina</h3>
+                        <h3>Dr. Michael Chen</h3>
                         <p class="specialty">Neurologist</p>
                         <p class="experience">12+ years experience</p>
                         <div class="doctor-rating">
@@ -631,15 +388,9 @@
 
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="images/doctor3.jpg" alt="Dr. Oimeke Mariita"
-                             onload="this.classList.remove('loading'); this.classList.add('loaded')"
-                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70'; this.classList.remove('loading')"
-                             class="loading"
-                             style="object-fit: cover; object-position: center center; width: 100%; height: 100%;">
+                        <img src="images/doctor3.jpg" alt="Dr. Lisa Williams">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-williams" class="view-profile">
-                                <i class="fas fa-user-md"></i> View Profile
-                            </a>
+                            <a href="doctors.html#dr-williams" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
@@ -779,16 +530,19 @@
                     <h3>Find Us on Map</h3>
                     <p>Visit our hospital located in the heart of Kisii Town</p>
                 </div>
-                <div class="map-frame">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.032263233091!2d34.77911117466527!3d-0.6817273352783043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b3f2e3d3b3b3b%3A0x3d3d3d3d3d3d3d3d!2sKisii%20Town%2C%20Kenya!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus"
-                        width="100%" 
-                        height="400" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <div class="map-placeholder">
+                    <!-- You can add Google Maps embed code here -->
+                    <div class="map-frame">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.032263233091!2d34.77911117466527!3d-0.6817273352783043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b3f2e3d3b3b3b%3A0x3d3d3d3d3d3d3d3d!2sKisii%20Town%2C%20Kenya!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus"
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -911,55 +665,6 @@
 
     <script src="js/script.js"></script>
     <script src="js/home.js"></script>
-
-    <!-- Image Loading Helper Script -->
-    <script>
-        // Function to handle image loading for doctors section
-        function initializeDoctorImages() {
-            const doctorImages = document.querySelectorAll('.doctors-section .doctor-img img');
-            
-            doctorImages.forEach(img => {
-                // Add loading class if not already loaded
-                if (!img.complete) {
-                    img.classList.add('loading');
-                }
-                
-                // Handle image load
-                img.addEventListener('load', function() {
-                    this.classList.remove('loading');
-                    this.classList.add('loaded');
-                });
-                
-                // Handle image error
-                img.addEventListener('error', function() {
-                    console.warn('Image failed to load:', this.src);
-                    this.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70';
-                    this.classList.remove('loading');
-                    this.classList.add('loaded');
-                });
-            });
-        }
-        
-        // Initialize on DOM load
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeDoctorImages();
-            
-            // Set current year
-            const currentYearEl = document.getElementById('currentYear');
-            if (currentYearEl) {
-                currentYearEl.textContent = new Date().getFullYear();
-            }
-            
-            // Preloader
-            const preloader = document.getElementById('preloader');
-            if (preloader) {
-                setTimeout(() => {
-                    preloader.style.opacity = '0';
-                    preloader.style.visibility = 'hidden';
-                }, 500);
-            }
-        });
-    </script>
 
     <script>
   // Register Service Worker
