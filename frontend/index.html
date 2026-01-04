@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTRH - Kisii Teaching & Referral Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
+                        <span class="logo-text">
+                            <strong></strong>
+                            <small></small>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="navbar" id="navbar">
+                    <!-- Mobile Toggle -->
+                    <button class="nav-toggle" id="navToggle">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                    </button>
+
+                    <!-- Main Navigation -->
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                 <li><a href="careers.html">Careers</a></li>
+                                <li><a href="services.html#cardiology">Cardiology</a></li>
+                                <li><a href="services.html#neurology">Neurology</a></li>
+                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
+                                <li><a href="services.html#emergency">Emergency Care</a></li>
+                                <li><a href="services.html">View All</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
+                   <!--  <li><a href="doctors.html" class="nav-link"><i class="fas fa-person"></i> Doctors</a></li>-->
+
+                         <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gallery.html">Media&Gallery</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                                >
+                                
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
+                        <li><a href="appointment.html" class="nav-link appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                        
+                    </ul>
+
+                    <!-- Quick Actions -->
+                    <!--<div class="nav-actions">
+                        <a href="contact.html" class="nav-link contact-btn"><i class="fas fa-phone-alt"></i> Contact</a>
+                        <a href="tel:+254758721997" class="emergency-btn">
+                            <i class="fas fa-phone"></i> Emergency: +254 758 721 997
+                        </a>
+                    </div>-->
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with YouTube Video -->
+    <section class="hero">
+        <!-- Video Background -->
+        <div class="video-container">
+            <div class="video-background">
+                <div class="video-overlay"></div>
+                <div class="video-wrapper">
+                    <iframe id="youtubeVideo" 
+                            src="https://www.youtube.com/embed/IzZeZbr7Jf0?autoplay=1&mute=1&loop=1&playlist=IzZeZbr7Jf0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&enablejsapi=1&origin=https://yourdomain.com"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- Fallback Image -->
+            <div class="video-fallback" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80');">
+                <div class="video-overlay"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Quality Healthcare You Can Trust</h1>
+                <p class="hero-subtitle">Kisii Teaching & Referral Hospital - Providing compassionate care with advanced medical technology for over a decade.</p>
+                <div class="hero-actions">
+                    <a href="appointment.html" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt"></i> Book Appointment
+                    </a>
+                    <a href="#services" class="btn btn-secondary">
+                        <i class="fas fa-arrow-right"></i> Our Services
+                    </a>
+                    <a href="#contact" class="btn btn-light">
+                        <i class="fas fa-headset"></i> Contact Us Now
+                    </a>
+                </div>
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Emergency Services</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-md"></i>
+                        <span>150+ Specialist Doctors</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-award"></i>
+                        <span>25 Years Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <a href="#services">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="quick-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-user-md"></i>
+                    <div>
+                        <h3 data-count="150">0</h3>
+                        <p>Specialist Doctors</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-procedures"></i>
+                    <div>
+                        <h3 data-count="500">0</h3>
+                        <p>Hospital Beds</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h3 data-count="50">0+</h3>
+                        <p>Departments</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-award"></i>
+                    <div>
+                        <h3 data-count="25">0</h3>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Medical Services</h2>
+                <p class="section-subtitle">Comprehensive healthcare solutions with advanced technology and expert care</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Cardiology</h3>
+                    <p>Advanced heart care with state-of-the-art diagnostic and treatment facilities.</p>
+                    <a href="services.html#cardiology" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neurology</h3>
+                    <p>Specialized care for brain and nervous system disorders with expert neurologists.</p>
+                    <a href="services.html#neurology" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Pediatrics</h3>
+                    <p>Comprehensive healthcare for infants, children, and adolescents.</p>
+                    <a href="services.html#pediatrics" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3>Emergency Care</h3>
+                    <p>24/7 emergency services with rapid response teams and advanced trauma care.</p>
+                    <a href="services.html#emergency" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="services.html" class="btn btn-outline">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <h2 class="section-title">About KTRH</h2>
+                    <p class="highlight">Kisii Teaching and Referral Hospital is a Level 6 public hospital providing quality healthcare, medical education, and research since 2010.</p>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Advanced Medical Technology</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Expert Medical Professionals</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 Emergency Services</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Patient-Centered Care</span>
+                        </div>
+                    </div>
+
+                    <div class="about-actions">
+                        <a href="about.html" class="btn btn-primary">
+                            <i class="fas fa-book-open"></i> Learn More
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-map-marker-alt"></i> Visit Us
+                        </a>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <img src="img/Kisii-Teaching-and-Referral-Hospital-KTRH-Location-List-of-Services-History-Contacts.jpg" alt="KTRH Hospital Building">
+                    <div class="experience-badge">
+                        <span>15+</span>
+                        <small>Years of Excellence</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments -->
+    <section class="departments-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Specialized Departments</h2>
+                <p class="section-subtitle">Expert care across multiple medical specialties</p>
+            </div>
+
+            <div class="departments-grid">
+                <a href="departments.html#cardiology" class="dept-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Cardiology</h4>
+                    <p>Heart & Vascular Care</p>
+                </a>
+
+                <a href="departments.html#neurology" class="dept-card">
+                    <i class="fas fa-brain"></i>
+                    <h4>Neurology</h4>
+                    <p>Brain & Nerve Care</p>
+                </a>
+
+                <a href="departments.html#orthopedics" class="dept-card">
+                    <i class="fas fa-bone"></i>
+                    <h4>Orthopedics</h4>
+                    <p>Bone & Joint Care</p>
+                </a>
+
+                <a href="departments.html#pediatrics" class="dept-card">
+                    <i class="fas fa-baby"></i>
+                    <h4>Pediatrics</h4>
+                    <p>Child Healthcare</p>
+                </a>
+
+                <a href="departments.html#maternity" class="dept-card">
+                    <i class="fas fa-female"></i>
+                    <h4>Maternity</h4>
+                    <p>Mother & Baby Care</p>
+                </a>
+
+                <a href="departments.html#surgery" class="dept-card">
+                    <i class="fas fa-syringe"></i>
+                    <h4>Surgery</h4>
+                    <p>Advanced Surgical Care</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Preview -->
+    <section class="doctors-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Specialists</h2>
+                <p class="section-subtitle">Highly qualified medical professionals dedicated to your health</p>
+            </div>
+
+            <div class="doctors-grid">
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="img/drondari.png" alt="Dr. Ondari">
+                        <div class="doctor-overlay">
+                            <a href="doctors.html#dr-johnson" class="view-profile">View Profile</a>
+                        </div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Ondari</h3>
+                        <p class="specialty">Cardiologist</p>
+                        <p class="experience">15+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="img/Dr orina.jpg" alt="Dr. Orina">
+                        <div class="doctor-overlay">
+                            <a href="doctors.html#dr-chen" class="view-profile">View Profile</a>
+                        </div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Michael Chen</h3>
+                        <p class="specialty">Neurologist</p>
+                        <p class="experience">12+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="images/doctor3.jpg" alt="Dr. Lisa Williams">
+                        <div class="doctor-overlay">
+                            <a href="doctors.html#dr-williams" class="view-profile">View Profile</a>
+                        </div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Oimeke Mariita</h3>
+                        <p class="specialty">Cardiologist</p>
+                        <p class="experience">10+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="doctors.html" class="btn btn-outline">View All Doctors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Contact Section -->
+    <section class="enhanced-contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Get in touch with us for any inquiries or emergency services</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <!-- Contact Cards -->
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Our Location</h3>
+                        <p>Kisii Town, 40200, Kenya</p>
+                        <a href="https://maps.google.com/?q=Kisii+Teaching+Referral+Hospital" target="_blank" class="contact-link">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Phone Numbers</h3>
+                        <p>Emergency: +254 758 721 997</p>
+                        <p>General: +254 020 123 4567</p>
+                        <a href="tel:+254758721997" class="contact-link">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Address</h3>
+                        <p>info@ktrh.or.ke</p>
+                        <p>emergency@ktrh.or.ke</p>
+                        <a href="mailto:info@ktrh.or.ke" class="contact-link">
+                            <i class="fas fa-paper-plane"></i> Send Email
+                        </a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Working Hours</h3>
+                        <p>Emergency: 24/7</p>
+                        <p>OPD: 8:00 AM - 5:00 PM</p>
+                        <a href="appointment.html" class="contact-link">
+                            <i class="fas fa-calendar-check"></i> Book Appointment
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h3>Send Us a Message</h3>
+                        <p>Fill out the form below and we'll get back to you as soon as possible</p>
+                    </div>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                                <i class="fas fa-user form-icon"></i>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="Enter your email">
+                                <i class="fas fa-envelope form-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                                <i class="fas fa-phone form-icon"></i>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="appointment">Appointment Booking</option>
+                                    <option value="emergency">Emergency Service</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="feedback">Feedback/Suggestion</option>
+                                    <option value="career">Career Opportunity</option>
+                                </select>
+                                <i class="fas fa-list form-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
+                            <i class="fas fa-comment form-icon"></i>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-container">
+                <div class="map-header">
+                    <h3>Find Us on Map</h3>
+                    <p>Visit our hospital located in the heart of Kisii Town</p>
+                </div>
+                <div class="map-placeholder">
+                    <!-- You can add Google Maps embed code here -->
+                    <div class="map-frame">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.032263233091!2d34.77911117466527!3d-0.6817273352783043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b3f2e3d3b3b3b%3A0x3d3d3d3d3d3d3d3d!2sKisii%20Town%2C%20Kenya!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus"
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment CTA -->
+    <section class="appointment-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Need Medical Assistance?</h2>
+                <p>Book an appointment with our specialists today for comprehensive healthcare.</p>
+                <a href="appointment.html" class="btn btn-light">
+                    <i class="fas fa-calendar-alt"></i> Book Appointment Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-2.png" alt="KTRH Logo">
+                        <div>
+                            <h3>KTRH</h3>
+                            <p>Kisii Teaching & Referral Hospital</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Providing quality healthcare services with compassion and excellence since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="departments.html"><i class="fas fa-chevron-right"></i> Departments</a></li>
+                        <li><a href="doctors.html"><i class="fas fa-chevron-right"></i> Doctors</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#cardiology"><i class="fas fa-chevron-right"></i> Cardiology</a></li>
+                        <li><a href="services.html#neurology"><i class="fas fa-chevron-right"></i> Neurology</a></li>
+                        <li><a href="services.html#pediatrics"><i class="fas fa-chevron-right"></i> Pediatrics</a></li>
+                        <li><a href="services.html#emergency"><i class="fas fa-chevron-right"></i> Emergency Care</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kisii Town, 40200, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 758 721 997</li>
+                        <li><i class="fas fa-envelope"></i> info@ktrh.or.ke</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Subscribe to Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Kisii Teaching & Referral Hospital. All rights reserved.</p>
+                <p>Designed by ICT Team KTRH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+            <button class="chat-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can we assist you today?</p>
+            <div class="chat-options">
+                <button class="chat-option" data-action="appointment">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </button>
+                <button class="chat-option" data-action="emergency">
+                    <i class="fas fa-ambulance"></i> Emergency Help
+                </button>
+                <button class="chat-option" data-action="location">
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/strapi-api.js"></script>
+<script src="JS/utils/helpers.js"></script>
+<script src="JS/utils/form-handler.js"></script>
+<script src="JS/pages/home.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/home.js"></script>
+
+    <script>
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('✅ Service Worker registered:', registration.scope);
+        })
+        .catch(error => {
+          console.log('❌ Service Worker registration failed:', error);
+        });
+    });
+  }
+</script>
+</body>
+</html>

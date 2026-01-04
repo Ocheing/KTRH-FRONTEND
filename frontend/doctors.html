@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Doctors - Kisii Teaching & Referral Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/doctors.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
+                        <span class="logo-text">
+                            <strong></strong>
+                            <small></small>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="navbar" id="navbar">
+                    <!-- Mobile Toggle -->
+                    <button class="nav-toggle" id="navToggle">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                    </button>
+
+                    <!-- Main Navigation -->
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="careers.html">Careers</a></li>
+                                <li><a href="services.html#cardiology">Cardiology</a></li>
+                                <li><a href="services.html#neurology">Neurology</a></li>
+                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
+                                <li><a href="services.html#emergency">Emergency Care</a></li>
+                                <li><a href="services.html">View All</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="media.html">Media&Gallery</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
+                        <li><a href="appointment.html" class="nav-link appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;">
+        <div class="container">
+            <h1>Our Medical Team</h1>
+            <p>Meet our team of experienced and dedicated medical professionals</p>
+        </div>
+    </section>
+
+    <!-- Doctors Navigation -->
+    <section class="doctors-navigation">
+        <div class="container">
+            <div class="doctors-nav-wrapper">
+                <div class="doctors-search">
+                    <input type="text" id="doctorsSearch" placeholder="Search doctors by name or specialty...">
+                    <button type="button"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="doctors-filters">
+                    <button class="filter-btn active" data-filter="all">All Doctors</button>
+                    <button class="filter-btn" data-filter="cardiology">Cardiology</button>
+                    <button class="filter-btn" data-filter="neurology">Neurology</button>
+                    <button class="filter-btn" data-filter="pediatrics">Pediatrics</button>
+                    <button class="filter-btn" data-filter="orthopedics">Orthopedics</button>
+                    <button class="filter-btn" data-filter="surgery">Surgery</button>
+                    <button class="filter-btn" data-filter="emergency">Emergency</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Stats -->
+    <section class="doctors-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Medical Doctors</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Specialists</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Years Average Experience</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>International Training</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Grid -->
+    <section class="doctors-grid-section">
+        <div class="container">
+            <div class="doctors-grid" id="doctorsGrid">
+                <!-- Cardiology Doctor 1 -->
+                <div class="doctor-card cardiology" data-name="Dr. Michael Otieno">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. Michael Otieno" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Cardiology</span>
+                                <h3>Dr. Michael Otieno</h3>
+                                <p>Senior Consultant Cardiologist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. Michael Otieno</h2>
+                            <span class="doctor-specialty">Cardiology</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, Cardiology</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in Interventional Cardiology</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Senior Consultant Cardiologist with 15+ years of experience in interventional cardiology. 
+                            Specializes in complex coronary interventions and cardiac electrophysiology.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Consultation Hours</strong>
+                                    <span>Mon, Wed, Fri: 9AM-4PM</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>15+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>Angioplasty</span>
+                                <span>Pacemaker</span>
+                                <span>Heart Failure</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_michael" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <button class="btn-profile" data-id="1">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Neurology Doctor -->
+                <div class="doctor-card neurology" data-name="Dr. Sarah Mwangi">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. Sarah Mwangi" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Neurology</span>
+                                <h3>Dr. Sarah Mwangi</h3>
+                                <p>Consultant Neurologist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. Sarah Mwangi</h2>
+                            <span class="doctor-specialty">Neurology</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, Neurology</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in Stroke Medicine</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Consultant Neurologist with 12+ years experience specializing in stroke management, 
+                            epilepsy, and movement disorders. Leads our stroke unit and neurology department.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Consultation Hours</strong>
+                                    <span>Tue, Thu, Sat: 10AM-5PM</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>12+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>Stroke Care</span>
+                                <span>Epilepsy</span>
+                                <span>EEG/EMG</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_sarah" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <button class="btn-profile" data-id="2">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pediatrics Doctor -->
+                <div class="doctor-card pediatrics" data-name="Dr. Grace Akinyi">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. Grace Akinyi" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Pediatrics</span>
+                                <h3>Dr. Grace Akinyi</h3>
+                                <p>Senior Pediatrician</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. Grace Akinyi</h2>
+                            <span class="doctor-specialty">Pediatrics</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, Pediatrics</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in Neonatology</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Senior Pediatrician and Neonatologist with 10+ years experience. 
+                            Specializes in newborn care, childhood development, and pediatric emergencies.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Consultation Hours</strong>
+                                    <span>Mon-Sat: 8AM-6PM</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>10+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>Neonatal Care</span>
+                                <span>Child Development</span>
+                                <span>Vaccinations</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_grace" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <button class="btn-profile" data-id="3">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orthopedics Doctor -->
+                <div class="doctor-card orthopedics" data-name="Dr. James Omondi">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. James Omondi" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Orthopedics</span>
+                                <h3>Dr. James Omondi</h3>
+                                <p>Orthopedic Surgeon</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. James Omondi</h2>
+                            <span class="doctor-specialty">Orthopedics</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, Orthopedic Surgery</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in Joint Replacement</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Senior Orthopedic Surgeon with 18+ years experience in joint replacement, 
+                            sports injuries, and trauma surgery. Performs 200+ surgeries annually.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Consultation Hours</strong>
+                                    <span>Mon, Wed, Fri: 8AM-3PM</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>18+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>Joint Replacement</span>
+                                <span>Arthroscopy</span>
+                                <span>Fracture Care</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_james" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <button class="btn-profile" data-id="4">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surgery Doctor -->
+                <div class="doctor-card surgery" data-name="Dr. David Njoroge">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. David Njoroge" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Surgery</span>
+                                <h3>Dr. David Njoroge</h3>
+                                <p>General Surgeon</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. David Njoroge</h2>
+                            <span class="doctor-specialty">General Surgery</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, General Surgery</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in Laparoscopic Surgery</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Consultant General Surgeon with 8+ years experience specializing in 
+                            minimally invasive laparoscopic surgeries and gastrointestinal procedures.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Consultation Hours</strong>
+                                    <span>Tue, Thu: 9AM-4PM</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>8+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>Laparoscopy</span>
+                                <span>Gastrointestinal</span>
+                                <span>Trauma Surgery</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_david" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <button class="btn-profile" data-id="5">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Doctor -->
+                <div class="doctor-card emergency" data-name="Dr. Linda Chebet">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. Linda Chebet" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Emergency</span>
+                                <h3>Dr. Linda Chebet</h3>
+                                <p>Emergency Medicine Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. Linda Chebet</h2>
+                            <span class="doctor-specialty">Emergency Medicine</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, Emergency Medicine</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in Trauma Care</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Emergency Medicine Specialist with 7+ years experience in trauma care and 
+                            critical emergency response. Heads our 24/7 emergency department.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Available</strong>
+                                    <span>24/7 Emergency Shifts</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>7+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>Trauma Care</span>
+                                <span>Critical Care</span>
+                                <span>Emergency Response</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_linda" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Emergency Contact
+                            </a>
+                            <button class="btn-profile" data-id="6">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cardiology Doctor 2 -->
+                <div class="doctor-card cardiology" data-name="Dr. Robert Kimani">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. Robert Kimani" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Cardiology</span>
+                                <h3>Dr. Robert Kimani</h3>
+                                <p>Cardiac Electrophysiologist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. Robert Kimani</h2>
+                            <span class="doctor-specialty">Cardiology</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, Cardiac Electrophysiology</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in Arrhythmia Management</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Cardiac Electrophysiologist with 12+ years experience specializing in 
+                            complex arrhythmia management, pacemaker, and ICD implantation.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Consultation Hours</strong>
+                                    <span>Mon, Tue, Thu: 10AM-6PM</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>12+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>Arrhythmia</span>
+                                <span>ICD Implantation</span>
+                                <span>Electrophysiology</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_robert" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <button class="btn-profile" data-id="7">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Neurology Doctor 2 -->
+                <div class="doctor-card neurology" data-name="Dr. Peter Ndegwa">
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70" alt="Dr. Peter Ndegwa" loading="lazy">
+                        <div class="doctor-overlay">
+                            <div class="overlay-content">
+                                <span class="doctor-department">Neurology</span>
+                                <h3>Dr. Peter Ndegwa</h3>
+                                <p>Neurophysiologist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-content">
+                        <div class="doctor-header">
+                            <h2>Dr. Peter Ndegwa</h2>
+                            <span class="doctor-specialty">Neurology</span>
+                        </div>
+                        
+                        <div class="doctor-qualifications">
+                            <div class="qualification">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>MD, Neurophysiology</span>
+                            </div>
+                            <div class="qualification">
+                                <i class="fas fa-university"></i>
+                                <span>Fellowship in EEG/EMG</span>
+                            </div>
+                        </div>
+                        
+                        <p class="doctor-bio">
+                            Neurophysiologist with 10+ years experience specializing in EEG, EMG, 
+                            and nerve conduction studies. Expert in diagnosing complex neurological disorders.
+                        </p>
+                        
+                        <div class="doctor-details">
+                            <div class="detail">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Consultation Hours</strong>
+                                    <span>Wed, Fri: 9AM-4PM</span>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Experience</strong>
+                                    <span>10+ Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-expertise">
+                            <h4><i class="fas fa-stethoscope"></i> Expertise:</h4>
+                            <div class="expertise-tags">
+                                <span>EEG</span>
+                                <span>EMG/NCS</span>
+                                <span>Neurodiagnostics</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-actions">
+                            <a href="appointment.html?doctor=dr_peter" class="btn-book">
+                                <i class="fas fa-calendar-check"></i> Book Appointment
+                            </a>
+                            <button class="btn-profile" data-id="8">
+                                <i class="fas fa-user-md"></i> View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMore">
+                    <i class="fas fa-plus"></i> View More Doctors
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctor of the Month -->
+    <section class="doctor-featured">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-star"></i> Doctor of the Month</h2>
+                <p>Recognizing excellence in patient care and medical leadership</p>
+            </div>
+            
+            <div class="featured-doctor">
+                <div class="featured-image">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Dr. Michael Otieno" loading="lazy">
+                    <div class="featured-badge">
+                        <i class="fas fa-award"></i> Doctor of the Month
+                    </div>
+                </div>
+                <div class="featured-content">
+                    <h3>Dr. Michael Otieno</h3>
+                    <p class="featured-specialty">Senior Consultant Cardiologist</p>
+                    
+                    <div class="featured-achievement">
+                        <h4><i class="fas fa-trophy"></i> Achievement:</h4>
+                        <p>Recognized for performing 50+ successful complex cardiac interventions this month with 100% success rate and exceptional patient satisfaction scores.</p>
+                    </div>
+                    
+                    <div class="featured-stats">
+                        <div class="stat">
+                            <h4>250+</h4>
+                            <p>Procedures This Year</p>
+                        </div>
+                        <div class="stat">
+                            <h4>99%</h4>
+                            <p>Success Rate</p>
+                        </div>
+                        <div class="stat">
+                            <h4>98%</h4>
+                            <p>Patient Satisfaction</p>
+                        </div>
+                    </div>
+                    
+                    <a href="appointment.html?doctor=dr_michael" class="featured-btn">
+                        <i class="fas fa-calendar-check"></i> Book with Dr. Otieno
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Our Doctors -->
+    <section class="why-choose-doctors">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-heartbeat"></i> Why Choose Our Doctors?</h2>
+                <p>Excellence in medical care backed by expertise and compassion</p>
+            </div>
+            
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Expert Qualifications</h3>
+                    <p>All our doctors hold advanced degrees and specialized certifications from recognized medical institutions.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Patient-Centered Care</h3>
+                    <p>Our doctors prioritize patient needs with compassionate care and personalized treatment plans.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Advanced Technology</h3>
+                    <p>Access to state-of-the-art medical equipment and latest treatment protocols.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Multidisciplinary Teams</h3>
+                    <p>Collaborative approach with specialists from various fields for comprehensive care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctor Modal -->
+    <div class="doctor-modal" id="doctorModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-2.png" alt="KTRH Logo">
+                        <div>
+                            <h3>KTRH</h3>
+                            <p>Kisii Teaching & Referral Hospital</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Providing quality healthcare services with compassion and excellence since 2005.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="departments.html"><i class="fas fa-chevron-right"></i> Departments</a></li>
+                        <li><a href="doctors.html"><i class="fas fa-chevron-right"></i> Our Doctors</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#cardiology"><i class="fas fa-chevron-right"></i> Cardiology</a></li>
+                        <li><a href="services.html#neurology"><i class="fas fa-chevron-right"></i> Neurology</a></li>
+                        <li><a href="services.html#pediatrics"><i class="fas fa-chevron-right"></i> Pediatrics</a></li>
+                        <li><a href="services.html#emergency"><i class="fas fa-chevron-right"></i> Emergency Care</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kisii Town, 40200, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 758 721 997</li>
+                        <li><i class="fas fa-envelope"></i> info@ktrh.or.ke</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Subscribe to Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Kisii Teaching & Referral Hospital. All rights reserved.</p>
+                <p>Designed by ICT Team KTRH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+            <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can we assist you today?</p>
+            <div class="chat-options">
+                <button class="chat-option" data-action="appointment">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </button>
+                <button class="chat-option" data-action="directions">
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
+                </button>
+                <button class="chat-option" data-action="emergency">
+                    <i class="fas fa-ambulance"></i> Emergency Help
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+    <script src="js/doctors.js"></script>
+</body>
+</html>

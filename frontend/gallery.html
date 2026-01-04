@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media & Gallery - Kisii Teaching & Referral Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
+                        <span class="logo-text">
+                            <strong></strong>
+                            <small></small>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="navbar" id="navbar">
+                    <!-- Mobile Toggle -->
+                    <button class="nav-toggle" id="navToggle">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                    </button>
+
+                    <!-- Main Navigation -->
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="careers.html">Careers</a></li>
+                                <li><a href="services.html#cardiology">Cardiology</a></li>
+                                <li><a href="services.html#neurology">Neurology</a></li>
+                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
+                                <li><a href="services.html#emergency">Emergency Care</a></li>
+                                <li><a href="services.html">View All</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gallery.html">Media&Gallery</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
+                        <li><a href="appointment.html" class="nav-link appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;">
+        <div class="container">
+            <h1>Media & Gallery</h1>
+            <p>Explore our hospital activities, events, and achievements through photos and videos</p>
+        </div>
+    </section>
+
+    <!-- Media Navigation -->
+    <section class="media-navigation">
+        <div class="container">
+            <div class="media-nav-wrapper">
+                <div class="media-categories">
+                    <button class="category-btn active" data-category="all">
+                        <i class="fas fa-th-large"></i> All Media
+                    </button>
+                    <button class="category-btn" data-category="events">
+                        <i class="fas fa-calendar-alt"></i> Events
+                    </button>
+                    <button class="category-btn" data-category="facilities">
+                        <i class="fas fa-hospital"></i> Facilities
+                    </button>
+                    <button class="category-btn" data-category="team">
+                        <i class="fas fa-users"></i> Team Activities
+                    </button>
+                    <button class="category-btn" data-category="achievements">
+                        <i class="fas fa-trophy"></i> Achievements
+                    </button>
+                    <button class="category-btn" data-category="community">
+                        <i class="fas fa-handshake"></i> Community
+                    </button>
+                    <button class="category-btn" data-category="videos">
+                        <i class="fas fa-video"></i> Videos
+                    </button>
+                </div>
+                
+                <div class="media-search">
+                    <input type="text" id="mediaSearch" placeholder="Search media...">
+                    <button type="button" id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be dynamically loaded from Strapi -->
+                <div class="gallery-loading" style="text-align: center; padding: 50px; grid-column: 1 / -1;">
+                    <div class="loader" style="margin: 0 auto;"></div>
+                    <p style="margin-top: 20px; color: #666;">Loading gallery items from Strapi...</p>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMore">
+                    <i class="fas fa-plus"></i> Load More Media
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery 
+    <section class="video-gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-video"></i> Featured Videos</h2>
+                <p>Watch our latest videos and hospital documentaries</p>
+            </div>-->
+            
+           <!-- <div class="video-grid" id="featuredVideosGrid">-->
+                <!-- Featured videos will be dynamically loaded from Strapi 
+                <div class="video-loading" style="text-align: center; padding: 30px; width: 100%;">
+                    <div class="loader" style="margin: 0 auto;"></div>
+                    <p style="margin-top: 15px; color: #666;">Loading featured videos...</p>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- Social Media -->
+    <section class="social-media-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-share-alt"></i> Follow Us on Social Media</h2>
+                <p>Stay updated with our latest news and activities</p>
+            </div>
+            
+            <div class="social-grid">
+                <a href="https://facebook.com/ktrh" target="_blank" class="social-card facebook">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Follow us for updates and health tips</p>
+                    <span class="social-followers">15K Followers</span>
+                </a>
+                
+                <a href="https://twitter.com/ktrh" target="_blank" class="social-card twitter">
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter</h3>
+                    <p>Latest news and announcements</p>
+                    <span class="social-followers">8.5K Followers</span>
+                </a>
+                
+                <a href="https://instagram.com/ktrh" target="_blank" class="social-card instagram">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>Visual stories and behind the scenes</p>
+                    <span class="social-followers">12K Followers</span>
+                </a>
+                
+                <a href="https://youtube.com/ktrh" target="_blank" class="social-card youtube">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube</h3>
+                    <p>Educational videos and documentaries</p>
+                    <span class="social-followers">5K Subscribers</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="" loading="lazy">
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <div class="modal-meta">
+                        <span><i class="far fa-calendar"></i> <span id="modalDate"></span></span>
+                        <span><i class="fas fa-tag"></i> <span id="modalCategory"></span></span>
+                    </div>
+                </div>
+                <div class="modal-navigation">
+                    <button class="nav-btn prev-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <button class="nav-btn next-btn" id="nextBtn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="videoModalClose">&times;</button>
+            <div class="modal-body">
+                <div class="video-container">
+                    <iframe id="videoFrame" width="100%" height="500" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="modal-info">
+                    <h2 id="videoTitle"></h2>
+                    <p id="videoDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-2.png" alt="KTRH Logo">
+                        <div>
+                            <h3>KTRH</h3>
+                            <p>Kisii Teaching & Referral Hospital</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Providing quality healthcare services with compassion and excellence since 2005.</p>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/ktrh" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/ktrh" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/ktrh" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/company/ktrh" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com/ktrh" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="departments.html"><i class="fas fa-chevron-right"></i> Departments</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#cardiology"><i class="fas fa-chevron-right"></i> Cardiology</a></li>
+                        <li><a href="services.html#neurology"><i class="fas fa-chevron-right"></i> Neurology</a></li>
+                        <li><a href="services.html#pediatrics"><i class="fas fa-chevron-right"></i> Pediatrics</a></li>
+                        <li><a href="services.html#emergency"><i class="fas fa-chevron-right"></i> Emergency Care</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kisii Town, 40200, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 758 721 997</li>
+                        <li><i class="fas fa-envelope"></i> info@ktrh.or.ke</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Subscribe to Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Kisii Teaching & Referral Hospital. All rights reserved.</p>
+                <p>Designed by ICT Team KTRH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+            <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can we assist you today?</p>
+            <div class="chat-options">
+                <button class="chat-option" data-action="appointment">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </button>
+                <button class="chat-option" data-action="directions">
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
+                </button>
+                <button class="chat-option" data-action="emergency">
+                    <i class="fas fa-ambulance"></i> Emergency Help
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+    <script src="js/gallery-strapi.js"></script>
+</body>
+</html>

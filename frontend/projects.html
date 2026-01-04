@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="dynamicPageTitle">Projects - Kisii Teaching & Referral Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Dynamic Meta Tags -->
+    <meta id="dynamicMetaDescription" name="description" content="Building the future of healthcare through innovative projects and infrastructure development">
+    <meta id="dynamicMetaKeywords" name="keywords" content="hospital projects, healthcare infrastructure, medical research, KTRH projects">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
+                        <span class="logo-text">
+                            <strong></strong>
+                            <small></small>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="navbar" id="navbar">
+                    <!-- Mobile Toggle -->
+                    <button class="nav-toggle" id="navToggle">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                    </button>
+
+                    <!-- Main Navigation -->
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="careers.html">Careers</a></li>
+                                <li><a href="services.html#cardiology">Cardiology</a></li>
+                                <li><a href="services.html#neurology">Neurology</a></li>
+                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
+                                <li><a href="services.html#emergency">Emergency Care</a></li>
+                                <li><a href="services.html">View All</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gallery.html">Media&Gallery</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
+                        <li><a href="appointment.html" class="nav-link appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;">
+        <div class="container">
+            <h1 id="projectsHeroTitle">Our Projects</h1>
+            <p id="projectsHeroDescription">Building the future of healthcare through innovative projects and infrastructure development</p>
+        </div>
+    </section>
+
+    <!-- Projects Navigation -->
+    <section class="projects-navigation">
+        <div class="container">
+            <div class="projects-nav-wrapper">
+                <div class="projects-categories">
+                    <button class="category-btn active" data-category="all">
+                        <i class="fas fa-th-large"></i> All Projects
+                    </button>
+                    <button class="category-btn" data-category="ongoing">
+                        <i class="fas fa-spinner"></i> Ongoing
+                    </button>
+                    <button class="category-btn" data-category="completed">
+                        <i class="fas fa-check-circle"></i> Completed
+                    </button>
+                    <button class="category-btn" data-category="upcoming">
+                        <i class="fas fa-calendar-alt"></i> Upcoming
+                    </button>
+                    <button class="category-btn" data-category="research">
+                        <i class="fas fa-flask"></i> Research
+                    </button>
+                    <button class="category-btn" data-category="infrastructure">
+                        <i class="fas fa-hard-hat"></i> Infrastructure
+                    </button>
+                </div>
+                
+                <div class="projects-search">
+                    <input type="text" id="projectsSearch" placeholder="Search projects...">
+                    <button type="button" id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Stats -->
+    <section class="projects-stats">
+        <div class="container">
+            <div class="stats-grid" id="statsGrid">
+                <!-- Stats will be loaded dynamically from Strapi -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="activeProjectsCount">15+</h3>
+                        <p>Active Projects</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="completedProjectsCount">42</h3>
+                        <p>Completed Projects</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="investmentValue">500M+</h3>
+                        <p>Investment Value</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="partnerOrganizations">12</h3>
+                        <p>Partner Organizations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-grid-section">
+        <div class="container">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded dynamically from Strapi -->
+                <!-- Loading placeholder -->
+                <div class="loading-projects" id="loadingProjects">
+                    <div class="loader"></div>
+                    <p>Loading projects from KTRH...</p>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMore">
+                    <i class="fas fa-plus"></i> Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="accreditation-partners">
+        <div class="container">
+            <div class="section-header">
+                <h2>Accreditations & Partners</h2>
+                <p>Recognized by leading healthcare organizations</p>
+            </div>
+            
+            <div class="auto-carousel-container">
+                <div class="auto-carousel-track">
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/kmtc.png" alt="KMTC Partner" loading="lazy">
+                        </div>
+                        <p>Kenya Medical Training College</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/kisii-university.jfif" alt="Kisii University" loading="lazy">
+                        </div>
+                        <p>Kisii University</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/WHO.jfif" alt="WHO" loading="lazy">
+                        </div>
+                        <p>World Health Organization</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/nhif.png" alt="NHIF" loading="lazy">
+                        </div>
+                        <p>National Hospital Insurance Fund</p>
+                    </div>
+
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/ministry-of-health.png" alt="Ministry of Health" loading="lazy">
+                        </div>
+                        <p>Ministry of Health</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/kmpb.jfif" alt="KMPB" loading="lazy">
+                        </div>
+                        <p>Kenya Medical Practitioners Board</p>
+                    </div>
+                </div>
+                
+                <!-- Gradient overlays for smooth edges -->
+                <div class="carousel-overlay left-overlay"></div>
+                <div class="carousel-overlay right-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding Opportunities -->
+    <section class="funding-opportunities">
+        <div class="container">
+            <div class="funding-content">
+                <div class="funding-info">
+                    <h2 id="fundingTitle"><i class="fas fa-hand-holding-usd"></i> Support Our Projects</h2>
+                    <p id="fundingDescription">Join us in building better healthcare infrastructure. Your support can help us complete critical projects faster.</p>
+                    
+                    <div class="funding-options">
+                        <div class="funding-option">
+                            <i class="fas fa-building"></i>
+                            <h3>Corporate Partnerships</h3>
+                            <p>Strategic partnerships for large-scale projects</p>
+                        </div>
+                        <div class="funding-option">
+                            <i class="fas fa-users"></i>
+                            <h3>Community Fundraising</h3>
+                            <p>Community-driven initiatives and donations</p>
+                        </div>
+                        <div class="funding-option">
+                            <i class="fas fa-globe-africa"></i>
+                            <h3>International Grants</h3>
+                            <p>Global health funding opportunities</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-funding">
+                    <h3><i class="fas fa-envelope"></i> Contact Project Office</h3>
+                    <p>Interested in partnering or funding our projects?</p>
+                    <a href="contact.html" class="contact-btn">
+                        <i class="fas fa-paper-plane"></i> Get in Touch
+                    </a>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone"></i> <strong>Project Office:</strong> <span id="projectPhone">+254 758 721 997</span> (Ext: 3101)</p>
+                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <span id="projectEmail">projects@ktrh.or.ke</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content loaded by JavaScript -->
+                <div class="modal-loading">
+                    <div class="loader"></div>
+                    <p>Loading project details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-2.png" alt="KTRH Logo">
+                        <div>
+                            <h3>KTRH</h3>
+                            <p>Kisii Teaching & Referral Hospital</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Providing quality healthcare services with compassion and excellence since 2005.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="departments.html"><i class="fas fa-chevron-right"></i> Departments</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#cardiology"><i class="fas fa-chevron-right"></i> Cardiology</a></li>
+                        <li><a href="services.html#neurology"><i class="fas fa-chevron-right"></i> Neurology</a></li>
+                        <li><a href="services.html#pediatrics"><i class="fas fa-chevron-right"></i> Pediatrics</a></li>
+                        <li><a href="services.html#emergency"><i class="fas fa-chevron-right"></i> Emergency Care</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kisii Town, 40200, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 758 721 997</li>
+                        <li><i class="fas fa-envelope"></i> info@ktrh.or.ke</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Subscribe to Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Kisii Teaching & Referral Hospital. All rights reserved.</p>
+                <p>Designed by ICT Team KTRH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+            <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can we assist you today?</p>
+            <div class="chat-options">
+                <button class="chat-option" data-action="appointment">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </button>
+                <button class="chat-option" data-action="directions">
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
+                </button>
+                <button class="chat-option" data-action="emergency">
+                    <i class="fas fa-ambulance"></i> Emergency Help
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- JavaScript Files -->
+    <script src="js/script.js"></script>
+    <script src="js/projects.js"></script>
+</body>
+</html>

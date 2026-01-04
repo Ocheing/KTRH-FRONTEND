@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Kisii Teaching & Referral Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/appointment.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
+                        <span class="logo-text">
+                            <strong></strong>
+                            <small></small>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="navbar" id="navbar">
+                    <!-- Mobile Toggle -->
+                    <button class="nav-toggle" id="navToggle">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                    </button>
+
+                    <!-- Main Navigation -->
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="careers.html">Careers</a></li>
+                                <li><a href="services.html#cardiology">Cardiology</a></li>
+                                <li><a href="services.html#neurology">Neurology</a></li>
+                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
+                                <li><a href="services.html#emergency">Emergency Care</a></li>
+                                <li><a href="services.html">View All</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gallery.html">Media&Gallery</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
+                        <li><a href="appointment.html" class="nav-link appointment active"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1516549655669-df6654e435de?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;">
+        <div class="container">
+            <h1>Book an Appointment</h1>
+            <p>Schedule your visit with our expert medical professionals</p>
+        </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section class="appointment-section">
+        <div class="container">
+            <div class="appointment-wrapper">
+                <!-- Appointment Form -->
+                <div class="appointment-form-container">
+                    <div class="form-header">
+                        <h2><i class="fas fa-calendar-alt"></i> Book Your Appointment</h2>
+                        <p>Fill out the form below to schedule your visit</p>
+                    </div>
+                    
+                    <form id="appointmentForm" class="appointment-form">
+                        <div class="form-group">
+                            <label for="fullName"><i class="fas fa-user"></i> Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone"><i class="fas fa-phone"></i> Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="e.g., +254 712 345 678">
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDate"><i class="fas fa-calendar-day"></i> Preferred Date *</label>
+                                <input type="date" id="appointmentDate" name="appointmentDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentTime"><i class="fas fa-clock"></i> Preferred Time *</label>
+                                <select id="appointmentTime" name="appointmentTime" required>
+                                    <option value="">Select Time</option>
+                                    <option value="08:00">08:00 AM</option>
+                                    <option value="09:00">09:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="14:00">02:00 PM</option>
+                                    <option value="15:00">03:00 PM</option>
+                                    <option value="16:00">04:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="department"><i class="fas fa-hospital"></i> Department/Specialty *</label>
+                            <select id="department" name="department" required>
+                                <option value="">Select Department</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="neurology">Neurology</option>
+                                <option value="pediatrics">Pediatrics</option>
+                                <option value="orthopedics">Orthopedics</option>
+                                <option value="dermatology">Dermatology</option>
+                                <option value="dentistry">Dentistry</option>
+                                <option value="ophthalmology">Ophthalmology</option>
+                                <option value="emergency">Emergency Care</option>
+                                <option value="general">General Physician</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="doctor"><i class="fas fa-user-md"></i> Preferred Doctor (Optional)</label>
+                            <select id="doctor" name="doctor">
+                                <option value="">Any Available Doctor</option>
+                                <option value="dr_smith">Dr. John Smith</option>
+                                <option value="dr_johnson">Dr. Sarah Johnson</option>
+                                <option value="dr_williams">Dr. Michael Williams</option>
+                                <option value="dr_brown">Dr. Elizabeth Brown</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="symptoms"><i class="fas fa-file-medical"></i> Symptoms/Reason for Visit *</label>
+                            <textarea id="symptoms" name="symptoms" rows="4" required placeholder="Briefly describe your symptoms or reason for appointment"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="insurance"><i class="fas fa-shield-alt"></i> Insurance Provider</label>
+                            <select id="insurance" name="insurance">
+                                <option value="">Select Insurance</option>
+                                <option value="nhif">NHIF</option>
+                                <option value="aetna">Aetna</option>
+                                <option value="cigna">Cigna</option>
+                                <option value="none">No Insurance</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and understand my data will be used in accordance with the <a href="#" class="terms-link">Privacy Policy</a>.</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Book Appointment
+                        </button>
+                        
+                        <p class="form-note">
+                            <i class="fas fa-info-circle"></i> You will receive a confirmation call/email within 24 hours.
+                        </p>
+                    </form>
+                </div>
+                
+                <!-- Appointment Info Sidebar -->
+                <div class="appointment-info">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Working Hours</h3>
+                        <div class="hours-list">
+                            <div class="hour-item">
+                                <span>Monday - Friday</span>
+                                <span>8:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hour-item">
+                                <span>Saturday</span>
+                                <span>9:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="hour-item">
+                                <span>Sunday</span>
+                                <span>Emergency Only</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Contact for Appointments</h3>
+                        <div class="contact-info">
+                            <p><i class="fas fa-phone"></i> <strong>+254 758 721 997</strong></p>
+                            <p><i class="fas fa-envelope"></i> appointments@ktrh.or.ke</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Visit: Ground Floor, Admin Block</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Before Your Visit</h3>
+                        <ul class="tips-list">
+                            <li><i class="fas fa-check-circle"></i> Arrive 15 minutes early</li>
+                            <li><i class="fas fa-check-circle"></i> Bring your ID/Passport</li>
+                            <li><i class="fas fa-check-circle"></i> Bring insurance card if applicable</li>
+                            <li><i class="fas fa-check-circle"></i> List of current medications</li>
+                            <li><i class="fas fa-check-circle"></i> Previous medical records</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card emergency-card">
+                        <div class="info-icon">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <h3>Emergency?</h3>
+                        <p>For emergencies, please call our 24/7 emergency line or visit the Emergency Department immediately.</p>
+                        <a href="tel:+254758721997" class="emergency-btn">
+                            <i class="fas fa-phone"></i> Call Emergency: +254 758 721 997
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialties Quick View -->
+    <section class="specialties-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Specialties</h2>
+                <p>Choose from our expert medical departments</p>
+            </div>
+            
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Cardiology</h3>
+                    <p>Heart care and cardiovascular treatment</p>
+                    <a href="departments.html#cardiology" class="specialty-link">Learn More</a>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neurology</h3>
+                    <p>Brain and nervous system disorders</p>
+                    <a href="departments.html#neurology" class="specialty-link">Learn More</a>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Pediatrics</h3>
+                    <p>Child healthcare and development</p>
+                    <a href="departments.html#pediatrics" class="specialty-link">Learn More</a>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Orthopedics</h3>
+                    <p>Bone, joint, and muscle care</p>
+                    <a href="departments.html#orthopedics" class="specialty-link">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-2.png" alt="KTRH Logo">
+                        <div>
+                            <h3>KTRH</h3>
+                            <p>Kisii Teaching & Referral Hospital</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Providing quality healthcare services with compassion and excellence since 2005.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="departments.html"><i class="fas fa-chevron-right"></i> Departments</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#cardiology"><i class="fas fa-chevron-right"></i> Cardiology</a></li>
+                        <li><a href="services.html#neurology"><i class="fas fa-chevron-right"></i> Neurology</a></li>
+                        <li><a href="services.html#pediatrics"><i class="fas fa-chevron-right"></i> Pediatrics</a></li>
+                        <li><a href="services.html#emergency"><i class="fas fa-chevron-right"></i> Emergency Care</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kisii Town, 40200, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 758 721 997</li>
+                        <li><i class="fas fa-envelope"></i> info@ktrh.or.ke</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Subscribe to Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Kisii Teaching & Referral Hospital. All rights reserved.</p>
+                <p>Designed by ICT Team KTRH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+            <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can we assist you today?</p>
+            <div class="chat-options">
+                <button class="chat-option" data-action="appointment">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </button>
+                <button class="chat-option" data-action="directions">
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
+                </button>
+                <button class="chat-option" data-action="emergency">
+                    <i class="fas fa-ambulance"></i> Emergency Help
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Appointment Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-check-circle"></i> Appointment Request Submitted</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Thank You!</h3>
+                <p>Your appointment request has been submitted successfully.</p>
+                <div class="appointment-details">
+                    <p><strong>Reference Number:</strong> <span id="refNumber">KTRH-2024-00123</span></p>
+                    <p><i class="fas fa-info-circle"></i> Our team will contact you within 24 hours to confirm your appointment.</p>
+                </div>
+                <button class="modal-btn" id="closeModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/appointment.js"></script>
+</body>
+</html>

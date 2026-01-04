@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Kisii Teaching & Referral Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/careers.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
+                        <span class="logo-text">
+                            <strong></strong>
+                            
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="navbar" id="navbar">
+                    <!-- Mobile Toggle -->
+                    <button class="nav-toggle" id="navToggle">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                    </button>
+
+                    <!-- Main Navigation -->
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li class="nav-dropdown">
+                           <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                 <li><a href="careers.html">Careers</a></li>
+                                <li><a href="services.html#cardiology">Cardiology</a></li>
+                                <li><a href="services.html#neurology">Neurology</a></li>
+                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
+                                <li><a href="services.html#emergency">Emergency Care</a></li>
+                                <li><a href="services.html">View All</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gallery.html">Media&Gallery</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
+                        <li><a href="appointment.html" class="nav-link appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; padding: 60px 0 40px; text-align: center; color: white; margin-top: 72px;">
+        <div class="container">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Join Our Team</h1>
+            <p style="font-size: 1rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Be part of a team dedicated to providing exceptional healthcare services</p>
+        </div>
+    </section>
+
+    <!-- Why Work With Us -->
+    <section class="careers-why-us">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Why Work With Us</h2>
+                <p>Join our dedicated team and make a difference in healthcare</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Purpose-Driven Work</h3>
+                    <p>Make a real impact on people's lives every day through meaningful healthcare work.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Continuous Learning</h3>
+                    <p>Access to training programs, workshops, and opportunities for professional development.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaborative Environment</h3>
+                    <p>Work with experienced professionals in a supportive and team-oriented atmosphere.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <h3>Competitive Benefits</h3>
+                    <p>Comprehensive health insurance, retirement plans, and competitive compensation packages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Openings -->
+    <section class="job-openings">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Current Job Openings</h2>
+                <p>Explore available positions and join our growing team</p>
+            </div>
+            
+            <div class="job-filters">
+                <button class="filter-btn active" data-filter="all">All Positions</button>
+                <button class="filter-btn" data-filter="medical">Medical</button>
+                <button class="filter-btn" data-filter="nursing">Nursing</button>
+                <button class="filter-btn" data-filter="admin">Administrative</button>
+                <button class="filter-btn" data-filter="technical">Technical</button>
+            </div>
+            
+            <!-- Dynamic Jobs Container -->
+            <div class="jobs-container" id="jobsContainer">
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                    <p>Loading job opportunities...</p>
+                </div>
+                <!-- Jobs will be loaded dynamically from Strapi -->
+            </div>
+            
+            <!-- No Jobs Message (hidden by default) -->
+            <div class="no-jobs-message" id="noJobsMessage" style="display: none;">
+                <i class="fas fa-briefcase no-jobs-icon"></i>
+                <h3>No current openings</h3>
+                <p>There are no job openings at the moment. Please check back later or submit a general application.</p>
+                <button onclick="location.reload()" class="refresh-button">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Process -->
+    <section class="application-process">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Application Process</h2>
+                <p>Follow these simple steps to join our team</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Submit Application</h3>
+                    <p>Fill out our online application form with your details and upload required documents.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Application Review</h3>
+                    <p>Our HR team reviews your application and qualifications for the position.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Interview</h3>
+                    <p>Selected candidates are invited for interviews with department heads.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Job Offer</h3>
+                    <p>Successful candidates receive job offers and onboarding information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- General Application Form -->
+    <section class="general-application">
+        <div class="container">
+            <div class="application-wrapper">
+                <div class="application-info">
+                    <h2>General Application</h2>
+                    <p>Don't see a position that matches your skills? Submit a general application and we'll keep your profile in our database for future opportunities.</p>
+                    
+                    <div class="application-benefits">
+                        <h3><i class="fas fa-check-circle"></i> Benefits of General Application:</h3>
+                        <ul>
+                            <li>Get notified when matching positions open</li>
+                            <li>Fast-track application process for future roles</li>
+                            <li>Join our talent pool for consideration</li>
+                            <li>Receive career opportunity updates</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="application-contacts">
+                        <h3><i class="fas fa-question-circle"></i> Questions?</h3>
+                        <p>Contact our HR Department:</p>
+                        <p><i class="fas fa-envelope"></i> careers@ktrh.or.ke</p>
+                        <p><i class="fas fa-phone"></i> +254 758 721 997 Ext. 234</p>
+                    </div>
+                </div>
+                
+                <div class="application-form">
+                    <form id="generalApplicationForm" class="career-form">
+                        <h3>Submit Your Profile</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="appName" placeholder="Full Name *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="appEmail" placeholder="Email Address *" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="tel" id="appPhone" placeholder="Phone Number *" required>
+                            </div>
+                            <div class="form-group">
+                                <select id="appCategory" required>
+                                    <option value="">Preferred Department *</option>
+                                    <option value="medical">Medical</option>
+                                    <option value="nursing">Nursing</option>
+                                    <option value="admin">Administrative</option>
+                                    <option value="technical">Technical</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="appPosition" placeholder="Desired Position">
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="appExperience" placeholder="Briefly describe your experience and qualifications" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appCV"><i class="fas fa-upload"></i> Upload CV/Resume (PDF/DOC, max 5MB)</label>
+                            <input type="file" id="appCV" accept=".pdf,.doc,.docx">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Application
+                        </button>
+                        
+                        <p style="font-size: 12px; color: #6c757d; margin-top: 15px;">* Required fields</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-2.png" alt="KTRH Logo">
+                        <div>
+                            <h3>KTRH</h3>
+                            <p>Kisii Teaching & Referral Hospital</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Providing quality healthcare services with compassion and excellence since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="departments.html"><i class="fas fa-chevron-right"></i> Departments</a></li>
+                        <li><a href="careers.html"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#cardiology"><i class="fas fa-chevron-right"></i> Cardiology</a></li>
+                        <li><a href="services.html#neurology"><i class="fas fa-chevron-right"></i> Neurology</a></li>
+                        <li><a href="services.html#pediatrics"><i class="fas fa-chevron-right"></i> Pediatrics</a></li>
+                        <li><a href="services.html#emergency"><i class="fas fa-chevron-right"></i> Emergency Care</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kisii Town, 40200, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 758 721 997</li>
+                        <li><i class="fas fa-envelope"></i> careers@ktrh.or.ke</li>
+                        <li><i class="fas fa-clock"></i> HR Hours: 8 AM - 5 PM Mon-Fri</li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Job Alerts</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-bell"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Kisii Teaching & Referral Hospital. All rights reserved.</p>
+                <p>Designed by ICT Team KTRH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+            <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can we assist you today?</p>
+            <div class="chat-options">
+                <button class="chat-option" data-action="careers">
+                    <i class="fas fa-briefcase"></i> Career Questions
+                </button>
+                <button class="chat-option" data-action="application">
+                    <i class="fas fa-file-alt"></i> Application Help
+                </button>
+                <button class="chat-option" data-action="contact">
+                    <i class="fas fa-phone"></i> Contact HR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Job Details Modal -->
+    <div class="modal" id="jobsModal" style="display: none;">
+        <div class="modal-content modal-large">
+            <button class="modal-close" id="jobModalClose">&times;</button>
+            <div id="jobModalBody">
+                <!-- Job details will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div class="modal" id="applicationModal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 id="modalJobTitle">Apply Now</h2>
+            <form id="jobApplicationForm">
+                <input type="hidden" id="selectedJob" name="jobTitle">
+                <input type="hidden" id="selectedJobId" name="jobId">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="modalName" placeholder="Full Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="modalEmail" placeholder="Email Address *" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="tel" id="modalPhone" placeholder="Phone Number *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="modalQualification" placeholder="Highest Qualification *" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="modalCoverLetter" placeholder="Cover Letter (Optional)" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modalCV"><i class="fas fa-upload"></i> Upload CV/Resume (PDF/DOC, max 5MB) *</label>
+                    <input type="file" id="modalCV" accept=".pdf,.doc,.docx" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modalCertificates"><i class="fas fa-upload"></i> Upload Certificates (Optional)</label>
+                    <input type="file" id="modalCertificates" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Submit Application
+                </button>
+                
+                <p style="font-size: 12px; color: #6c757d; margin-top: 15px;">* Required fields</p>
+            </form>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+     <script src="js/careers.js"></script>
+</body>
+</html>

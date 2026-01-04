@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kisii Teaching & Referral Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-wrapper">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
+                        <span class="logo-text">
+                            <strong></strong>
+                            <small></small>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="navbar" id="navbar">
+                    <!-- Mobile Toggle -->
+                    <button class="nav-toggle" id="navToggle">
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                        <span class="toggle-line"></span>
+                    </button>
+
+                    <!-- Main Navigation -->
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="about.html" class="nav-link active"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="careers.html">Careers</a></li>
+                                <li><a href="services.html#cardiology">Cardiology</a></li>
+                                <li><a href="services.html#neurology">Neurology</a></li>
+                                <li><a href="services.html#pediatrics">Pediatrics</a></li>
+                                <li><a href="services.html#emergency">Emergency Care</a></li>
+                                <li><a href="services.html">View All</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
+                        <li class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="gallery.html">Media&Gallery</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
+                        <li><a href="appointment.html" class="nav-link appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; padding: 60px 0 40px; text-align: center; color: white; margin-top: 72px;">
+        <div class="container">
+            <h1 id="aboutHeroTitle" style="font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">About Us</h1>
+            <p id="aboutHeroSubtitle" style="font-size: 1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; line-height: 1.6;">Committed to providing exceptional healthcare services with compassion and excellence</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="about-overview">
+        <div class="container">
+            <div class="overview-wrapper">
+                <div class="overview-content">
+                    <h2 id="overviewTitle">Welcome to KTRH</h2>
+                    <p id="overviewDescription" class="highlight">Kisii Teaching & Referral Hospital (KTRH) is a premier healthcare institution dedicated to providing comprehensive medical services, medical education, and research in the Western Kenya region.</p>
+                    
+                    <div id="statisticsGrid" class="stats-grid">
+                        <!-- Statistics will be populated by JavaScript -->
+                        <div class="stat-item">
+                            <h3>15+</h3>
+                            <p>Years of Service</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>300+</h3>
+                            <p>Medical Staff</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>50,000+</h3>
+                            <p>Patients Annually</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>24/7</h3>
+                            <p>Emergency Services</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-image">
+                    <img id="overviewImage" src="img/downloadKTRH.jpg" alt="KTRH Hospital Building">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card mission">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p id="missionStatement">To provide accessible, affordable, and quality healthcare services through innovative medical practices, excellence in training, and cutting-edge research while maintaining compassion and respect for all.</p>
+                </div>
+                
+                <div class="mv-card vision">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p id="visionStatement">To be the leading healthcare institution in the region, recognized for excellence in patient care, medical education, research, and community service.</p>
+                </div>
+                
+                <div class="mv-card values">
+                    <div class="mv-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <ul id="valuesList">
+                        <!-- Values will be populated by JavaScript -->
+                        <li><strong>Compassion:</strong> Care with empathy and kindness</li>
+                        <li><strong>Excellence:</strong> Strive for the highest standards</li>
+                        <li><strong>Integrity:</strong> Uphold ethical practices</li>
+                        <li><strong>Teamwork:</strong> Collaborate for better outcomes</li>
+                        <li><strong>Innovation:</strong> Embrace new technologies and methods</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Timeline -->
+    <section class="history-timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our History</h2>
+                <p>Journey of growth and excellence in healthcare</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2005</div>
+                    <div class="timeline-content">
+                        <h3>Establishment</h3>
+                        <p>Kisii Teaching & Referral Hospital was established as a county referral facility to serve the growing healthcare needs of the region.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2010</div>
+                    <div class="timeline-content">
+                        <h3>Teaching Hospital Designation</h3>
+                        <p>Recognized as a teaching hospital, partnering with medical schools to train the next generation of healthcare professionals.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2015</div>
+                    <div class="timeline-content">
+                        <h3>Major Expansion</h3>
+                        <p>Completed major infrastructure expansion, adding specialized units including ICU, NICU, and modern operating theaters.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2018</div>
+                    <div class="timeline-content">
+                        <h3>Digital Transformation</h3>
+                        <p>Implemented comprehensive Hospital Information System (HIS) and electronic medical records for improved patient care.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <h3>Modern Facilities</h3>
+                        <p>Opened new diagnostic center with MRI, CT Scan, and advanced laboratory facilities.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h3>Ongoing Growth</h3>
+                        <p>Continuing to expand services and facilities to meet the evolving healthcare needs of our community.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section class="leadership-team">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Leadership Team</h2>
+                <p>Experienced professionals guiding our hospital's vision</p>
+            </div>
+            
+            <div id="leadershipGrid" class="team-grid">
+                <!-- Leadership team will be populated by JavaScript -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dr. John Otieno">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. John Otieno</h3>
+                        <p class="position">Chief Executive Officer</p>
+                        <p class="qualification">MD, MBA Healthcare Management</p>
+                        <p class="experience">15+ years in healthcare leadership</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dr. Sarah Mwangi">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Sarah Mwangi</h3>
+                        <p class="position">Medical Director</p>
+                        <p class="qualification">MD, MPH</p>
+                        <p class="experience">12+ years in clinical leadership</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mr. James Omondi">
+                    </div>
+                    <div class="member-info">
+                        <h3>Mr. James Omondi</h3>
+                        <p class="position">Director of Nursing Services</p>
+                        <p class="qualification">BSc Nursing, MBA</p>
+                        <p class="experience">18+ years in nursing management</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Dr. Grace Akinyi">
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Grace Akinyi</h3>
+                        <p class="position">Head of Clinical Services</p>
+                        <p class="qualification">MD, MMed Pediatrics</p>
+                        <p class="experience">10+ years in clinical administration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="facilities-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Facilities</h2>
+                <p>State-of-the-art infrastructure for comprehensive healthcare</p>
+            </div>
+            
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h3>Modern Wards</h3>
+                    <p>Comfortable patient rooms with modern amenities and 24/7 nursing care.</p>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Specialized Units</h3>
+                    <p>ICU, NICU, CCU, dialysis unit, and specialized care units for various conditions.</p>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Advanced Laboratory</h3>
+                    <p>Fully equipped diagnostic laboratory with modern testing equipment.</p>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-x-ray"></i>
+                    </div>
+                    <h3>Imaging Services</h3>
+                    <p>MRI, CT Scan, X-ray, Ultrasound, and Mammography services available.</p>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3>Emergency Services</h3>
+                    <p>24/7 emergency department with ambulance services and trauma center.</p>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Research Center</h3>
+                    <p>Medical research facilities supporting clinical trials and studies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accreditation & Partners -->
+    <section class="accreditation-partners">
+        <div class="container">
+            <div class="section-header">
+                <h2>Accreditations & Partners</h2>
+                <p>Recognized by leading healthcare organizations</p>
+            </div>
+            
+            <div class="auto-carousel-container">
+                <div class="auto-carousel-track">
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/kmtc.png" alt="KMTC Partner" loading="lazy">
+                        </div>
+                        <p>Kenya Medical Training College</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/kisii-university.jfif" alt="Kisii University" loading="lazy">
+                        </div>
+                        <p>Kisii University</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/WHO.jfif" alt="WHO" loading="lazy">
+                        </div>
+                        <p>World Health Organization</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/nhif.png" alt="NHIF" loading="lazy">
+                        </div>
+                        <p>National Hospital Insurance Fund</p>
+                    </div>
+                    
+                    <div class="partner-logo">
+                        <div class="logo-circle">
+                            <img src="img/kmpb.jfif" alt="KMPB" loading="lazy">
+                        </div>
+                        <p>Kenya Medical Practitioners Board</p>
+                    </div>
+                </div>
+                
+                <!-- Gradient overlays for smooth edges -->
+                <div class="carousel-overlay left-overlay"></div>
+                <div class="carousel-overlay right-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="img/logo-2.png" alt="KTRH Logo">
+                        <div>
+                            <h3>KTRH</h3>
+                            <p>Kisii Teaching & Referral Hospital</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">Providing quality healthcare services with compassion and excellence since 2005.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="departments.html"><i class="fas fa-chevron-right"></i> Departments</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#cardiology"><i class="fas fa-chevron-right"></i> Cardiology</a></li>
+                        <li><a href="services.html#neurology"><i class="fas fa-chevron-right"></i> Neurology</a></li>
+                        <li><a href="services.html#pediatrics"><i class="fas fa-chevron-right"></i> Pediatrics</a></li>
+                        <li><a href="services.html#emergency"><i class="fas fa-chevron-right"></i> Emergency Care</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> View All</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Kisii Town, 40200, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 758 721 997</li>
+                        <li><i class="fas fa-envelope"></i> info@ktrh.or.ke</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Emergency Services</li>
+                    </ul>
+                    <div class="newsletter">
+                        <h5>Subscribe to Newsletter</h5>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Kisii Teaching & Referral Hospital. All rights reserved.</p>
+                <p>Designed by ICT Team KTRH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+            <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <p>Hello! How can we assist you today?</p>
+            <div class="chat-options">
+                <button class="chat-option" data-action="appointment">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </button>
+                <button class="chat-option" data-action="directions">
+                    <i class="fas fa-map-marker-alt"></i> Get Directions
+                </button>
+                <button class="chat-option" data-action="emergency">
+                    <i class="fas fa-ambulance"></i> Emergency Help
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+    <script src="js/about.js"></script>
+</body>
+</html>
