@@ -13,12 +13,665 @@
     <!-- Dynamic Meta Tags -->
     <meta id="dynamicMetaDescription" name="description" content="Building the future of healthcare through innovative projects and infrastructure development">
     <meta id="dynamicMetaKeywords" name="keywords" content="hospital projects, healthcare infrastructure, medical research, KTRH projects">
+    <style>
+        /* Mobile Navigation Styles for Projects Page */
+        .mobile-nav-toggle {
+            display: none !important;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002;
+            position: relative;
+        }
+        
+        .mobile-nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+        }
+        
+        .mobile-nav-toggle .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile menu overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+        
+        /* Mobile menu container */
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding-top: 70px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu-container.active {
+            right: 0;
+        }
+        
+        /* Mobile menu links */
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            background-color: #f0f8ff;
+            color: #2c4964;
+        }
+        
+        .mobile-nav-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Mobile dropdown styles */
+        .mobile-dropdown-toggle {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-dropdown-toggle i.fa-chevron-down {
+            transition: transform 0.3s;
+        }
+        
+        .mobile-dropdown-toggle.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-dropdown-menu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        .mobile-dropdown-menu.active {
+            display: block;
+        }
+        
+        .mobile-dropdown-menu a {
+            padding: 10px 15px;
+            font-size: 0.95rem;
+        }
+        
+        /* Appointment button in mobile menu */
+        .mobile-nav-menu .appointment {
+            background-color: #2c4964;
+            color: white !important;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        .mobile-nav-menu .appointment:hover {
+            background-color: #1a3249;
+        }
+        
+        /* Page Header margin adjustment for mobile */
+        @media screen and (max-width: 1024px) {
+            .page-header {
+                margin-top: 60px !important;
+                padding: 60px 0 40px !important;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem !important;
+            }
+        }
+        
+        /* Responsive Media Queries */
+        @media screen and (max-width: 1024px) {
+            /* Hide desktop navigation */
+            .nav-menu {
+                display: none !important;
+            }
+            
+            /* Show mobile hamburger button */
+            .mobile-nav-toggle {
+                display: block !important;
+            }
+            
+            /* Adjust header layout for mobile */
+            .header-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* Ensure logo is visible */
+            .logo {
+                z-index: 1001;
+            }
+            
+            /* Projects navigation adjustments */
+            .projects-nav-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .projects-categories {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .category-btn {
+                margin: 5px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            /* Projects stats grid adjustments */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px;
+            }
+            
+            /* Projects grid adjustments */
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px;
+            }
+            
+            /* Partners carousel adjustments */
+            .auto-carousel-track {
+                animation: none !important;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .partner-logo {
+                flex: 0 0 45% !important;
+                margin: 10px;
+            }
+            
+            /* Funding opportunities adjustments */
+            .funding-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .funding-options {
+                flex-direction: column;
+            }
+            
+            /* Footer grid adjustments */
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .mobile-menu-container {
+                width: 280px;
+            }
+            
+            .projects-search {
+                width: 100%;
+            }
+            
+            .projects-search input {
+                width: 100%;
+            }
+            
+            .partner-logo {
+                flex: 0 0 90% !important;
+            }
+            
+            /* Modal adjustments */
+            .modal-content {
+                width: 90% !important;
+                margin: 10% auto !important;
+            }
+            
+            .modal-body {
+                padding: 20px !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .mobile-menu-container {
+                width: 100%;
+            }
+            
+            .page-header {
+                padding: 40px 0 30px !important;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem !important;
+            }
+            
+            .page-header p {
+                font-size: 1rem !important;
+            }
+            
+            .projects-categories {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+            }
+            
+            .category-btn {
+                white-space: nowrap;
+            }
+            
+            /* Project card adjustments */
+            .project-card {
+                padding: 20px !important;
+            }
+            
+            /* Funding option adjustments */
+            .funding-option {
+                padding: 20px !important;
+            }
+            
+            /* Modal adjustments for small screens */
+            .modal-content {
+                width: 95% !important;
+                margin: 5% auto !important;
+            }
+        }
+        
+        /* Ensure desktop nav shows on larger screens */
+        @media screen and (min-width: 1025px) {
+            .mobile-nav-toggle,
+            .mobile-menu-container,
+            .mobile-menu-overlay {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+            }
+        }
+        
+        /* Projects page specific styling */
+        .projects-navigation {
+            background: #f8f9fa;
+            padding: 20px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .projects-nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .projects-categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .category-btn.active,
+        .category-btn:hover {
+            background: #2c4964;
+            color: white;
+            border-color: #2c4964;
+        }
+        
+        .projects-search {
+            display: flex;
+            min-width: 250px;
+        }
+        
+        .projects-search input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .projects-search button {
+            background: #2c4964;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        /* Projects stats */
+        .projects-stats {
+            padding: 40px 0;
+            background: linear-gradient(135deg, #2c4964 0%, #3a6186 100%);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #4fc3f7;
+        }
+        
+        .stat-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Projects grid */
+        .projects-grid-section {
+            padding: 40px 0;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        /* Partners section */
+        .accreditation-partners {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h2 {
+            color: #2c4964;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .auto-carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auto-carousel-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .partner-logo {
+            flex: 0 0 250px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo-circle img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Funding opportunities */
+        .funding-opportunities {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .funding-content {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .funding-info {
+            flex: 1;
+        }
+        
+        .funding-info h2 {
+            color: #2c4964;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .funding-info p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .funding-options {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .funding-option {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .funding-option i {
+            font-size: 2.5rem;
+            color: #2c4964;
+            margin-bottom: 15px;
+        }
+        
+        .funding-option h3 {
+            color: #2c4964;
+            margin-bottom: 10px;
+        }
+        
+        .contact-funding {
+            flex: 0 0 350px;
+            background: #2c4964;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .contact-funding h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background: white;
+            color: #2c4964;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        /* Load more button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .load-more-btn {
+            padding: 15px 40px;
+            background: #2c4964;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .load-more-btn:hover {
+            background: #1a3249;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="loader"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu Container -->
+    <div class="mobile-menu-container" id="mobileMenuContainer">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle">
+                    <span><i class="fas fa-stethoscope"></i> Services&Careers</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </li>
+            <li><a href="departments.html"><i class="fas fa-hospital"></i> Departments</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle active">
+                    <span><i class="fas fa-camera"></i> Media&Projects</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="gallery.html">Media&Gallery</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html"><i class="fas fa-phone"></i> Contact Us</a></li>
+            <li><a href="appointment.html" class="appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+        </ul>
     </div>
 
     <!-- Header -->
@@ -36,15 +689,17 @@
                     </a>
                 </div>
 
-                <!-- Navigation -->
-                <nav class="navbar" id="navbar">
-                    <!-- Mobile Toggle -->
-                    <button class="nav-toggle" id="navToggle">
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                    </button>
+                <!-- Mobile Hamburger Toggle -->
+                <button class="mobile-nav-toggle" id="mobileNavToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
 
+                <!-- Desktop Navigation (Hidden on Mobile) -->
+                <nav class="navbar" id="navbar">
                     <!-- Main Navigation -->
                     <ul class="nav-menu">
                         <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
@@ -54,7 +709,6 @@
                             <ul class="dropdown-menu">
                                 <li><a href="careers.html">Careers</a></li>
                                 <li><a href="services.html">Services</a></li>
-                               
                             </ul>
                         </li>
                         <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
@@ -74,10 +728,10 @@
     </header>
 
     <!-- Page Header -->
-    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;">
+    <section class="page-header" style="background: linear-gradient(rgba(44, 73, 100, 0.85), rgba(44, 73, 100, 0.85)), url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat; padding: 120px 0 80px; text-align: center; color: white; margin-top: 72px;">
         <div class="container">
-            <h1 id="projectsHeroTitle">Our Projects</h1>
-            <p id="projectsHeroDescription">Building the future of healthcare through innovative projects and infrastructure development</p>
+            <h1 id="projectsHeroTitle" style="font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Our Projects</h1>
+            <p id="projectsHeroDescription" style="font-size: 1.3rem; opacity: 0.95; max-width: 600px; margin: 0 auto; line-height: 1.6;">Building the future of healthcare through innovative projects and infrastructure development</p>
         </div>
     </section>
 
@@ -395,6 +1049,174 @@
     <a href="#" class="back-to-top" id="backToTop">
         <i class="fas fa-chevron-up"></i>
     </a>
+
+    <script>
+        // Mobile Navigation Toggle for Projects Page
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            
+            console.log('Projects page mobile navigation script loaded');
+            
+            // Toggle mobile menu
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    console.log('Hamburger clicked on Projects page');
+                    
+                    // Toggle active class on hamburger
+                    this.classList.toggle('active');
+                    
+                    // Toggle active class on menu container
+                    mobileMenuContainer.classList.toggle('active');
+                    
+                    // Toggle active class on overlay
+                    mobileMenuOverlay.classList.toggle('active');
+                    
+                    // Prevent scrolling when menu is open
+                    document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Close menu when clicking overlay
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', function() {
+                    console.log('Overlay clicked - closing menu');
+                    mobileNavToggle.classList.remove('active');
+                    mobileMenuContainer.classList.remove('active');
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Toggle dropdowns in mobile menu
+            if (mobileDropdownToggles) {
+                mobileDropdownToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Toggle active class on this dropdown
+                        this.classList.toggle('active');
+                        
+                        // Find the dropdown menu and toggle it
+                        const dropdownMenu = this.nextElementSibling;
+                        if (dropdownMenu && dropdownMenu.classList.contains('mobile-dropdown-menu')) {
+                            dropdownMenu.classList.toggle('active');
+                        }
+                    });
+                });
+            }
+            
+            // Close menu when clicking any link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-menu a');
+            if (mobileLinks) {
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        // Don't prevent default for dropdown toggles
+                        if (!this.classList.contains('mobile-dropdown-toggle')) {
+                            console.log('Link clicked - closing menu');
+                            mobileNavToggle.classList.remove('active');
+                            mobileMenuContainer.classList.remove('active');
+                            mobileMenuOverlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            }
+            
+            // Close menu when window is resized to desktop size
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024) {
+                    if (mobileNavToggle) mobileNavToggle.classList.remove('active');
+                    if (mobileMenuContainer) mobileMenuContainer.classList.remove('active');
+                    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Close all dropdowns
+                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                        dropdown.querySelector('.mobile-dropdown-toggle')?.classList.remove('active');
+                        dropdown.querySelector('.mobile-dropdown-menu')?.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Update current year in footer
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+            
+            // Projects category buttons functionality
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            if (categoryButtons) {
+                categoryButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        categoryButtons.forEach(btn => btn.classList.remove('active'));
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        const category = this.getAttribute('data-category');
+                        console.log('Category selected:', category);
+                        // This will be integrated with the projects.js functionality
+                    });
+                });
+            }
+            
+            // Projects search functionality
+            const projectsSearchInput = document.getElementById('projectsSearch');
+            const searchButton = document.getElementById('searchButton');
+            if (projectsSearchInput && searchButton) {
+                searchButton.addEventListener('click', function() {
+                    const searchTerm = projectsSearchInput.value.toLowerCase();
+                    console.log('Searching for:', searchTerm);
+                    // This will be integrated with the projects.js functionality
+                });
+                
+                // Allow pressing Enter to search
+                projectsSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchButton.click();
+                    }
+                });
+            }
+            
+            // Load more button functionality
+            const loadMoreBtn = document.getElementById('loadMore');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    console.log('Load more projects clicked');
+                    // This will be integrated with the projects.js functionality
+                });
+            }
+            
+            // Contact button functionality
+            const contactBtn = document.querySelector('.contact-btn');
+            if (contactBtn) {
+                contactBtn.addEventListener('click', function(e) {
+                    console.log('Contact button clicked - redirecting to contact page');
+                    // Normal link behavior, no need to prevent default
+                });
+            }
+            
+            // Partner logos carousel pause on hover
+            const carouselTrack = document.querySelector('.auto-carousel-track');
+            if (carouselTrack) {
+                carouselTrack.addEventListener('mouseenter', function() {
+                    this.style.animationPlayState = 'paused';
+                });
+                
+                carouselTrack.addEventListener('mouseleave', function() {
+                    this.style.animationPlayState = 'running';
+                });
+            }
+            
+            // Debug info
+            console.log('Projects page navigation elements loaded successfully');
+        });
+    </script>
 
     <!-- JavaScript Files -->
     <script src="js/script.js"></script>

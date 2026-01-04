@@ -2,9 +2,9 @@
 // GALLERY PAGE - STRAPI INTEGRATION
 // ===========================================
 
-// Strapi API Configuration
-const STRAPI_API_URL = 'http://https://better-friend-c539968cc5.strapiapp.com/api';
-const STRAPI_IMAGE_URL = 'http://https://better-friend-c539968cc5.strapiapp.com';
+// Strapi API Configuration - FIXED: Removed double protocol
+const STRAPI_API_URL = 'https://better-friend-c539968cc5.strapiapp.com/api';
+const STRAPI_IMAGE_URL = 'https://better-friend-c539968cc5.strapiapp.com';
 
 // DOM Elements
 let galleryGrid;
@@ -821,11 +821,12 @@ async function initializeGalleryPage() {
         const testResponse = await fetch(`${STRAPI_API_URL}/gallery-items?populate=*&pagination[pageSize]=1`);
         console.log('Strapi test response status:', testResponse.status);
         if (!testResponse.ok) {
-            showNotification('Cannot connect to Strapi server. Make sure Strapi is running on port 1337.', 'error');
+            console.error('Strapi connection failed:', testResponse.statusText);
+            // Don't show error notification for connection issues - just log to console
         }
     } catch (error) {
         console.error('Strapi connection error:', error);
-        showNotification('Cannot connect to Strapi server. Make sure Strapi is running on port 1337.', 'error');
+        // Don't show error notification for connection issues - just log to console
     }
     
     console.log('Fetching gallery items from API...');

@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="css/doctors.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <style>
-        /* Additional CSS for doctor image fixes */
+        /* Enhanced CSS for doctor image fixes */
         .doctor-img {
             width: 100%;
-            height: 280px;
+            height: 300px;
             overflow: hidden;
             position: relative;
             border-radius: 8px 8px 0 0;
@@ -23,31 +23,348 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
-            transition: transform 0.3s ease;
+            object-position: center top;
+            transition: transform 0.5s ease;
+        }
+        
+        .doctor-card:nth-child(1) .doctor-img img {
+            object-position: center 30%;
+        }
+        
+        .doctor-card:nth-child(2) .doctor-img img {
+            object-position: center 25%;
+        }
+        
+        .doctor-card:nth-child(3) .doctor-img img {
+            object-position: center 20%;
         }
         
         .doctor-card:hover .doctor-img img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
         
-        /* Fix for hero section fallback */
-        .video-fallback {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        /* Better card layout */
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         
-        /* Ensure all doctor images have consistent sizing */
-        .doctors-grid .doctor-card {
+        .doctor-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
         }
         
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
         .doctor-info {
-            flex-grow: 1;
             padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .doctor-info h3 {
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+            color: #2c3e50;
+        }
+        
+        .specialty {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .experience {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .doctor-rating {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .doctor-rating i {
+            color: #f39c12;
+        }
+        
+        .doctor-rating span {
+            margin-left: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        /* Hero section fallback */
+        .video-fallback {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('img/hero-bg.webp');
+        }
+        
+        /* Fallback if webp not supported */
+        @supports not (background-image: url('img/hero-bg.webp')) {
+            .video-fallback {
+                background-image: url('img/hero-bg.jpg');
+            }
+        }
+        
+        /* =========================================== */
+        /* MOBILE RESPONSIVE NAVIGATION - FIXED VERSION */
+        /* =========================================== */
+        
+        /* Mobile hamburger menu - Force these styles */
+        .mobile-nav-toggle {
+            display: none !important;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002;
+            position: relative;
+        }
+        
+        .mobile-nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+        }
+        
+        .mobile-nav-toggle .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile menu overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+        
+        /* Mobile menu container */
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding-top: 70px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu-container.active {
+            right: 0;
+        }
+        
+        /* Mobile menu links */
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            background-color: #f0f8ff;
+            color: #2a6eb8;
+        }
+        
+        .mobile-nav-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Mobile dropdown styles */
+        .mobile-dropdown-toggle {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-dropdown-toggle i.fa-chevron-down {
+            transition: transform 0.3s;
+        }
+        
+        .mobile-dropdown-toggle.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-dropdown-menu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        .mobile-dropdown-menu.active {
+            display: block;
+        }
+        
+        .mobile-dropdown-menu a {
+            padding: 10px 15px;
+            font-size: 0.95rem;
+        }
+        
+        /* Appointment button in mobile menu */
+        .mobile-nav-menu .appointment {
+            background-color: #2a6eb8;
+            color: white !important;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        .mobile-nav-menu .appointment:hover {
+            background-color: #1e5ca3;
+        }
+        
+        /* =========================================== */
+        /* RESPONSIVE MEDIA QUERIES */
+        /* =========================================== */
+        
+        /* Show hamburger and hide desktop nav on mobile */
+        @media screen and (max-width: 1024px) {
+            /* Hide desktop navigation */
+            .nav-menu {
+                display: none !important;
+            }
+            
+            /* Show mobile hamburger button */
+            .mobile-nav-toggle {
+                display: block !important;
+            }
+            
+            /* Adjust header layout for mobile */
+            .header-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* Ensure logo is visible */
+            .logo {
+                z-index: 1001;
+            }
+            
+            /* Doctor card adjustments */
+            .doctor-img {
+                height: 250px;
+            }
+            
+            .doctors-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Hero adjustments */
+            .hero-content {
+                padding-top: 60px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media screen and (max-width: 480px) {
+            .mobile-menu-container {
+                width: 100%;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .mobile-menu-container {
+                padding-top: 80px;
+            }
+        }
+        
+        /* Ensure desktop nav shows on larger screens */
+        @media screen and (min-width: 1025px) {
+            .mobile-nav-toggle,
+            .mobile-menu-container,
+            .mobile-menu-overlay {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+            }
         }
     </style>
 </head>
@@ -56,6 +373,40 @@
     <div class="preloader" id="preloader">
         <div class="loader"></div>
         <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu Container -->
+    <div class="mobile-menu-container" id="mobileMenuContainer">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle">
+                    <span><i class="fas fa-stethoscope"></i> Services&Careers</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </li>
+            <li><a href="departments.html"><i class="fas fa-hospital"></i> Departments</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle">
+                    <span><i class="fas fa-camera"></i> Media&Projects</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="gallery.html">Media&Gallery</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html"><i class="fas fa-phone"></i> Contact Us</a></li>
+            <li><a href="appointment.html" class="appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+        </ul>
     </div>
 
     <!-- Header -->
@@ -73,15 +424,17 @@
                     </a>
                 </div>
 
-                <!-- Navigation -->
-                <nav class="navbar" id="navbar">
-                    <!-- Mobile Toggle -->
-                    <button class="nav-toggle" id="navToggle">
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                    </button>
+                <!-- Mobile Hamburger Toggle -->
+                <button class="mobile-nav-toggle" id="mobileNavToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
 
+                <!-- Desktop Navigation (Hidden on Mobile) -->
+                <nav class="navbar" id="navbar">
                     <!-- Main Navigation -->
                     <ul class="nav-menu">
                         <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
@@ -89,16 +442,16 @@
                         <li class="nav-dropdown">
                             <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
                             <ul class="dropdown-menu">
-                                 <li><a href="careers.html">Careers</a></li>
-                                <li><a href="services.html">Services</a></li>
+                                <li><a href="careers.html" class="dropdown-link">Careers</a></li>
+                                <li><a href="services.html" class="dropdown-link">Services</a></li>
                             </ul>
                         </li>
                         <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
                         <li class="nav-dropdown">
                             <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-camera"></i> Media&Projects <i class="fas fa-chevron-down dropdown-icon"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="gallery.html">Media&Gallery</a></li>
-                                <li><a href="projects.html">Projects</a></li>
+                                <li><a href="gallery.html" class="dropdown-link">Media&Gallery</a></li>
+                                <li><a href="projects.html" class="dropdown-link">Projects</a></li>
                             </ul>
                         </li>
                         <li><a href="contact.html" class="nav-link"><i class="fas fa-phone"></i> Contact Us</a></li>
@@ -123,8 +476,8 @@
                             allowfullscreen></iframe>
                 </div>
             </div>
-            <!-- Fallback Image - Changed to local webp -->
-            <div class="video-fallback" style="background-image: url('img/herosection.webp');">
+            <!-- Fallback Image -->
+            <div class="video-fallback">
                 <div class="video-overlay"></div>
             </div>
         </div>
@@ -371,15 +724,15 @@
             <div class="doctors-grid">
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="img/drondari.png" alt="Dr. Ondari" style="object-fit: cover; object-position: center;">
+                        <img src="img/drondari.png" alt="Dr. Michael Otieno">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-ondari" class="view-profile">View Profile</a>
+                            <a href="doctors.html#dr-michael-otieno" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Ondari</h3>
+                        <h3>Dr. Michael Otieno</h3>
                         <p class="specialty">Cardiologist</p>
-                        <p class="experience">15+ years experience</p>
+                        <p class="experience">15+ Years Experience</p>
                         <div class="doctor-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -393,7 +746,7 @@
 
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="img/dr-orina.jpg" alt="Dr. Orina" style="object-fit: cover; object-position: center;">
+                        <img src="img/dr-orina.jpg" alt="Dr. Orina">
                         <div class="doctor-overlay">
                             <a href="doctors.html#dr-orina" class="view-profile">View Profile</a>
                         </div>
@@ -401,7 +754,7 @@
                     <div class="doctor-info">
                         <h3>Dr. Orina</h3>
                         <p class="specialty">Neurologist</p>
-                        <p class="experience">12+ years experience</p>
+                        <p class="experience">12+ Years Experience</p>
                         <div class="doctor-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -415,15 +768,15 @@
 
                 <div class="doctor-card">
                     <div class="doctor-img">
-                        <img src="img/dr-oimeke.jpg" alt="Dr. Oimeke Mariita" style="object-fit: cover; object-position: center;">
+                        <img src="img/dr-oimeke.jpg" alt="Dr. Oimeke Mariita">
                         <div class="doctor-overlay">
-                            <a href="doctors.html#dr-oimeke" class="view-profile">View Profile</a>
+                            <a href="doctors.html#dr-oimeke-mariita" class="view-profile">View Profile</a>
                         </div>
                     </div>
                     <div class="doctor-info">
                         <h3>Dr. Oimeke Mariita</h3>
                         <p class="specialty">Pediatrician</p>
-                        <p class="experience">10+ years experience</p>
+                        <p class="experience">10+ Years Experience</p>
                         <div class="doctor-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -690,21 +1043,124 @@
     <script src="js/home.js"></script>
 
     <script>
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('✅ Service Worker registered:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('❌ Service Worker registration failed:', error);
-                    });
+        // Mobile Navigation Toggle - SIMPLE AND WORKING
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            
+            console.log('Mobile navigation script loaded');
+            
+            // Toggle mobile menu
+            mobileNavToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log('Hamburger clicked');
+                
+                // Toggle active class on hamburger
+                this.classList.toggle('active');
+                
+                // Toggle active class on menu container
+                mobileMenuContainer.classList.toggle('active');
+                
+                // Toggle active class on overlay
+                mobileMenuOverlay.classList.toggle('active');
+                
+                // Prevent scrolling when menu is open
+                document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
             });
-        }
-        
-        // Update current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Close menu when clicking overlay
+            mobileMenuOverlay.addEventListener('click', function() {
+                console.log('Overlay clicked - closing menu');
+                mobileNavToggle.classList.remove('active');
+                mobileMenuContainer.classList.remove('active');
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Toggle dropdowns in mobile menu
+            mobileDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle active class on this dropdown
+                    this.classList.toggle('active');
+                    
+                    // Find the dropdown menu and toggle it
+                    const dropdownMenu = this.nextElementSibling;
+                    if (dropdownMenu && dropdownMenu.classList.contains('mobile-dropdown-menu')) {
+                        dropdownMenu.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Close menu when clicking any link
+            document.querySelectorAll('.mobile-nav-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default for dropdown toggles
+                    if (!this.classList.contains('mobile-dropdown-toggle')) {
+                        console.log('Link clicked - closing menu');
+                        mobileNavToggle.classList.remove('active');
+                        mobileMenuContainer.classList.remove('active');
+                        mobileMenuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Close menu when window is resized to desktop size
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024) {
+                    mobileNavToggle.classList.remove('active');
+                    mobileMenuContainer.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Close all dropdowns
+                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                        dropdown.querySelector('.mobile-dropdown-toggle')?.classList.remove('active');
+                        dropdown.querySelector('.mobile-dropdown-menu')?.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Register Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('✅ Service Worker registered:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.log('❌ Service Worker registration failed:', error);
+                        });
+                });
+            }
+            
+            // Update current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Dynamic image adjustment
+            const doctorImages = document.querySelectorAll('.doctor-img img');
+            
+            doctorImages.forEach(img => {
+                img.addEventListener('load', function() {
+                    const imgHeight = this.naturalHeight;
+                    const imgWidth = this.naturalWidth;
+                    
+                    if (imgHeight > imgWidth) {
+                        this.style.objectPosition = 'center 25%';
+                    }
+                });
+            });
+            
+            // Add debug info
+            console.log('Mobile nav toggle exists:', !!mobileNavToggle);
+            console.log('Mobile menu container exists:', !!mobileMenuContainer);
+            console.log('Mobile menu overlay exists:', !!mobileMenuOverlay);
+        });
     </script>
 </body>
 </html>

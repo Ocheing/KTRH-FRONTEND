@@ -9,12 +9,352 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Mobile Navigation Styles for About Page */
+        .mobile-nav-toggle {
+            display: none !important;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002;
+            position: relative;
+        }
+        
+        .mobile-nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+        }
+        
+        .mobile-nav-toggle .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile menu overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+        
+        /* Mobile menu container */
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding-top: 70px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu-container.active {
+            right: 0;
+        }
+        
+        /* Mobile menu links */
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            background-color: #f0f8ff;
+            color: #2a6eb8;
+        }
+        
+        .mobile-nav-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Mobile dropdown styles */
+        .mobile-dropdown-toggle {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-dropdown-toggle i.fa-chevron-down {
+            transition: transform 0.3s;
+        }
+        
+        .mobile-dropdown-toggle.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-dropdown-menu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        .mobile-dropdown-menu.active {
+            display: block;
+        }
+        
+        .mobile-dropdown-menu a {
+            padding: 10px 15px;
+            font-size: 0.95rem;
+        }
+        
+        /* Appointment button in mobile menu */
+        .mobile-nav-menu .appointment {
+            background-color: #2a6eb8;
+            color: white !important;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        .mobile-nav-menu .appointment:hover {
+            background-color: #1e5ca3;
+        }
+        
+        /* Page Header margin adjustment for mobile */
+        @media screen and (max-width: 1024px) {
+            .page-header {
+                margin-top: 60px !important;
+                padding: 40px 0 30px !important;
+            }
+            
+            #aboutHeroTitle {
+                font-size: 2rem !important;
+            }
+            
+            #aboutHeroSubtitle {
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        /* Responsive Media Queries */
+        @media screen and (max-width: 1024px) {
+            /* Hide desktop navigation */
+            .nav-menu {
+                display: none !important;
+            }
+            
+            /* Show mobile hamburger button */
+            .mobile-nav-toggle {
+                display: block !important;
+            }
+            
+            /* Adjust header layout for mobile */
+            .header-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* Ensure logo is visible */
+            .logo {
+                z-index: 1001;
+            }
+            
+            /* Overview section adjustments */
+            .overview-wrapper {
+                flex-direction: column;
+            }
+            
+            .overview-image {
+                margin-top: 30px;
+            }
+            
+            /* Mission & Vision grid adjustments */
+            .mv-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px;
+            }
+            
+            /* Timeline adjustments */
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline::before {
+                left: 10px !important;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .timeline-date {
+                position: relative;
+                left: 0;
+                transform: none !important;
+                margin-bottom: 10px;
+                background: #2a6eb8;
+                color: white;
+                padding: 5px 15px;
+                border-radius: 20px;
+            }
+            
+            .timeline-content {
+                width: 100% !important;
+                padding-left: 0;
+            }
+            
+            /* Team grid adjustments */
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px;
+            }
+            
+            /* Facilities grid adjustments */
+            .facilities-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            /* Partners carousel adjustments */
+            .auto-carousel-track {
+                animation-duration: 40s !important;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .team-grid,
+            .facilities-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .mobile-menu-container {
+                width: 280px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .mobile-menu-container {
+                width: 100%;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+            
+            .page-header {
+                padding: 30px 0 20px !important;
+            }
+            
+            #aboutHeroTitle {
+                font-size: 1.8rem !important;
+            }
+        }
+        
+        /* Ensure desktop nav shows on larger screens */
+        @media screen and (min-width: 1025px) {
+            .mobile-nav-toggle,
+            .mobile-menu-container,
+            .mobile-menu-overlay {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="loader"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu Container -->
+    <div class="mobile-menu-container" id="mobileMenuContainer">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle">
+                    <span><i class="fas fa-stethoscope"></i> Services&Careers</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </li>
+            <li><a href="departments.html"><i class="fas fa-hospital"></i> Departments</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle">
+                    <span><i class="fas fa-camera"></i> Media&Projects</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="gallery.html">Media&Gallery</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html"><i class="fas fa-phone"></i> Contact Us</a></li>
+            <li><a href="appointment.html" class="appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+        </ul>
     </div>
 
     <!-- Header -->
@@ -32,15 +372,17 @@
                     </a>
                 </div>
 
-                <!-- Navigation -->
-                <nav class="navbar" id="navbar">
-                    <!-- Mobile Toggle -->
-                    <button class="nav-toggle" id="navToggle">
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                    </button>
+                <!-- Mobile Hamburger Toggle -->
+                <button class="mobile-nav-toggle" id="mobileNavToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
 
+                <!-- Desktop Navigation (Hidden on Mobile) -->
+                <nav class="navbar" id="navbar">
                     <!-- Main Navigation -->
                     <ul class="nav-menu">
                         <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
@@ -49,7 +391,6 @@
                             <a href="#" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Services&Careers <i class="fas fa-chevron-down dropdown-icon"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a href="careers.html">Careers</a></li>
-                              
                                 <li><a href="services.html">Services</a></li>
                             </ul>
                         </li>
@@ -482,6 +823,130 @@
         <i class="fas fa-chevron-up"></i>
     </a>
 
+    <script>
+        // Mobile Navigation Toggle for About Page
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            
+            console.log('About page mobile navigation script loaded');
+            
+            // Toggle mobile menu
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    console.log('Hamburger clicked on About page');
+                    
+                    // Toggle active class on hamburger
+                    this.classList.toggle('active');
+                    
+                    // Toggle active class on menu container
+                    mobileMenuContainer.classList.toggle('active');
+                    
+                    // Toggle active class on overlay
+                    mobileMenuOverlay.classList.toggle('active');
+                    
+                    // Prevent scrolling when menu is open
+                    document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Close menu when clicking overlay
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', function() {
+                    console.log('Overlay clicked - closing menu');
+                    mobileNavToggle.classList.remove('active');
+                    mobileMenuContainer.classList.remove('active');
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Toggle dropdowns in mobile menu
+            if (mobileDropdownToggles) {
+                mobileDropdownToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Toggle active class on this dropdown
+                        this.classList.toggle('active');
+                        
+                        // Find the dropdown menu and toggle it
+                        const dropdownMenu = this.nextElementSibling;
+                        if (dropdownMenu && dropdownMenu.classList.contains('mobile-dropdown-menu')) {
+                            dropdownMenu.classList.toggle('active');
+                        }
+                    });
+                });
+            }
+            
+            // Close menu when clicking any link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-menu a');
+            if (mobileLinks) {
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        // Don't prevent default for dropdown toggles
+                        if (!this.classList.contains('mobile-dropdown-toggle')) {
+                            console.log('Link clicked - closing menu');
+                            mobileNavToggle.classList.remove('active');
+                            mobileMenuContainer.classList.remove('active');
+                            mobileMenuOverlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            }
+            
+            // Close menu when window is resized to desktop size
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024) {
+                    if (mobileNavToggle) mobileNavToggle.classList.remove('active');
+                    if (mobileMenuContainer) mobileMenuContainer.classList.remove('active');
+                    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Close all dropdowns
+                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                        dropdown.querySelector('.mobile-dropdown-toggle')?.classList.remove('active');
+                        dropdown.querySelector('.mobile-dropdown-menu')?.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Update current year in footer
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+            
+            // Auto-scrolling partners carousel
+            const carouselTrack = document.querySelector('.auto-carousel-track');
+            if (carouselTrack) {
+                // Duplicate the track for seamless scrolling
+                const trackContent = carouselTrack.innerHTML;
+                carouselTrack.innerHTML += trackContent;
+                
+                // Add animation
+                carouselTrack.style.animation = 'scroll 40s linear infinite';
+            }
+            
+            // Add animation keyframes for carousel
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes scroll {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Debug info
+            console.log('About page navigation elements loaded successfully');
+        });
+    </script>
     <script src="js/script.js"></script>
     <script src="js/about.js"></script>
 </body>

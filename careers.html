@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +9,375 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/careers.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Mobile Navigation Styles for Careers Page */
+        .mobile-nav-toggle {
+            display: none !important;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1002;
+            position: relative;
+        }
+        
+        .mobile-nav-toggle .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+        }
+        
+        .mobile-nav-toggle .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-nav-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile menu overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+        }
+        
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+        
+        /* Mobile menu container */
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding-top: 70px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu-container.active {
+            right: 0;
+        }
+        
+        /* Mobile menu links */
+        .mobile-nav-menu {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .mobile-nav-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .mobile-nav-menu a:hover,
+        .mobile-nav-menu a.active {
+            background-color: #f0f8ff;
+            color: #2a6eb8;
+        }
+        
+        .mobile-nav-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Mobile dropdown styles */
+        .mobile-dropdown-toggle {
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-dropdown-toggle i.fa-chevron-down {
+            transition: transform 0.3s;
+        }
+        
+        .mobile-dropdown-toggle.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-dropdown-menu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        .mobile-dropdown-menu.active {
+            display: block;
+        }
+        
+        .mobile-dropdown-menu a {
+            padding: 10px 15px;
+            font-size: 0.95rem;
+        }
+        
+        /* Appointment button in mobile menu */
+        .mobile-nav-menu .appointment {
+            background-color: #2a6eb8;
+            color: white !important;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        .mobile-nav-menu .appointment:hover {
+            background-color: #1e5ca3;
+        }
+        
+        /* Page Header margin adjustment for mobile */
+        @media screen and (max-width: 1024px) {
+            .page-header {
+                margin-top: 60px !important;
+                padding: 40px 0 30px !important;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem !important;
+            }
+            
+            .page-header p {
+                font-size: 0.9rem !important;
+            }
+        }
+        
+        /* Responsive Media Queries */
+        @media screen and (max-width: 1024px) {
+            /* Hide desktop navigation */
+            .nav-menu {
+                display: none !important;
+            }
+            
+            /* Show mobile hamburger button */
+            .mobile-nav-toggle {
+                display: block !important;
+            }
+            
+            /* Adjust header layout for mobile */
+            .header-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            /* Ensure logo is visible */
+            .logo {
+                z-index: 1001;
+            }
+            
+            /* Benefits grid adjustments */
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px;
+            }
+            
+            /* Job filters adjustments */
+            .job-filters {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            /* Application wrapper adjustments */
+            .application-wrapper {
+                flex-direction: column;
+            }
+            
+            .application-info,
+            .application-form {
+                width: 100% !important;
+            }
+            
+            .application-form {
+                margin-top: 30px;
+            }
+            
+            /* Process steps adjustments */
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            /* Footer grid adjustments */
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            /* Modal adjustments */
+            .modal-content {
+                width: 90% !important;
+                max-height: 90vh !important;
+                overflow-y: auto !important;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .mobile-menu-container {
+                width: 280px;
+            }
+            
+            /* Job card adjustments */
+            .job-card {
+                padding: 20px !important;
+            }
+            
+            /* Form adjustments for smaller screens */
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-row .form-group {
+                width: 100% !important;
+                margin-bottom: 15px;
+            }
+            
+            /* Modal adjustments */
+            .modal-large {
+                width: 95% !important;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .mobile-menu-container {
+                width: 100%;
+            }
+            
+            .page-header {
+                padding: 30px 0 20px !important;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            .job-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-btn {
+                width: 100% !important;
+                margin-bottom: 5px !important;
+            }
+            
+            /* Button adjustments */
+            .btn, .refresh-button {
+                width: 100% !important;
+                padding: 12px !important;
+            }
+            
+            /* Application contacts adjustments */
+            .application-contacts {
+                padding: 15px !important;
+            }
+        }
+        
+        /* Ensure desktop nav shows on larger screens */
+        @media screen and (min-width: 1025px) {
+            .mobile-nav-toggle,
+            .mobile-menu-container,
+            .mobile-menu-overlay {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
         <div class="loader"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu Container -->
+    <div class="mobile-menu-container" id="mobileMenuContainer">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle active">
+                    <span><i class="fas fa-stethoscope"></i> Services&Careers</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </li>
+            <li><a href="departments.html"><i class="fas fa-hospital"></i> Departments</a></li>
+            <li class="mobile-dropdown">
+                <a href="#" class="mobile-dropdown-toggle">
+                    <span><i class="fas fa-camera"></i> Media&Projects</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-dropdown-menu">
+                    <li><a href="gallery.html">Media&Gallery</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html"><i class="fas fa-phone"></i> Contact Us</a></li>
+            <li><a href="appointment.html" class="appointment"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+        </ul>
     </div>
 
     <!-- Header -->
@@ -28,20 +390,21 @@
                         <img src="img/logo-2.png" alt="KTRH Logo" class="logo-img">
                         <span class="logo-text">
                             <strong></strong>
-                            
                         </span>
                     </a>
                 </div>
 
-                <!-- Navigation -->
-                <nav class="navbar" id="navbar">
-                    <!-- Mobile Toggle -->
-                    <button class="nav-toggle" id="navToggle">
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                        <span class="toggle-line"></span>
-                    </button>
+                <!-- Mobile Hamburger Toggle -->
+                <button class="mobile-nav-toggle" id="mobileNavToggle">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
 
+                <!-- Desktop Navigation (Hidden on Mobile) -->
+                <nav class="navbar" id="navbar">
                     <!-- Main Navigation -->
                     <ul class="nav-menu">
                         <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
@@ -51,7 +414,6 @@
                             <ul class="dropdown-menu">
                                  <li><a href="careers.html">Careers</a></li>
                                 <li><a href="services.html">Services</a></li>
-                                
                             </ul>
                         </li>
                         <li><a href="departments.html" class="nav-link"><i class="fas fa-hospital"></i> Departments</a></li>
@@ -431,7 +793,197 @@
             </form>
         </div>
     </div>
+
+    <script>
+        // Mobile Navigation Toggle for Careers Page
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            
+            console.log('Careers page mobile navigation script loaded');
+            
+            // Toggle mobile menu
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    console.log('Hamburger clicked on Careers page');
+                    
+                    // Toggle active class on hamburger
+                    this.classList.toggle('active');
+                    
+                    // Toggle active class on menu container
+                    mobileMenuContainer.classList.toggle('active');
+                    
+                    // Toggle active class on overlay
+                    mobileMenuOverlay.classList.toggle('active');
+                    
+                    // Prevent scrolling when menu is open
+                    document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Close menu when clicking overlay
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', function() {
+                    console.log('Overlay clicked - closing menu');
+                    mobileNavToggle.classList.remove('active');
+                    mobileMenuContainer.classList.remove('active');
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Toggle dropdowns in mobile menu
+            if (mobileDropdownToggles) {
+                mobileDropdownToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Toggle active class on this dropdown
+                        this.classList.toggle('active');
+                        
+                        // Find the dropdown menu and toggle it
+                        const dropdownMenu = this.nextElementSibling;
+                        if (dropdownMenu && dropdownMenu.classList.contains('mobile-dropdown-menu')) {
+                            dropdownMenu.classList.toggle('active');
+                        }
+                    });
+                });
+            }
+            
+            // Close menu when clicking any link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-menu a');
+            if (mobileLinks) {
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        // Don't prevent default for dropdown toggles
+                        if (!this.classList.contains('mobile-dropdown-toggle')) {
+                            console.log('Link clicked - closing menu');
+                            mobileNavToggle.classList.remove('active');
+                            mobileMenuContainer.classList.remove('active');
+                            mobileMenuOverlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+            }
+            
+            // Close menu when window is resized to desktop size
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024) {
+                    if (mobileNavToggle) mobileNavToggle.classList.remove('active');
+                    if (mobileMenuContainer) mobileMenuContainer.classList.remove('active');
+                    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Close all dropdowns
+                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                        dropdown.querySelector('.mobile-dropdown-toggle')?.classList.remove('active');
+                        dropdown.querySelector('.mobile-dropdown-menu')?.classList.remove('active');
+                    });
+                }
+            });
+            
+            // Update current year in footer
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+            
+            // Job Filtering Functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Filter job cards (this would be connected to your actual job data)
+                    const jobCards = document.querySelectorAll('.job-card');
+                    if (jobCards.length > 0) {
+                        jobCards.forEach(card => {
+                            const category = card.getAttribute('data-category');
+                            if (filter === 'all' || category === filter) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Form submission handlers
+            const generalApplicationForm = document.getElementById('generalApplicationForm');
+            if (generalApplicationForm) {
+                generalApplicationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic form validation
+                    const name = document.getElementById('appName').value;
+                    const email = document.getElementById('appEmail').value;
+                    const phone = document.getElementById('appPhone').value;
+                    const category = document.getElementById('appCategory').value;
+                    
+                    if (!name || !email || !phone || !category) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Simulate form submission
+                    console.log('General application submitted:', { name, email, phone, category });
+                    
+                    // Show success message
+                    alert('Thank you for your application! We will review your profile and contact you if a matching position becomes available.');
+                    
+                    // Reset form
+                    this.reset();
+                });
+            }
+            
+            // Modal functionality
+            const jobsModal = document.getElementById('jobsModal');
+            const jobModalClose = document.getElementById('jobModalClose');
+            const applicationModal = document.getElementById('applicationModal');
+            const modalClose = document.getElementById('modalClose');
+            
+            // Close job details modal
+            if (jobModalClose) {
+                jobModalClose.addEventListener('click', function() {
+                    if (jobsModal) jobsModal.style.display = 'none';
+                });
+            }
+            
+            // Close application modal
+            if (modalClose) {
+                modalClose.addEventListener('click', function() {
+                    if (applicationModal) applicationModal.style.display = 'none';
+                });
+            }
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (jobsModal && event.target === jobsModal) {
+                    jobsModal.style.display = 'none';
+                }
+                if (applicationModal && event.target === applicationModal) {
+                    applicationModal.style.display = 'none';
+                }
+            });
+            
+            // Debug info
+            console.log('Careers page navigation elements loaded successfully');
+        });
+    </script>
+    
     <script src="js/script.js"></script>
-     <script src="js/careers.js"></script>
+    <script src="js/careers.js"></script>
 </body>
 </html>
