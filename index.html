@@ -126,13 +126,13 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-image: url('img/hero-bg.webp');
+            background-image: url('img/herosection.webp');
         }
         
         /* Fallback if webp not supported */
-        @supports not (background-image: url('img/hero-bg.webp')) {
+        @supports not (background-image: url('img/herosection.webp')) {
             .video-fallback {
-                background-image: url('img/hero-bg.jpg');
+                background-image: url('img/home.jpg');
             }
         }
         
@@ -482,7 +482,7 @@
                 <div class="video-overlay"></div>
                 <div class="video-wrapper">
                     <iframe id="youtubeVideo" 
-                            src="https://www.youtube.com/embed/IzZeZbr7Jf0?autoplay=1&mute=1&loop=1&playlist=IzZeZbr7Jf0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&enablejsapi=1&origin=https://yourdomain.com"
+                            src="https://www.youtube.com/embed/IzZeZbr7Jf0?autoplay=1&mute=1&loop=1&playlist=IzZeZbr7Jf0&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&enablejsapi=1"
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -734,71 +734,7 @@
             </div>
 
             <div class="doctors-grid">
-                <div class="doctor-card">
-                    <div class="doctor-img">
-                        <img src="img/drondari.png" alt="Dr. Michael Otieno">
-                        <div class="doctor-overlay">
-                            <a href="doctors.html#dr-michael-otieno" class="view-profile">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. Michael Otieno</h3>
-                        <p class="specialty">Cardiologist</p>
-                        <p class="experience">15+ Years Experience</p>
-                        <div class="doctor-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="doctor-card">
-                    <div class="doctor-img">
-                        <img src="img/dr-orina.jpg" alt="Dr. Orina">
-                        <div class="doctor-overlay">
-                            <a href="doctors.html#dr-orina" class="view-profile">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. Orina</h3>
-                        <p class="specialty">Neurologist</p>
-                        <p class="experience">12+ Years Experience</p>
-                        <div class="doctor-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>5.0</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="doctor-card">
-                    <div class="doctor-img">
-                        <img src="img/dr-oimeke.jpg" alt="Dr. Oimeke Mariita">
-                        <div class="doctor-overlay">
-                            <a href="doctors.html#dr-oimeke-mariita" class="view-profile">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. Oimeke Mariita</h3>
-                        <p class="specialty">Pediatrician</p>
-                        <p class="experience">10+ Years Experience</p>
-                        <div class="doctor-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- Doctors are populated dynamically via Strapi (home.js) -->
             </div>
 
             <div class="text-center">
@@ -1047,10 +983,6 @@
         </div>
     </div>
 
-    <script src="JS/strapi-api.js"></script>
-    <script src="JS/utils/helpers.js"></script>
-    <script src="JS/utils/form-handler.js"></script>
-    <script src="JS/pages/home.js"></script>
     <script src="js/script.js"></script>
     <script src="js/home.js"></script>
 

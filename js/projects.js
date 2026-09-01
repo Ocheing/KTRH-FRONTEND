@@ -1,4 +1,4 @@
-﻿// ===========================================
+// ===========================================
 // PROJECTS PAGE - STRAPI INTEGRATION - FIXED VERSION
 // ===========================================
 
@@ -557,10 +557,12 @@ function renderProjectsGrid() {
     if (filteredProjects.length === 0) {
         projectsGrid.innerHTML = `
             <div class="no-projects-message">
-                <i class="fas fa-hard-hat" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                <i class="fas fa-hard-hat" style="font-size: 3rem; color: #1977cc; margin-bottom: 1rem;"></i>
                 <h3>No Projects Found</h3>
                 <p>${currentCategory !== 'all' ? 'No projects in this category.' : 'No projects match your search criteria.'}</p>
-                ${currentCategory !== 'all' ? `<p>Try selecting "All Projects" to see all available projects.</p>` : ''}
+                <button onclick="location.reload()" class="refresh-button" style="margin-top: 1.25rem;">
+                    <i class="fas fa-sync-alt"></i> Refresh Page
+                </button>
             </div>
         `;
         return;

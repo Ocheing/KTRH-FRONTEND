@@ -4199,3 +4199,119 @@ select:focus {
     animation: float 2s ease-in-out infinite;
 }
 
+/* ===========================================
+   21. PREMIUM REFRESH / RELOAD BUTTON COMPONENT
+   =========================================== */
+
+.refresh-button,
+.btn-refresh {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 30px;
+    font-family: var(--font-heading, 'Poppins', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #ffffff !important;
+    background: #1977cc;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(25, 119, 204, 0.3), 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.refresh-button i,
+.btn-refresh i {
+    font-size: 1rem;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-block;
+}
+
+.refresh-button:hover,
+.btn-refresh:hover {
+    color: #ffffff !important;
+    background: #166ab5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(25, 119, 204, 0.4);
+}
+
+.refresh-button:hover i,
+.btn-refresh:hover i {
+    transform: rotate(180deg);
+}
+
+.refresh-button:active,
+.btn-refresh:active {
+    background: #145a99;
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 8px rgba(25, 119, 204, 0.3);
+}
+
+.refresh-button:focus-visible,
+.btn-refresh:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 119, 204, 0.4), 0 4px 14px rgba(25, 119, 204, 0.3);
+}
+
+/* Polished styling for empty/no-items message containers across pages */
+.no-jobs-message,
+.no-services-message,
+.no-departments-message,
+.no-doctors-message,
+.no-projects-message,
+.no-items-message {
+    background: #ffffff;
+    border: 1px solid rgba(25, 119, 204, 0.12);
+    border-radius: 16px;
+    padding: 50px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin: 30px auto;
+    max-width: 600px;
+    grid-column: 1 / -1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.no-jobs-message:hover,
+.no-services-message:hover,
+.no-departments-message:hover,
+.no-doctors-message:hover,
+.no-projects-message:hover,
+.no-items-message:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(25, 119, 204, 0.1);
+}
+
+.no-jobs-message h3,
+.no-services-message h3,
+.no-departments-message h3,
+.no-doctors-message h3,
+.no-projects-message h3,
+.no-items-message h3 {
+    font-family: var(--font-heading, 'Poppins', sans-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2c4964;
+    margin: 15px 0 10px 0;
+}
+
+.no-jobs-message p,
+.no-services-message p,
+.no-departments-message p,
+.no-doctors-message p,
+.no-projects-message p,
+.no-items-message p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+

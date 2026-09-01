@@ -1,4 +1,4 @@
-﻿// Strapi API Configuration
+// Strapi API Configuration
 const STRAPI_API_URL = 'https://better-friend-c539968cc5.strapiapp.com/api';
 const STRAPI_IMAGE_URL = 'https://better-friend-c539968cc5.strapiapp.com';
 
@@ -254,10 +254,10 @@ function renderDepartmentsGrid(departments) {
     if (!Array.isArray(departments) || departments.length === 0) {
         departmentsContainer.innerHTML = `
             <div class="no-departments-message">
-                <i class="fas fa-hospital" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                <i class="fas fa-hospital" style="font-size: 3rem; color: #1977cc; margin-bottom: 1rem;"></i>
                 <h3>No departments available</h3>
-                <p>Please check your Strapi connection or add departments in the admin panel.</p>
-                <button onclick="location.reload()" class="btn-appointment" style="margin-top: 1rem;">
+                <p>Please check your connection or refresh to try again.</p>
+                <button onclick="location.reload()" class="refresh-button" style="margin-top: 1.25rem;">
                     <i class="fas fa-sync-alt"></i> Refresh Page
                 </button>
             </div>
@@ -576,10 +576,10 @@ async function initializePage() {
         if (departmentsContainer) {
             departmentsContainer.innerHTML = `
                 <div class="no-departments-message">
-                    <i class="fas fa-hospital" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                    <i class="fas fa-hospital" style="font-size: 3rem; color: #1977cc; margin-bottom: 1rem;"></i>
                     <h3>No departments available</h3>
-                    <p>Please check your Strapi connection or add departments in the admin panel.</p>
-                    <button onclick="location.reload()" class="btn-appointment" style="margin-top: 1rem;">
+                    <p>Please check your connection or refresh to try again.</p>
+                    <button onclick="location.reload()" class="refresh-button" style="margin-top: 1.25rem;">
                         <i class="fas fa-sync-alt"></i> Refresh Page
                     </button>
                 </div>

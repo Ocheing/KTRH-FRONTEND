@@ -53,33 +53,21 @@ function initPreloader() {
 
 // Mobile Menu Toggle - Enhanced
 function initMobileMenu() {
-    const navToggle = document.getElementById('navToggle');
+    const navToggle = document.getElementById('mobileNavToggle');
     const navbar = document.getElementById('navbar');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileMenuContainer = document.getElementById('mobileMenuContainer');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     const dropdowns = document.querySelectorAll('.nav-dropdown');
     
-    if (navToggle) {
-        navToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navbar.classList.toggle('active');
-            navToggle.classList.toggle('active');
-            
-            // Toggle body scroll
-            document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : '';
-            
-            // Close all dropdowns when toggling mobile menu
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        });
-    }
+    // If the new mobile nav is present, it has its own inline handler — skip
+    if (!navToggle || !navbar) return;
     
-    // Handle dropdown toggle on mobile
+    // Handle dropdown toggle on desktop hover (fallback click on mobile)
     dropdowns.forEach(dropdown => {
         const toggle = dropdown.querySelector('.dropdown-toggle');
         if (toggle) {
             toggle.addEventListener('click', (e) => {
-                if (window.innerWidth <= 992) {
+                if (window.innerWidth <= 1024) {
                     e.preventDefault();
                     e.stopPropagation();
                     dropdown.classList.toggle('active');
@@ -95,43 +83,11 @@ function initMobileMenu() {
         }
     });
     
-    // Close mobile menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navbar.classList.contains('active') && window.innerWidth <= 992) {
-                navbar.classList.remove('active');
-                navToggle.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Close all dropdowns
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        });
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navbar.contains(e.target) && !navToggle.contains(e.target)) {
-            if (navbar.classList.contains('active')) {
-                navbar.classList.remove('active');
-                navToggle.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Close all dropdowns
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        }
-    });
-    
     // Handle window resize
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 992) {
-            navbar.classList.remove('active');
-            navToggle.classList.remove('active');
+        if (window.innerWidth > 1024) {
+            if (mobileMenuContainer) mobileMenuContainer.classList.remove('active');
+            if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
             document.body.style.overflow = '';
             
             // Reset dropdowns
@@ -995,27 +951,32 @@ function showNotification(message, type = 'success') {
     }, 5000);
 }
 
-// Active Navigation on Scroll
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+// Highlight active navigation link based on current page
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link, .dropdown-link');
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
     
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        const headerHeight = document.getElementById('header').offsetHeight;
-        
-        if (window.scrollY >= (sectionTop - headerHeight - 100)) {
-            current = section.getAttribute('id');
+    // Clear existing active classes first (in case HTML has wrong ones)
+    document.querySelectorAll('.nav-link.active, .dropdown-link.active').forEach(link => {
+        // Only clear if it's a page link, not an in-page anchor
+        if (!link.getAttribute('href').startsWith('#')) {
+            link.classList.remove('active');
         }
     });
     
+    // Highlight the correct link
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+        const href = link.getAttribute('href');
+        if (href && (href === currentPage || (currentPage === '' && href === 'index.html'))) {
             link.classList.add('active');
+            
+            // If it's a dropdown link, try to highlight the parent dropdown toggle too
+            const parentDropdown = link.closest('.nav-dropdown');
+            if (parentDropdown) {
+                const toggle = parentDropdown.querySelector('.dropdown-toggle');
+                if (toggle) toggle.classList.add('active');
+            }
         }
     });
 });
@@ -1297,13 +1258,7 @@ function initContactPageForm() {
     }
 }
 
-// Initialize contact page form when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if we're on contact page by looking for contact form
-    if (document.getElementById('contactForm')) {
-        initContactPageForm();
-    }
-});
+
 
 // ===========================================
 // CAREERS PAGE FUNCTIONS ONLY
@@ -1649,11 +1604,7 @@ function initCareersPage() {
     });
 }
 
-// Initialize careers page functions when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Add this line to your existing initialization
-    if (document.getElementById('applicationModal')) initCareersPage();
-});
+
 
 // ===========================================
 // ABOUT PAGE FUNCTIONS ONLY
@@ -1840,11 +1791,7 @@ function initAboutPage() {
     document.head.appendChild(style);
 }
 
-// Initialize about page functions when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Add this line to your existing initialization
-    if (document.querySelector('.history-timeline')) initAboutPage();
-});
+
 // Carousel functionality
 // Continuous scrolling carousel
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,4 +1,4 @@
-﻿// ===========================================
+// ===========================================
 // HOME PAGE - STRAPI INTEGRATION
 // ===========================================
 
@@ -209,7 +209,7 @@ async function fetchHomePageData() {
     } catch (error) {
         console.error('Error fetching home page data:', error);
         return {
-            doctors: getFallbackDoctors(),
+            doctors: [],
             homePage: null
         };
     }
@@ -223,7 +223,7 @@ async function fetchDoctors() {
         
         if (!response.ok) {
             console.error('API response not ok:', response.status, response.statusText);
-            return getFallbackDoctors();
+            return [];
         }
         
         const data = await response.json();
@@ -237,11 +237,11 @@ async function fetchDoctors() {
             return data;
         } else {
             console.error('Unexpected API response structure:', data);
-            return getFallbackDoctors();
+            return [];
         }
     } catch (error) {
         console.error('Error fetching doctors:', error);
-        return getFallbackDoctors();
+        return [];
     }
 }
 
@@ -307,7 +307,7 @@ function getFallbackDoctors() {
                 image: {
                     data: {
                         attributes: {
-                            url: "img/dr-orina.jpg"
+                            url: "img/Dr orina.jpg"
                         }
                     }
                 },
@@ -326,7 +326,7 @@ function getFallbackDoctors() {
                 image: {
                     data: {
                         attributes: {
-                            url: "images/doctor3.jpg"
+                            url: "img/drondari.png"
                         }
                     }
                 },
@@ -362,9 +362,9 @@ function getDoctorImageUrl(imageData) {
         }
     }
     
-    // Prepend base URL if needed
-    if (imageUrl && !imageUrl.startsWith('http')) {
-        imageUrl = `${STRAPI_IMAGE_URL}${imageUrl}`;
+    // Prepend base URL if needed (only for Strapi relative paths starting with '/')
+    if (imageUrl && !imageUrl.startsWith('http') && !imageUrl.startsWith('img/')) {
+        imageUrl = `${STRAPI_IMAGE_URL}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
     }
     
     return imageUrl || 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=70';
@@ -522,6 +522,17 @@ function addResponsiveGridStyles() {
 function renderFeaturedDoctors(doctors) {
     if (!doctorsGrid) {
         console.error('Doctors grid not found');
+        return;
+    }
+    
+    if (!doctors || doctors.length === 0) {
+        doctorsGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem;">
+                <i class="fas fa-user-md" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                <h3 style="color: #666; margin-bottom: 0.5rem;">Updating Specialists...</h3>
+                <p style="color: #888;">We are currently refreshing our doctors directory. Please check back shortly.</p>
+            </div>
+        `;
         return;
     }
     
@@ -738,9 +749,9 @@ async function initializeHomePage() {
         console.error('Error initializing home page:', error);
         
         // Use fallback data
-        const fallbackDoctors = getFallbackDoctors();
+        const fallbackDoctors = [];
         const fallbackStats = {
-            specialistDoctors: fallbackDoctors.length,
+            specialistDoctors: 0,
             hospitalBeds: 500,
             departments: 50,
             yearsExperience: 25

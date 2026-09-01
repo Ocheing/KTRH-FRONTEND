@@ -1,4 +1,4 @@
-﻿// ===========================================
+// ===========================================
 // GALLERY PAGE - STRAPI INTEGRATION
 // ===========================================
 
@@ -453,9 +453,12 @@ function renderGalleryGrid(items) {
         } else {
             galleryGrid.innerHTML = `
                 <div class="no-items-message" id="noItemsMessage">
-                    <i class="fas fa-images"></i>
+                    <i class="fas fa-images" style="font-size: 3rem; color: #1977cc; margin-bottom: 1rem;"></i>
                     <h3>No Media Items Found</h3>
                     <p>There are no gallery items available at the moment.</p>
+                    <button onclick="location.reload()" class="refresh-button" style="margin-top: 1.25rem;">
+                        <i class="fas fa-sync-alt"></i> Refresh Gallery
+                    </button>
                 </div>
             `;
         }

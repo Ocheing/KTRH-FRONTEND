@@ -1,4 +1,4 @@
-﻿// Strapi API Configuration
+// Strapi API Configuration
 const STRAPI_API_URL = 'https://better-friend-c539968cc5.strapiapp.com/api';
 const STRAPI_IMAGE_URL = 'https://better-friend-c539968cc5.strapiapp.com';
 
@@ -23,10 +23,13 @@ function showNoServicesMessage() {
     if (!servicesContainer) return;
     
     servicesContainer.innerHTML = `
-        <div class="no-services-message" style="text-align: center; padding: 4rem; color: #666;">
-            <i class="fas fa-hospital" style="font-size: 4rem; color: #95a5a6; margin-bottom: 1.5rem;"></i>
-            <h3 style="color: #2c3e50; margin-bottom: 0.5rem;">No medical services found</h3>
-            <p style="color: #7f8c8d; font-size: 0.9rem;">Please check back later or contact the hospital for more information</p>
+        <div class="no-services-message">
+            <i class="fas fa-hospital" style="font-size: 3.5rem; color: #1977cc; margin-bottom: 1.25rem;"></i>
+            <h3>No medical services found</h3>
+            <p>Please check back later or refresh to reload available services.</p>
+            <button onclick="location.reload()" class="refresh-button" style="margin-top: 1.25rem;">
+                <i class="fas fa-sync-alt"></i> Refresh Page
+            </button>
         </div>
     `;
 }

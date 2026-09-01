@@ -1,4 +1,4 @@
-﻿// Strapi API Configuration
+// Strapi API Configuration
 const STRAPI_API_URL = 'https://better-friend-c539968cc5.strapiapp.com/api';
 const STRAPI_IMAGE_URL = 'https://better-friend-c539968cc5.strapiapp.com';
 
@@ -939,10 +939,10 @@ async function initializePage() {
         if (doctorsGrid) {
             doctorsGrid.innerHTML = `
                 <div class="no-doctors-message">
-                    <i class="fas fa-user-md" style="font-size: 3rem; color: #ccc; margin-bottom: 1rem;"></i>
+                    <i class="fas fa-user-md" style="font-size: 3rem; color: #1977cc; margin-bottom: 1rem;"></i>
                     <h3>No doctors available</h3>
-                    <p>Please check your Strapi connection or add doctors in the admin panel.</p>
-                    <button onclick="location.reload()" class="btn-book" style="margin-top: 1rem;">
+                    <p>Please check your connection or refresh to try again.</p>
+                    <button onclick="location.reload()" class="refresh-button" style="margin-top: 1.25rem;">
                         <i class="fas fa-sync-alt"></i> Refresh Page
                     </button>
                 </div>
