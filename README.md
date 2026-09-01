@@ -1,4 +1,4 @@
-# 🏥 Kisii Teaching & Referral Hospital (KTRH) — Official Web Portal
+# Kisii Teaching & Referral Hospital (KTRH) — Official Web Portal
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -11,7 +11,7 @@
 
 ---
 
-## 📌 Table of Contents
+##  Table of Contents
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
@@ -29,7 +29,7 @@
 
 ---
 
-## 🌟 Overview
+##  Overview
 
 **Kisii Teaching & Referral Hospital (KTRH)** is a leading tertiary healthcare and medical training institution in Western Kenya. This frontend web platform provides patients, medical professionals, students, and the general public with seamless digital access to hospital services, department guides, doctor directories, career listings, and infrastructure development milestones.
 
@@ -37,21 +37,21 @@ The application is built with vanilla web standards for fast performance and min
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-- 🏥 **Department & Clinical Services Catalog**: Detailed breakdowns of specialized clinics, inpatient/outpatient wards, emergency & trauma center, radiology, and diagnostics.
-- 👨‍⚕️ **Interactive Doctor Directory**: Filter by department or specialty, search by name, view qualifications/experience, and open doctor profile modals.
-- 📅 **Online Appointment Booking**: Multi-step booking workflow with department/doctor selection, date/time scheduling, and validation.
-- 🏗️ **Infrastructure & Project Showcase**: Dynamic project portfolio tracking hospital modernization, capacity expansion, and community health initiatives.
-- 💼 **Careers & Recruitment Portal**: Live job vacancy listings with requirement criteria, application guidelines, and closing dates.
-- 📸 **Multimedia Gallery**: Categorized media gallery (facilities, medical equipment, outreach events) with responsive modal lightbox previews.
-- 📱 **Mobile-First & Responsive UI**: Custom CSS grid and flexbox architecture designed for seamless browsing on phones, tablets, and desktops.
-- ⚡ **PWA Ready**: Integrated Service Worker (`sw.js`) providing offline baseline caching and fast asset delivery.
-- 🌐 **Headless CMS Powered**: Live data synchronization with Strapi REST API v4 for dynamic updates without redeploying static code.
+ **Department & Clinical Services Catalog**: Detailed breakdowns of specialized clinics, inpatient/outpatient wards, emergency & trauma center, radiology, and diagnostics.
+ **Interactive Doctor Directory**: Filter by department or specialty, search by name, view qualifications/experience, and open doctor profile modals.
+ **Online Appointment Booking**: Multi-step booking workflow with department/doctor selection, date/time scheduling, and validation.
+ **Infrastructure & Project Showcase**: Dynamic project portfolio tracking hospital modernization, capacity expansion, and community health initiatives.
+ **Careers & Recruitment Portal**: Live job vacancy listings with requirement criteria, application guidelines, and closing dates.
+ **Multimedia Gallery**: Categorized media gallery (facilities, medical equipment, outreach events) with responsive modal lightbox previews.
+ **Mobile-First & Responsive UI**: Custom CSS grid and flexbox architecture designed for seamless browsing on phones, tablets, and desktops.
+ **PWA Ready**: Integrated Service Worker (`sw.js`) providing offline baseline caching and fast asset delivery.
+ **Headless CMS Powered**: Live data synchronization with Strapi REST API v4 for dynamic updates without redeploying static code.
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Description |
 |---|---|---|
@@ -64,7 +64,7 @@ The application is built with vanilla web standards for fast performance and min
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 KTRH-FRONTEND/
@@ -108,7 +108,7 @@ KTRH-FRONTEND/
 
 ---
 
-## 📄 Pages & Modules
+##  Pages & Modules
 
 | Page | File | Key Capabilities |
 |---|---|---|
@@ -125,7 +125,7 @@ KTRH-FRONTEND/
 
 ---
 
-## 🔗 Headless CMS Integration (Strapi)
+##  Headless CMS Integration (Strapi)
 
 The frontend dynamically queries a Strapi v4 backend for frequently updated hospital data:
 
@@ -143,7 +143,7 @@ const STRAPI_IMAGE_URL = 'https://better-friend-c539968cc5.strapiapp.com';
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -180,7 +180,7 @@ To run the project locally, you only need a modern web browser and a simple loca
 
 ---
 
-## 🌐 Deployment
+##  Deployment
 
 The portal is pre-configured for deployment on **[Vercel](https://vercel.com/)** via [`vercel.json`](file:///c:/Users/SHADOW/KTRH-FRONTEND/vercel.json):
 
@@ -205,7 +205,7 @@ vercel
 
 ---
 
-## ⚡ Performance & PWA
+##  Performance & PWA
 
 - **Service Worker**: Registered via [`sw.js`](file:///c:/Users/SHADOW/KTRH-FRONTEND/sw.js) for caching essential static assets.
 - **Optimized Images**: Responsive layouts and `object-fit` rendering for doctor profiles and gallery photos.
@@ -213,7 +213,7 @@ vercel
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -223,15 +223,15 @@ vercel
 
 ---
 
-## 📞 License & Contact
+##  License & Contact
 
 Distributed under the MIT License.
 
 **Kisii Teaching & Referral Hospital (KTRH)**
-- 📍 **Location**: Kisii Town, Kenya
-- 🌐 **Website**: [KTRH Web Portal](https://ktrh.vercel.app)
-- 📧 **General Inquiries**: `info@ktrh.go.ke`
-- 🚑 **Emergency Hotline**: `+254 700 000 000`
+-  **Location**: Kisii Town, Kenya
+-  **Website**: [KTRH Web Portal](https://ktrh.vercel.app)
+-  **General Inquiries**: `info@ktrh.go.ke`
+-  **Emergency Hotline**: `+254 700 000 000`
 
 ---
-*Developed with ❤️ for Kisii Teaching & Referral Hospital community.*
+*Developed with  for Kisii Teaching & Referral Hospital community.*
