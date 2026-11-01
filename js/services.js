@@ -1,6 +1,6 @@
-// Strapi API Configuration
-const STRAPI_API_URL = 'https://better-friend-c539968cc5.strapiapp.com/api';
-const STRAPI_IMAGE_URL = 'https://better-friend-c539968cc5.strapiapp.com';
+// ==========================================================================
+// MEDICAL SERVICES — POWERED BY KTRH CENTRAL DATA STORE
+// ==========================================================================
 
 // DOM Elements
 let servicesContainer;
@@ -9,402 +9,184 @@ let filterBtns;
 let serviceModal;
 let modalCloseBtn;
 let modalBody;
-let chatWidget;
-let chatCloseBtn;
-let backToTopBtn;
-let summaryGrid;
 
-// Global State
+// State Management
 let allServices = [];
 let displayedServices = [];
+let currentCategory = 'all';
+let currentSearchTerm = '';
 
-// Function to show no services message
-function showNoServicesMessage() {
-    if (!servicesContainer) return;
-    
-    servicesContainer.innerHTML = `
-        <div class="no-services-message">
-            <i class="fas fa-hospital" style="font-size: 3.5rem; color: #1977cc; margin-bottom: 1.25rem;"></i>
-            <h3>No medical services found</h3>
-            <p>Please check back later or refresh to reload available services.</p>
-            <button onclick="location.reload()" class="refresh-button" style="margin-top: 1.25rem;">
-                <i class="fas fa-sync-alt"></i> Refresh Page
-            </button>
-        </div>
-    `;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    initServicesPage();
+});
 
-// Function to fetch services from Strapi
-async function fetchServices() {
-    try {
-        console.log('Fetching services from Strapi...');
-        
-        // Add timeout to prevent hanging
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000);
-        
-        const response = await fetch(`${STRAPI_API_URL}/services?populate=*`, {
-            signal: controller.signal
-        });
-        
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        // Handle Strapi v4 response structure
-        let services = [];
-        if (data.data && Array.isArray(data.data)) {
-            services = data.data;
-        } else if (Array.isArray(data)) {
-            services = data;
-        } else {
-            return [];
-        }
-        
-        return services;
-        
-    } catch (error) {
-        console.error('Error fetching services:', error);
-        return [];
+// Live update listener from Admin Portal
+window.addEventListener('ktrh_data_updated', function(e) {
+    if (!e.detail?.collection || e.detail.collection === 'services') {
+        loadServicesFromStore();
     }
-}
+});
 
-// Helper function to extract text from Strapi Rich Text format
-function extractTextFromRichText(richText) {
-    if (!richText) return '';
-    
-    if (typeof richText === 'string') {
-        return richText;
-    }
-    
-    if (Array.isArray(richText)) {
-        let text = '';
-        richText.forEach(block => {
-            if (block.type === 'paragraph' && block.children) {
-                block.children.forEach(child => {
-                    if (child.text) {
-                        text += child.text + ' ';
-                    }
-                });
-            }
-        });
-        return text.trim();
-    }
-    
-    if (typeof richText === 'object') {
-        if (richText.text) return richText.text;
-        if (richText.content) return richText.content;
-        return '';
-    }
-    
-    return '';
-}
-
-// Helper function to get service data
-function getServiceData(service) {
-    return service.attributes || service;
-}
-
-// Helper function to get service name
-function getServiceName(service) {
-    const attrs = getServiceData(service);
-    return attrs?.name || 'Unknown Service';
-}
-
-// Helper function to get service category
-function getServiceCategory(service) {
-    const attrs = getServiceData(service);
-    return attrs?.category || 'specialized';
-}
-
-// Helper function to get service icon
-function getServiceIcon(service) {
-    const attrs = getServiceData(service);
-    return attrs?.icon_class || 'fas fa-stethoscope';
-}
-
-// Helper function to get image URL
-function getServiceImageUrl(service) {
-    const attrs = getServiceData(service);
-    
-    let imageUrl = 'https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=70';
-    
-    try {
-        if (service.attributes?.image?.data?.attributes?.url) {
-            imageUrl = `${STRAPI_IMAGE_URL}${service.attributes.image.data.attributes.url}`;
-        } else if (service.image?.data?.attributes?.url) {
-            imageUrl = `${STRAPI_IMAGE_URL}${service.image.data.attributes.url}`;
-        } else if (attrs.image?.url) {
-            imageUrl = attrs.image.url.startsWith('http') 
-                ? attrs.image.url 
-                : `${STRAPI_IMAGE_URL}${attrs.image.url}`;
-        }
-    } catch (imageError) {
-        console.warn('Error getting image URL:', imageError);
-    }
-    
-    return imageUrl;
-}
-
-// Function to render service card
-function renderServiceCard(service) {
-    if (!service) return '';
-    
-    const attrs = getServiceData(service);
-    const serviceId = service.id || '';
-    
-    const name = getServiceName(service);
-    const category = getServiceCategory(service);
-    const icon = getServiceIcon(service);
-    const description = attrs.short_description || extractTextFromRichText(attrs.description);
-    const imageUrl = getServiceImageUrl(service);
-    
-    return `
-        <div class="service-card ${category}" id="${attrs.slug || serviceId}">
-            <div class="service-image">
-                <img src="${imageUrl}" alt="${name}" loading="lazy">
-                <div class="service-overlay">
-                    <span class="service-tag">${category.charAt(0).toUpperCase() + category.slice(1)}</span>
-                    <h3>${name}</h3>
-                </div>
-            </div>
-            <div class="service-content">
-                <div class="service-icon">
-                    <i class="${icon}"></i>
-                </div>
-                <h2>${name}</h2>
-                <p class="service-description">${description.substring(0, 120)}${description.length > 120 ? '...' : ''}</p>
-                
-                <div class="service-actions">
-                    <a href="appointment.html?service=${attrs.slug || serviceId}" class="btn-book">
-                        <i class="fas fa-calendar-check"></i> Book Now
-                    </a>
-                    <a href="#${attrs.slug || serviceId}-details" class="btn-learn" data-service="${serviceId}">
-                        <i class="fas fa-info-circle"></i> Learn More
-                    </a>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Function to render services grid
-function renderServicesGrid(services) {
-    if (!servicesContainer) return;
-    
-    if (!Array.isArray(services) || services.length === 0) {
-        showNoServicesMessage();
-        return;
-    }
-    
-    servicesContainer.innerHTML = services.map(service => renderServiceCard(service)).join('');
-    
-    // Re-attach event listeners
-    attachLearnMoreListeners();
-}
-
-// Function to filter services by category
-function filterServicesByCategory(category) {
-    if (category === 'all') {
-        displayedServices = allServices;
-    } else {
-        displayedServices = allServices.filter(service => {
-            const serviceCategory = getServiceCategory(service);
-            return serviceCategory === category;
-        });
-    }
-    
-    if (displayedServices.length === 0) {
-        servicesContainer.innerHTML = `
-            <div class="no-services-message" style="text-align: center; padding: 4rem; color: #666;">
-                <i class="fas fa-search" style="font-size: 4rem; color: #95a5a6; margin-bottom: 1.5rem;"></i>
-                <h3 style="color: #2c3e50; margin-bottom: 0.5rem;">No medical services found</h3>
-                <p style="color: #7f8c8d; font-size: 0.9rem;">Try a different category or search term</p>
-            </div>
-        `;
-    } else {
-        renderServicesGrid(displayedServices);
-    }
-}
-
-// Function to search services
-function searchServices(searchTerm) {
-    const term = searchTerm.toLowerCase().trim();
-    
-    if (!term) {
-        displayedServices = allServices;
-        renderServicesGrid(displayedServices);
-        return;
-    }
-    
-    displayedServices = allServices.filter(service => {
-        const attrs = getServiceData(service);
-        const name = getServiceName(service).toLowerCase();
-        const description = extractTextFromRichText(attrs.description).toLowerCase();
-        const shortDesc = (attrs.short_description || '').toLowerCase();
-        const category = getServiceCategory(service).toLowerCase();
-        
-        return name.includes(term) ||
-               description.includes(term) ||
-               shortDesc.includes(term) ||
-               category.includes(term);
-    });
-    
-    if (displayedServices.length === 0) {
-        servicesContainer.innerHTML = `
-            <div class="no-services-message" style="text-align: center; padding: 4rem; color: #666;">
-                <i class="fas fa-search-minus" style="font-size: 4rem; color: #95a5a6; margin-bottom: 1.5rem;"></i>
-                <h3 style="color: #2c3e50; margin-bottom: 0.5rem;">No medical services found</h3>
-                <p style="color: #7f8c8d; font-size: 0.9rem;">No results for "${searchTerm}"</p>
-            </div>
-        `;
-    } else {
-        renderServicesGrid(displayedServices);
-    }
-}
-
-// Function to show service modal
-async function showServiceModal(serviceId) {
-    try {
-        const response = await fetch(`${STRAPI_API_URL}/services/${serviceId}?populate=*`);
-        
-        if (!response.ok) {
-            throw new Error(`Failed to fetch service: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        const service = data.data || data;
-        
-        if (!service) {
-            modalBody.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #f39c12; margin-bottom: 1rem;"></i>
-                    <p>Service data not found.</p>
-                </div>
-            `;
-            return;
-        }
-        
-        const attrs = getServiceData(service);
-        const name = getServiceName(service);
-        const icon = getServiceIcon(service);
-        const description = extractTextFromRichText(attrs.description);
-        const imageUrl = getServiceImageUrl(service);
-        
-        let modalHTML = `
-            <div class="modal-header">
-                <div class="modal-icon">
-                    <i class="${icon}"></i>
-                </div>
-                <h2>${name} Services</h2>
-            </div>
-            
-            <div class="modal-image">
-                <img src="${imageUrl}" alt="${name}" loading="lazy">
-            </div>
-            
-            <p class="modal-description">${description}</p>
-            
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="appointment.html?service=${attrs.slug || serviceId}" class="btn-book">
-                    <i class="fas fa-calendar-check"></i> Book Appointment Now
-                </a>
-            </div>
-        `;
-        
-        modalBody.innerHTML = modalHTML;
-        serviceModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    } catch (error) {
-        console.error('Error fetching service details:', error);
-        modalBody.innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #e74c3c; margin-bottom: 1rem;"></i>
-                <p>Unable to load service details.</p>
-            </div>
-        `;
-        serviceModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-// Function to attach learn more listeners
-function attachLearnMoreListeners() {
-    document.querySelectorAll('.btn-learn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const serviceId = this.getAttribute('data-service');
-            if (serviceId) {
-                showServiceModal(serviceId);
-            }
-        });
-    });
-}
-
-// Close modal function
-function closeModal() {
-    if (serviceModal) {
-        serviceModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// Initialize the page
-async function initializePage() {
-    // Get DOM elements
-    servicesContainer = document.getElementById('servicesContainer');
+function initServicesPage() {
+    servicesContainer = document.getElementById('servicesContainer') || document.querySelector('.services-grid');
     servicesSearch = document.getElementById('servicesSearch');
-    filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns = document.querySelectorAll('.service-filter-btn') || document.querySelectorAll('.filter-btn');
     serviceModal = document.getElementById('serviceModal');
-    modalCloseBtn = document.getElementById('modalClose');
     modalBody = document.getElementById('modalBody');
-    
-    // Fetch services from Strapi
-    allServices = await fetchServices();
-    
-    if (allServices.length === 0) {
-        showNoServicesMessage();
+    modalCloseBtn = document.getElementById('modalClose');
+
+    setupEventListeners();
+    loadServicesFromStore();
+}
+
+function loadServicesFromStore() {
+    if (window.KTRHStore) {
+        allServices = window.KTRHStore.getServices();
     } else {
-        displayedServices = allServices;
-        renderServicesGrid(displayedServices);
+        allServices = [];
     }
-    
-    // Set up filter functionality
+
+    displayedServices = [...allServices];
+    filterServices();
+}
+
+function setupEventListeners() {
+    // Filter Buttons
     if (filterBtns) {
         filterBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
                 filterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                filterServicesByCategory(filter);
+                currentCategory = this.getAttribute('data-filter') || 'all';
+                filterServices();
             });
         });
     }
-    
-    // Set up search functionality
+
+    // Search Input
     if (servicesSearch) {
-        servicesSearch.addEventListener('input', function(e) {
-            searchServices(e.target.value);
+        servicesSearch.addEventListener('input', function() {
+            currentSearchTerm = this.value.trim().toLowerCase();
+            filterServices();
         });
     }
-    
-    // Set up modal functionality
+
+    // Modal Close
     if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeModal);
+        modalCloseBtn.addEventListener('click', closeServiceModal);
     }
-    
+
     if (serviceModal) {
-        serviceModal.addEventListener('click', function(e) {
+        window.addEventListener('click', function(e) {
             if (e.target === serviceModal) {
-                closeModal();
+                closeServiceModal();
             }
         });
     }
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializePage);
+function filterServices() {
+    displayedServices = allServices.filter(service => {
+        const matchesCategory = currentCategory === 'all' || 
+            (service.category && service.category.toLowerCase() === currentCategory.toLowerCase());
+
+        const matchesSearch = !currentSearchTerm || 
+            (service.title && service.title.toLowerCase().includes(currentSearchTerm)) ||
+            (service.short_description && service.short_description.toLowerCase().includes(currentSearchTerm)) ||
+            (service.description && service.description.toLowerCase().includes(currentSearchTerm));
+
+        return matchesCategory && matchesSearch;
+    });
+
+    renderServicesGrid();
+}
+
+function renderServicesGrid() {
+    if (!servicesContainer) return;
+
+    if (displayedServices.length === 0) {
+        servicesContainer.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
+                <i class="fas fa-stethoscope" style="font-size: 3.5rem; color: #cbd5e1; margin-bottom: 15px;"></i>
+                <h3 style="color: #2c4964; margin-bottom: 8px;">No Medical Services Found</h3>
+                <p>Try searching for a different clinical specialty or clear your filter.</p>
+            </div>
+        `;
+        return;
+    }
+
+    servicesContainer.innerHTML = displayedServices.map(service => {
+        const catTag = service.category ? service.category.charAt(0).toUpperCase() + service.category.slice(1) : 'Clinical';
+
+        return `
+            <div class="service-card ${service.category || 'clinical'}" id="${service.slug || service.id}">
+                <div class="service-image">
+                    <img src="${service.image || 'img/imagestheatre.jpg'}" alt="${service.title}" loading="lazy" onerror="this.src='img/about.jpg'">
+                    <div class="service-overlay">
+                        <span class="service-tag">${catTag}</span>
+                        <h3>${service.title}</h3>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="${service.icon || 'fas fa-hospital'}"></i>
+                    </div>
+                    <h2>${service.title}</h2>
+                    <p class="service-description">${service.short_description || service.description || 'Specialized clinical services provided by KTRH.'}</p>
+                    
+                    <div class="service-actions">
+                        <a href="appointment.html?service=${encodeURIComponent(service.id)}" class="btn-book">
+                            <i class="fas fa-calendar-check"></i> Book Now
+                        </a>
+                        <button class="btn-learn" onclick="openServiceModal('${service.id}')">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+window.openServiceModal = function(id) {
+    const service = allServices.find(s => String(s.id) === String(id));
+    if (!service || !serviceModal || !modalBody) return;
+
+    const featuresList = Array.isArray(service.features)
+        ? service.features.map(f => `<li><i class="fas fa-check-circle" style="color: #1977cc; margin-right: 8px;"></i>${f}</li>`).join('')
+        : `<li>${service.features || 'Advanced clinical diagnostics and specialist care'}</li>`;
+
+    modalBody.innerHTML = `
+        <div style="padding: 10px;">
+            <div style="height: 240px; overflow: hidden; border-radius: 8px; margin-bottom: 20px;">
+                <img src="${service.image || 'img/imagestheatre.jpg'}" alt="${service.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='img/about.jpg'">
+            </div>
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+                <i class="${service.icon || 'fas fa-hospital'}" style="font-size: 2rem; color: #1977cc;"></i>
+                <h2 style="color: #2c4964; margin: 0;">${service.title}</h2>
+            </div>
+            <p style="color: #475569; line-height: 1.7; font-size: 1.05rem; margin-bottom: 20px;">${service.description || service.short_description}</p>
+            
+            <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <p style="margin: 0;"><strong><i class="fas fa-clock"></i> Service Operating Hours:</strong> ${service.hours || '24/7 or Outpatient Clinic Hours'}</p>
+            </div>
+
+            <h4 style="color: #2c4964; margin-bottom: 10px;"><i class="fas fa-list-check"></i> Key Capabilities & Procedures</h4>
+            <ul style="list-style: none; padding-left: 0; line-height: 2; margin-bottom: 25px;">
+                ${featuresList}
+            </ul>
+
+            <a href="appointment.html?service=${encodeURIComponent(service.id)}" class="btn-book" style="display: inline-block; padding: 12px 28px; background: #1977cc; color: white; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                <i class="fas fa-calendar-check"></i> Schedule an Appointment
+            </a>
+        </div>
+    `;
+
+    serviceModal.style.display = 'flex';
+};
+
+function closeServiceModal() {
+    if (serviceModal) {
+        serviceModal.style.display = 'none';
+    }
+}

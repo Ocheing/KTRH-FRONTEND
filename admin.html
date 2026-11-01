@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTRH Portal Administration — Hospital Control Center</title>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io3/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io3/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io3/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon_io3/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- Login Authentication Overlay -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <img src="img/Logo KTRH.png" alt="KTRH Logo" onerror="this.src='img/logo-2.png'">
+                <h2>KTRH Hospital Administration</h2>
+                <p>Kisii Teaching & Referral Hospital Control Center</p>
+            </div>
+            <form id="adminLoginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="adminPassword"><i class="fas fa-lock"></i> Enter Admin Passcode</label>
+                    <input type="password" id="adminPassword" placeholder="Enter password (default: ktrh2026)" required autofocus>
+                </div>
+                <div id="loginError" class="login-error" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i> Invalid passcode. Please try again.
+                </div>
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Access Hospital Dashboard
+                </button>
+                <div class="auth-hint">
+                    <small>Default Access Passcode: <code>ktrh2026</code></small>
+                </div>
+            </form>
+            <div class="auth-footer">
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Return to Main Public Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="admin-layout" id="adminLayout" style="display: none;">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <img src="img/Logo KTRH.png" alt="KTRH Logo" class="brand-img" onerror="this.src='img/logo-2.png'">
+                    <div class="brand-text">
+                        <h3>KTRH Admin</h3>
+                        <span>Kisii Hospital Portal</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-item active" data-tab="overview">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard Overview</span>
+                </a>
+                <a href="#doctors" class="nav-item" data-tab="doctors">
+                    <i class="fas fa-user-md"></i> <span>Doctors & Staff</span>
+                </a>
+                <a href="#projects" class="nav-item" data-tab="projects">
+                    <i class="fas fa-building"></i> <span>Projects & Works</span>
+                </a>
+                <a href="#services" class="nav-item" data-tab="services">
+                    <i class="fas fa-stethoscope"></i> <span>Medical Services</span>
+                </a>
+                <a href="#departments" class="nav-item" data-tab="departments">
+                    <i class="fas fa-hospital"></i> <span>Departments</span>
+                </a>
+                <a href="#careers" class="nav-item" data-tab="careers">
+                    <i class="fas fa-briefcase"></i> <span>Careers & Jobs</span>
+                </a>
+                <a href="#gallery" class="nav-item" data-tab="gallery">
+                    <i class="fas fa-images"></i> <span>Media & Gallery</span>
+                </a>
+                <a href="#appointments" class="nav-item" data-tab="appointments">
+                    <i class="fas fa-calendar-check"></i> <span>Appointments</span>
+                    <span class="badge" id="badgeAppointments">0</span>
+                </a>
+                <a href="#inquiries" class="nav-item" data-tab="inquiries">
+                    <i class="fas fa-envelope"></i> <span>Patient Inquiries</span>
+                    <span class="badge" id="badgeInquiries">0</span>
+                </a>
+                <a href="#backup" class="nav-item" data-tab="backup">
+                    <i class="fas fa-database"></i> <span>Data Backup & Sync</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" target="_blank" class="btn-view-site">
+                    <i class="fas fa-external-link-alt"></i> View Public Website
+                </a>
+                <button id="adminLogoutBtn" class="btn-logout">
+                    <i class="fas fa-power-off"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            <!-- Header Bar -->
+            <header class="admin-header">
+                <div class="header-title">
+                    <h1 id="pageTitle">Dashboard Overview</h1>
+                    <p id="pageSubtitle">Real-time control center for Kisii Teaching & Referral Hospital portal</p>
+                </div>
+                <div class="header-actions">
+                    <span class="live-indicator"><i class="fas fa-circle"></i> Live Local Store</span>
+                    <button class="btn-refresh" onclick="location.reload()" title="Refresh Data">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Notification Toast Container -->
+            <div id="toastContainer" class="toast-container"></div>
+
+            <!-- TAB 1: OVERVIEW -->
+            <section class="tab-pane active" id="pane-overview">
+                <div class="stats-grid">
+                    <div class="stat-card" onclick="switchTab('doctors')">
+                        <div class="stat-icon icon-blue"><i class="fas fa-user-md"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statDoctorsCount">0</h3>
+                            <p>Doctors & Specialists</p>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="switchTab('projects')">
+                        <div class="stat-icon icon-green"><i class="fas fa-building"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statProjectsCount">0</h3>
+                            <p>Infrastructure Projects</p>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="switchTab('careers')">
+                        <div class="stat-icon icon-purple"><i class="fas fa-briefcase"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statJobsCount">0</h3>
+                            <p>Active Job Openings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="switchTab('gallery')">
+                        <div class="stat-icon icon-amber"><i class="fas fa-images"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statGalleryCount">0</h3>
+                            <p>Media Items</p>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="switchTab('appointments')">
+                        <div class="stat-icon icon-cyan"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statAppointmentsCount">0</h3>
+                            <p>Patient Appointments</p>
+                        </div>
+                    </div>
+                    <div class="stat-card" onclick="switchTab('inquiries')">
+                        <div class="stat-icon icon-red"><i class="fas fa-comments"></i></div>
+                        <div class="stat-info">
+                            <h3 id="statInquiriesCount">0</h3>
+                            <p>Patient Messages</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-sections">
+                    <!-- Recent Appointments -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-clock"></i> Recent Patient Bookings</h3>
+                            <button class="btn-sm" onclick="switchTab('appointments')">View All</button>
+                        </div>
+                        <div class="panel-body table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ref Number</th>
+                                        <th>Patient Name</th>
+                                        <th>Department</th>
+                                        <th>Date & Time</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overviewRecentAppointments">
+                                    <!-- Populated via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Quick Shortcuts -->
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        </div>
+                        <div class="panel-body quick-actions-grid">
+                            <button class="quick-btn" onclick="openAddDoctorModal()">
+                                <i class="fas fa-user-plus"></i> Add New Doctor
+                            </button>
+                            <button class="quick-btn" onclick="openAddProjectModal()">
+                                <i class="fas fa-plus-circle"></i> Add Capital Project
+                            </button>
+                            <button class="quick-btn" onclick="openAddJobModal()">
+                                <i class="fas fa-file-contract"></i> Post Job Opening
+                            </button>
+                            <button class="quick-btn" onclick="openAddGalleryModal()">
+                                <i class="fas fa-camera"></i> Add Media Item
+                            </button>
+                            <button class="quick-btn" onclick="KTRHStore.exportJSON()">
+                                <i class="fas fa-download"></i> Download Full Backup
+                            </button>
+                            <button class="quick-btn danger" onclick="confirmResetDefaults()">
+                                <i class="fas fa-undo"></i> Reset to Initial Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: DOCTORS -->
+            <section class="tab-pane" id="pane-doctors">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminDoctorSearch" placeholder="Search doctor by name, specialty, or department...">
+                    </div>
+                    <button class="btn-primary" onclick="openAddDoctorModal()">
+                        <i class="fas fa-plus"></i> Add New Doctor
+                    </button>
+                </div>
+
+                <div class="table-responsive panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Name & Title</th>
+                                <th>Department</th>
+                                <th>Specialty</th>
+                                <th>Experience</th>
+                                <th>Featured</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="doctorsTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 3: PROJECTS -->
+            <section class="tab-pane" id="pane-projects">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminProjectSearch" placeholder="Search project by title or contractor...">
+                    </div>
+                    <button class="btn-primary" onclick="openAddProjectModal()">
+                        <i class="fas fa-plus"></i> Add New Project
+                    </button>
+                </div>
+
+                <div class="table-responsive panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Project Title</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Progress</th>
+                                <th>Budget</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectsTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 4: SERVICES -->
+            <section class="tab-pane" id="pane-services">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminServiceSearch" placeholder="Search clinical services...">
+                    </div>
+                    <button class="btn-primary" onclick="openAddServiceModal()">
+                        <i class="fas fa-plus"></i> Add New Service
+                    </button>
+                </div>
+
+                <div class="table-responsive panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Icon</th>
+                                <th>Service Title</th>
+                                <th>Category</th>
+                                <th>Operating Hours</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="servicesTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 5: DEPARTMENTS -->
+            <section class="tab-pane" id="pane-departments">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminDeptSearch" placeholder="Search departments or heads...">
+                    </div>
+                    <button class="btn-primary" onclick="openAddDeptModal()">
+                        <i class="fas fa-plus"></i> Add New Department
+                    </button>
+                </div>
+
+                <div class="table-responsive panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Department Name</th>
+                                <th>Head of Department</th>
+                                <th>Extension</th>
+                                <th>Email</th>
+                                <th>Location</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="departmentsTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 6: CAREERS -->
+            <section class="tab-pane" id="pane-careers">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminJobSearch" placeholder="Search vacancy titles or departments...">
+                    </div>
+                    <button class="btn-primary" onclick="openAddJobModal()">
+                        <i class="fas fa-plus"></i> Post New Job Opening
+                    </button>
+                </div>
+
+                <div class="table-responsive panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Department</th>
+                                <th>Type</th>
+                                <th>Deadline</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobsTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 7: GALLERY -->
+            <section class="tab-pane" id="pane-gallery">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminGallerySearch" placeholder="Search gallery title or description...">
+                    </div>
+                    <button class="btn-primary" onclick="openAddGalleryModal()">
+                        <i class="fas fa-plus"></i> Add Media Item
+                    </button>
+                </div>
+
+                <div class="gallery-admin-grid" id="galleryAdminGrid">
+                    <!-- Populated via JS -->
+                </div>
+            </section>
+
+            <!-- TAB 8: APPOINTMENTS -->
+            <section class="tab-pane" id="pane-appointments">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminApptSearch" placeholder="Search patient name, phone, or reference...">
+                    </div>
+                    <span class="toolbar-note"><i class="fas fa-info-circle"></i> Bookings submitted from online appointment form</span>
+                </div>
+
+                <div class="table-responsive panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Ref #</th>
+                                <th>Patient Name</th>
+                                <th>Contact Phone</th>
+                                <th>Date & Time</th>
+                                <th>Department / Doctor</th>
+                                <th>Symptoms / Notes</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 9: INQUIRIES -->
+            <section class="tab-pane" id="pane-inquiries">
+                <div class="section-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="adminInquirySearch" placeholder="Search message sender or subject...">
+                    </div>
+                    <span class="toolbar-note"><i class="fas fa-info-circle"></i> Inquiries received from Contact page & Home form</span>
+                </div>
+
+                <div class="table-responsive panel">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Sender Name</th>
+                                <th>Contact Email & Phone</th>
+                                <th>Department / Subject</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inquiriesTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 10: BACKUP & SETTINGS -->
+            <section class="tab-pane" id="pane-backup">
+                <div class="backup-grid">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-file-export"></i> Export Hospital Database</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Download a complete JSON snapshot containing all doctors, projects, services, departments, job listings, gallery media, appointments, and inquiries.</p>
+                            <p style="color: #64748b; font-size: 0.9rem;">You can safely store this backup file or transfer it to another browser.</p>
+                            <button class="btn-primary" onclick="KTRHStore.exportJSON()">
+                                <i class="fas fa-download"></i> Export JSON Backup
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-file-import"></i> Restore from JSON Backup</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Upload a previously exported KTRH JSON file to restore hospital information instantly.</p>
+                            <input type="file" id="importJsonFileInput" accept=".json" style="margin-bottom: 15px;">
+                            <button class="btn-secondary" onclick="handleImportJSON()">
+                                <i class="fas fa-upload"></i> Restore from File
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-key"></i> Change Admin Passcode</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form id="changePasswordForm">
+                                <div class="form-group" style="margin-bottom: 15px;">
+                                    <label>New Passcode</label>
+                                    <input type="password" id="newAdminPassword" required placeholder="Enter new passcode">
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i> Update Passcode
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="panel danger-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Factory Reset</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Reset the hospital database back to the original default seed data (restores Dr. Ondari, Mother & Child Hospital, Cancer Pavilion, etc.).</p>
+                            <button class="btn-danger" onclick="confirmResetDefaults()">
+                                <i class="fas fa-trash-restore"></i> Reset to Factory Defaults
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- SHARED CRUD MODALS -->
+
+    <!-- Doctor Modal -->
+    <div class="modal" id="modalDoctor" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalDoctorTitle">Add Doctor</h3>
+                <button class="btn-close" onclick="closeAdminModal('modalDoctor')">&times;</button>
+            </div>
+            <form id="formDoctor" class="modal-body">
+                <input type="hidden" id="doctorId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Doctor Full Name *</label>
+                        <input type="text" id="docName" required placeholder="e.g., Dr. Ondari">
+                    </div>
+                    <div class="form-group">
+                        <label>Professional Title *</label>
+                        <input type="text" id="docTitle" required placeholder="e.g., Chief Consultant Cardiologist">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Department *</label>
+                        <select id="docDepartment" required>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="pediatrics">Pediatrics</option>
+                            <option value="orthopedics">Orthopedics</option>
+                            <option value="surgery">Surgery</option>
+                            <option value="emergency">Emergency</option>
+                            <option value="general">General Medicine</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Specialty *</label>
+                        <input type="text" id="docSpecialty" required placeholder="e.g., Interventional Cardiology">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Experience</label>
+                        <input type="text" id="docExperience" placeholder="e.g., 15+ Years">
+                    </div>
+                    <div class="form-group">
+                        <label>Consultation Hours</label>
+                        <input type="text" id="docHours" placeholder="e.g., Mon, Wed, Fri: 9:00 AM - 3:00 PM">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Doctor Photo</label>
+                    <div class="image-input-group">
+                        <input type="text" id="docImage" placeholder="Image URL or choose file below...">
+                        <input type="file" id="docImageFile" accept="image/*" class="file-input">
+                    </div>
+                    <div id="docImagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Qualifications (comma separated)</label>
+                    <input type="text" id="docQualifications" placeholder="e.g., MBChB (UoN), MMed Cardiology, FESC">
+                </div>
+                <div class="form-group">
+                    <label>Biography & Overview</label>
+                    <textarea id="docBio" rows="3" placeholder="Brief clinical background and areas of expertise"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Official Email</label>
+                        <input type="email" id="docEmail" placeholder="e.g., dr.ondari@ktrh.or.ke">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone / Extension</label>
+                        <input type="text" id="docPhone" placeholder="e.g., +254 758 721 997 Ext. 101">
+                    </div>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="docFeatured" checked>
+                    <label for="docFeatured">Feature on Homepage</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAdminModal('modalDoctor')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Doctor Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal" id="modalProject" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalProjectTitle">Add Project</h3>
+                <button class="btn-close" onclick="closeAdminModal('modalProject')">&times;</button>
+            </div>
+            <form id="formProject" class="modal-body">
+                <input type="hidden" id="projectId">
+                <div class="form-group">
+                    <label>Project Title *</label>
+                    <input type="text" id="projTitle" required placeholder="e.g., Modern Mother & Child Complex">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="projCategory" required>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="research">Research & Digital</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status Badge *</label>
+                        <select id="projStatus" required>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Upcoming">Upcoming</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Progress Percentage: <span id="progressValue">75</span>%</label>
+                        <input type="range" id="projProgress" min="0" max="100" value="75" oninput="document.getElementById('progressValue').textContent = this.value">
+                    </div>
+                    <div class="form-group">
+                        <label>Budget / Funding</label>
+                        <input type="text" id="projBudget" placeholder="e.g., KES 850M">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="date" id="projStart">
+                    </div>
+                    <div class="form-group">
+                        <label>End / Expected Completion</label>
+                        <input type="date" id="projEnd">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Contractor / Implementing Agency</label>
+                    <input type="text" id="projContractor" placeholder="e.g., Kisii County & Infrastructure Partners">
+                </div>
+                <div class="form-group">
+                    <label>Project Photo</label>
+                    <div class="image-input-group">
+                        <input type="text" id="projImage" placeholder="Image URL or choose file below...">
+                        <input type="file" id="projImageFile" accept="image/*" class="file-input">
+                    </div>
+                    <div id="projImagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Description & Scope *</label>
+                    <textarea id="projDescription" rows="3" required placeholder="Detailed description of the modernization project"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAdminModal('modalProject')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Career / Job Modal -->
+    <div class="modal" id="modalJob" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalJobTitle">Post Job Opening</h3>
+                <button class="btn-close" onclick="closeAdminModal('modalJob')">&times;</button>
+            </div>
+            <form id="formJob" class="modal-body">
+                <input type="hidden" id="jobId">
+                <div class="form-group">
+                    <label>Job Title *</label>
+                    <input type="text" id="jobTitle" required placeholder="e.g., Critical Care Registered Nurse">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Department / Unit *</label>
+                        <input type="text" id="jobDepartment" required placeholder="e.g., Intensive Care Unit (ICU)">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Type *</label>
+                        <select id="jobType" required>
+                            <option value="Full-Time">Full-Time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Part-Time">Part-Time</option>
+                            <option value="Internship">Internship / Residency</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Application Deadline *</label>
+                        <input type="date" id="jobDeadline" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="jobLocation" value="Main Hospital - Kisii">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Job Description *</label>
+                    <textarea id="jobDescription" rows="3" required placeholder="Role summary and duties"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Key Requirements (one per line)</label>
+                    <textarea id="jobRequirements" rows="3" placeholder="Enter key requirements, one per line"></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="jobActive" checked>
+                    <label for="jobActive">Active Vacancy (Visible on Public Careers Portal)</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAdminModal('modalJob')">Cancel</button>
+                    <button type="submit" class="btn-primary">Publish Job Opening</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gallery Media Modal -->
+    <div class="modal" id="modalGallery" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalGalleryTitle">Add Media Item</h3>
+                <button class="btn-close" onclick="closeAdminModal('modalGallery')">&times;</button>
+            </div>
+            <form id="formGallery" class="modal-body">
+                <input type="hidden" id="galleryId">
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" id="galTitle" required placeholder="e.g., Modern Maternal Health Complex">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="galCategory" required>
+                            <option value="facilities">Facilities & Wards</option>
+                            <option value="events">Events & Outreach</option>
+                            <option value="team">Medical Team</option>
+                            <option value="achievements">Achievements</option>
+                            <option value="community">Community Care</option>
+                            <option value="videos">Videos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Media Type *</label>
+                        <select id="galMediaType" required onchange="toggleMediaTypeInputs(this.value)">
+                            <option value="image">Image / Photo</option>
+                            <option value="video">Video (YouTube Embed / Link)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="groupMediaUrl">
+                    <label id="labelMediaUrl">Image URL / File</label>
+                    <div class="image-input-group">
+                        <input type="text" id="galUrl" placeholder="Image URL or YouTube video link...">
+                        <input type="file" id="galImageFile" accept="image/*" class="file-input">
+                    </div>
+                    <div id="galImagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="galDescription" rows="2" placeholder="Caption or descriptive context"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAdminModal('modalGallery')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Media Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Service Modal -->
+    <div class="modal" id="modalService" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalServiceTitle">Add Medical Service</h3>
+                <button class="btn-close" onclick="closeAdminModal('modalService')">&times;</button>
+            </div>
+            <form id="formService" class="modal-body">
+                <input type="hidden" id="serviceId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Service Name *</label>
+                        <input type="text" id="srvTitle" required placeholder="e.g., Cardiology & Catheterization Lab">
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="srvCategory" required>
+                            <option value="clinical">Clinical Service</option>
+                            <option value="diagnostic">Diagnostic & Imaging</option>
+                            <option value="emergency">Emergency & Trauma</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Icon Class (Font Awesome)</label>
+                        <input type="text" id="srvIcon" placeholder="e.g., fas fa-heartbeat">
+                    </div>
+                    <div class="form-group">
+                        <label>Operating Hours</label>
+                        <input type="text" id="srvHours" placeholder="e.g., 24/7 or Mon - Fri: 8AM - 5PM">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Service Image</label>
+                    <div class="image-input-group">
+                        <input type="text" id="srvImage" placeholder="Image URL or choose file below...">
+                        <input type="file" id="srvImageFile" accept="image/*" class="file-input">
+                    </div>
+                    <div id="srvImagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Short Description *</label>
+                    <input type="text" id="srvShortDesc" required placeholder="Summary of service">
+                </div>
+                <div class="form-group">
+                    <label>Full Detailed Description</label>
+                    <textarea id="srvFullDesc" rows="3" placeholder="Comprehensive clinical scope and equipment"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAdminModal('modalService')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Service</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Department Modal -->
+    <div class="modal" id="modalDept" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalDeptTitle">Add Department</h3>
+                <button class="btn-close" onclick="closeAdminModal('modalDept')">&times;</button>
+            </div>
+            <form id="formDept" class="modal-body">
+                <input type="hidden" id="deptId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Department Name *</label>
+                        <input type="text" id="deptName" required placeholder="e.g., Obstetrics & Gynecology">
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="deptCategory" required>
+                            <option value="clinical">Clinical</option>
+                            <option value="diagnostic">Diagnostic</option>
+                            <option value="administrative">Administrative</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Head of Department</label>
+                        <input type="text" id="deptHead" placeholder="e.g., Dr. Judith Bosire">
+                    </div>
+                    <div class="form-group">
+                        <label>Qualifications</label>
+                        <input type="text" id="deptQualification" placeholder="e.g., MBChB, MMed Obs/Gyn">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Internal Phone Extension</label>
+                        <input type="text" id="deptExtension" placeholder="e.g., 1020">
+                    </div>
+                    <div class="form-group">
+                        <label>Department Email</label>
+                        <input type="email" id="deptEmail" placeholder="e.g., maternity@ktrh.or.ke">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Physical Location</label>
+                    <input type="text" id="deptLocation" placeholder="e.g., Mother & Child Hospital Complex">
+                </div>
+                <div class="form-group">
+                    <label>Department Photo</label>
+                    <div class="image-input-group">
+                        <input type="text" id="deptImage" placeholder="Image URL or choose file below...">
+                        <input type="file" id="deptImageFile" accept="image/*" class="file-input">
+                    </div>
+                    <div id="deptImagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="deptDescription" rows="3" placeholder="Scope and mission of this department"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAdminModal('modalDept')">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Department</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data-store.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
+

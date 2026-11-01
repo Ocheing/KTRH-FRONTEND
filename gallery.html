@@ -734,10 +734,10 @@
     <section class="gallery-section">
         <div class="container">
             <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery items will be dynamically loaded from Strapi -->
+                <!-- Gallery items will be dynamically loaded from Central Store -->
                 <div class="gallery-loading" style="text-align: center; padding: 50px; grid-column: 1 / -1;">
                     <div class="loader" style="margin: 0 auto;"></div>
-                    <p style="margin-top: 20px; color: #666;">Loading gallery items from Strapi...</p>
+                    <p style="margin-top: 20px; color: #666;">Loading gallery items...</p>
                 </div>
             </div>
 
@@ -759,7 +759,7 @@
             </div>
             
             <div class="video-grid" id="featuredVideosGrid">
-                <!-- Featured videos will be dynamically loaded from Strapi 
+                <!-- Featured videos will be dynamically loaded --> 
                 <div class="video-loading" style="text-align: center; padding: 30px; width: 100%;">
                     <div class="loader" style="margin: 0 auto;"></div>
                     <p style="margin-top: 15px; color: #666;">Loading featured videos...</p>
@@ -1065,7 +1065,6 @@
                         this.classList.add('active');
                         const category = this.getAttribute('data-category');
                         console.log('Category selected:', category);
-                        // This will be integrated with the gallery-strapi.js functionality
                     });
                 });
             }
@@ -1077,7 +1076,6 @@
                 searchButton.addEventListener('click', function() {
                     const searchTerm = mediaSearchInput.value.toLowerCase();
                     console.log('Searching for:', searchTerm);
-                    // This will be integrated with the gallery-strapi.js functionality
                 });
                 
                 // Allow pressing Enter to search
@@ -1093,7 +1091,6 @@
             if (loadMoreBtn) {
                 loadMoreBtn.addEventListener('click', function() {
                     console.log('Load more media clicked');
-                    // This will be integrated with the gallery-strapi.js functionality
                 });
             }
             
@@ -1112,7 +1109,8 @@
         });
     </script>
     
+    <script src="js/data-store.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/gallery-strapi.js"></script>
+    <script src="js/gallery.js"></script>
 </body>
 </html>
