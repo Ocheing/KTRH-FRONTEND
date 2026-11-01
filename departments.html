@@ -705,31 +705,8 @@
                 currentYearElement.textContent = new Date().getFullYear();
             }
             
-            // Departments search functionality
-            const deptSearchInput = document.getElementById('deptSearch');
-            if (deptSearchInput) {
-                deptSearchInput.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    // This will be integrated with the departments.js functionality
-                    console.log('Searching for:', searchTerm);
-                });
-            }
-            
-            // Departments filter buttons
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            if (filterButtons) {
-                filterButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        // Remove active class from all buttons
-                        filterButtons.forEach(btn => btn.classList.remove('active'));
-                        // Add active class to clicked button
-                        this.classList.add('active');
-                        const filter = this.getAttribute('data-filter');
-                        console.log('Filter selected:', filter);
-                        // This will be integrated with the departments.js functionality
-                    });
-                });
-            }
+            // NOTE: Department search and filter button functionality is handled by js/departments.js
+            // Do not add duplicate event listeners here.
             
             // Debug info
             console.log('Departments page navigation elements loaded successfully');

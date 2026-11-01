@@ -67,132 +67,237 @@
 
 .job-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    padding: 25px;
-    border-left: 4px solid #2c4964;
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    padding: 26px;
+    border-left: 5px solid #1977cc;
+    border-top: 1px solid rgba(25, 119, 204, 0.1);
+    border-right: 1px solid rgba(25, 119, 204, 0.1);
+    border-bottom: 1px solid rgba(25, 119, 204, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .job-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(25, 119, 204, 0.18);
+    border-left-color: #166ab5;
 }
 
-.job-header {
-    margin-bottom: 20px;
-}
-
-.job-header h3 {
-    margin: 0 0 15px 0;
-    color: #2c4964;
-}
-
-.job-badges {
+.job-card-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 10px;
+    margin-bottom: 15px;
     flex-wrap: wrap;
 }
 
-.job-badge {
-    padding: 5px 15px;
+.job-type-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    background: rgba(25, 119, 204, 0.09);
+    color: #1977cc;
+    border: 1px solid rgba(25, 119, 204, 0.22);
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.4px;
 }
 
-.job-badge.medical { background: #e3f2fd; color: #1976d2; }
-.job-badge.nursing { background: #f3e5f5; color: #7b1fa2; }
-.job-badge.admin { background: #e8f5e9; color: #388e3c; }
-.job-badge.technical { background: #fff3e0; color: #f57c00; }
-.job-badge.other { background: #f5f5f5; color: #616161; }
-
-.job-type {
-    padding: 5px 15px;
+.job-deadline-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    background: #f8f9fa;
-    color: #495057;
-}
-
-.job-type.full-time { background: #d4edda; color: #155724; }
-.job-type.part-time { background: #fff3cd; color: #856404; }
-.job-type.contract { background: #d1ecf1; color: #0c5460; }
-.job-type.internship { background: #e2e3e5; color: #383d41; }
-
-.urgency-badge {
-    padding: 5px 10px;
-    background: #dc3545;
-    color: white;
-    border-radius: 20px;
-    font-size: 10px;
+    font-size: 0.78rem;
     font-weight: 600;
 }
 
-.job-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+.job-card h3 {
+    margin: 0 0 8px 0;
+    color: #2c4964;
+    font-size: 1.28rem;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
-.job-details p {
-    margin: 0;
-    color: #6c757d;
-    font-size: 14px;
+.job-department {
+    color: #1977cc;
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.days-remaining {
-    color: #dc3545 !important;
-    font-weight: 600;
-}
-
-.job-description {
-    margin-bottom: 20px;
-    color: #495057;
+.job-summary {
+    color: #556980;
+    font-size: 0.92rem;
     line-height: 1.6;
+    margin-bottom: 18px;
+    flex-grow: 1;
 }
 
-.job-requirements-preview h4 {
-    margin: 0 0 10px 0;
-    color: #2c4964;
-    font-size: 16px;
+.job-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 14px;
+    margin-bottom: 22px;
+    border-top: 1px dashed #e2e8f0;
+    font-size: 0.84rem;
+    color: #64748b;
+    flex-wrap: wrap;
 }
 
-.job-requirements-preview ul {
-    margin: 0;
-    padding-left: 20px;
+.job-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.job-requirements-preview li {
-    margin-bottom: 5px;
-    font-size: 14px;
+.job-meta i {
+    color: #1977cc;
 }
 
+/* ==========================================================================
+   EYE-CATCHING ACTION BUTTONS: VIEW ROLE & APPLY JOB
+   ========================================================================== */
+.job-card-actions,
 .job-actions {
     display: flex;
-    gap: 15px;
-    margin-top: 25px;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
 }
 
+/* "View Role" Button - Vibrant Hospital Outline Blue */
+.btn-job-details,
 .btn-view-details {
     flex: 1;
-    background: #6c757d;
-    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #ffffff;
+    color: #1977cc !important;
+    border: 2px solid #1977cc;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(25, 119, 204, 0.12);
 }
 
+.btn-job-details i,
+.btn-view-details i {
+    color: #1977cc;
+    font-size: 0.95rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.btn-job-details:hover,
+.btn-view-details:hover {
+    background: #1977cc;
+    color: #ffffff !important;
+    border-color: #1977cc;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(25, 119, 204, 0.35);
+}
+
+.btn-job-details:hover i,
+.btn-view-details:hover i {
+    color: #ffffff;
+    transform: scale(1.18);
+}
+
+.btn-job-details:active,
+.btn-view-details:active {
+    transform: translateY(0);
+}
+
+/* "Apply Job" Button - Eye-Catching Glowing Royal Blue Gradient */
+.btn-job-apply,
 .btn-apply {
-    flex: 1;
-    background: #2c4964;
-    color: white;
+    flex: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #1977cc 0%, #0d5ea8 100%);
+    color: #ffffff !important;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(25, 119, 204, 0.38), 0 2px 4px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-job-apply i,
+.btn-apply i {
+    color: #ffffff;
+    font-size: 0.95rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-job-apply:hover,
+.btn-apply:hover {
+    background: linear-gradient(135deg, #228beb 0%, #166ab5 100%);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(25, 119, 204, 0.52), 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn-job-apply:hover i,
+.btn-apply:hover i {
+    transform: translateX(4px) translateY(-1px);
+}
+
+.btn-job-apply:active,
+.btn-apply:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(25, 119, 204, 0.3);
+}
+
+/* Shimmer shine animation on Apply button */
+.btn-job-apply::after,
+.btn-apply::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.7s ease;
+}
+
+.btn-job-apply:hover::after,
+.btn-apply:hover::after {
+    left: 140%;
 }
 
 .no-jobs-message {

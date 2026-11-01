@@ -227,7 +227,7 @@ function renderJobsGrid() {
                         <i class="fas fa-info-circle"></i> View Role
                     </button>
                     <button class="btn-job-apply" onclick="openApplyModal('${job.id}')">
-                        <i class="fas fa-paper-plane"></i> Apply Online
+                        <i class="fas fa-paper-plane"></i> Apply Job
                     </button>
                 </div>
             </div>

@@ -5,16 +5,16 @@
 // DOM Elements
 let servicesContainer;
 let servicesSearch;
-let filterBtns;
+let svcFilterBtns;
 let serviceModal;
-let modalCloseBtn;
-let modalBody;
+let svcModalCloseBtn;
+let svcModalBody;
 
 // State Management
 let allServices = [];
 let displayedServices = [];
-let currentCategory = 'all';
-let currentSearchTerm = '';
+let currentServiceCategory = 'all';
+let currentServiceSearchTerm = '';
 
 document.addEventListener('DOMContentLoaded', function() {
     initServicesPage();
@@ -28,15 +28,17 @@ window.addEventListener('ktrh_data_updated', function(e) {
 });
 
 function initServicesPage() {
-    servicesContainer = document.getElementById('servicesContainer') || document.querySelector('.services-grid');
+    servicesContainer = document.getElementById('servicesContainer');
     servicesSearch = document.getElementById('servicesSearch');
-    filterBtns = document.querySelectorAll('.service-filter-btn') || document.querySelectorAll('.filter-btn');
+    // Use the actual class in HTML — .filter-btn inside .services-filters
+    svcFilterBtns = document.querySelectorAll('.services-filters .filter-btn');
     serviceModal = document.getElementById('serviceModal');
-    modalBody = document.getElementById('modalBody');
-    modalCloseBtn = document.getElementById('modalClose');
+    svcModalBody = document.getElementById('modalBody');
+    svcModalCloseBtn = document.getElementById('modalClose');
 
-    setupEventListeners();
+    setupServiceEventListeners();
     loadServicesFromStore();
+    renderServicesSummary();
 }
 
 function loadServicesFromStore() {
@@ -50,50 +52,85 @@ function loadServicesFromStore() {
     filterServices();
 }
 
-function setupEventListeners() {
+function setupServiceEventListeners() {
     // Filter Buttons
-    if (filterBtns) {
-        filterBtns.forEach(btn => {
+    if (svcFilterBtns && svcFilterBtns.length > 0) {
+        svcFilterBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                svcFilterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                currentCategory = this.getAttribute('data-filter') || 'all';
+                currentServiceCategory = this.getAttribute('data-filter') || 'all';
                 filterServices();
             });
         });
     }
 
-    // Search Input
+    // Search Input — real-time filtering
     if (servicesSearch) {
         servicesSearch.addEventListener('input', function() {
-            currentSearchTerm = this.value.trim().toLowerCase();
+            currentServiceSearchTerm = this.value.trim().toLowerCase();
             filterServices();
         });
+
+        // Also handle the search button click
+        const searchBtn = servicesSearch.nextElementSibling;
+        if (searchBtn && searchBtn.tagName === 'BUTTON') {
+            searchBtn.addEventListener('click', function() {
+                currentServiceSearchTerm = servicesSearch.value.trim().toLowerCase();
+                filterServices();
+            });
+        }
     }
 
     // Modal Close
-    if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeServiceModal);
+    if (svcModalCloseBtn) {
+        svcModalCloseBtn.addEventListener('click', closeServiceModal);
     }
 
     if (serviceModal) {
-        window.addEventListener('click', function(e) {
+        serviceModal.addEventListener('click', function(e) {
             if (e.target === serviceModal) {
                 closeServiceModal();
             }
         });
     }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && serviceModal && serviceModal.style.display === 'flex') {
+            closeServiceModal();
+        }
+    });
+}
+
+// ---- Category mapping ----
+// The HTML filter buttons use: all, specialized, diagnostic, surgical, support
+// The data store uses:        emergency, clinical, diagnostic
+// Map data-store categories to the button filter values so filtering works both ways.
+const SERVICE_CATEGORY_MAP = {
+    'emergency':  'specialized',
+    'clinical':   'specialized',
+    'diagnostic': 'diagnostic',
+    'surgical':   'surgical',
+    'support':    'support'
+};
+
+function getDisplayCategory(storeCategory) {
+    if (!storeCategory) return 'specialized';
+    return SERVICE_CATEGORY_MAP[storeCategory.toLowerCase()] || storeCategory.toLowerCase();
 }
 
 function filterServices() {
     displayedServices = allServices.filter(service => {
-        const matchesCategory = currentCategory === 'all' || 
-            (service.category && service.category.toLowerCase() === currentCategory.toLowerCase());
+        // Map the stored category to the filter-button category
+        const mappedCat = getDisplayCategory(service.category);
 
-        const matchesSearch = !currentSearchTerm || 
-            (service.title && service.title.toLowerCase().includes(currentSearchTerm)) ||
-            (service.short_description && service.short_description.toLowerCase().includes(currentSearchTerm)) ||
-            (service.description && service.description.toLowerCase().includes(currentSearchTerm));
+        const matchesCategory = currentServiceCategory === 'all' || mappedCat === currentServiceCategory;
+
+        const matchesSearch = !currentServiceSearchTerm ||
+            (service.title && service.title.toLowerCase().includes(currentServiceSearchTerm)) ||
+            (service.short_description && service.short_description.toLowerCase().includes(currentServiceSearchTerm)) ||
+            (service.description && service.description.toLowerCase().includes(currentServiceSearchTerm));
 
         return matchesCategory && matchesSearch;
     });
@@ -105,25 +142,32 @@ function renderServicesGrid() {
     if (!servicesContainer) return;
 
     if (displayedServices.length === 0) {
+        const catName = currentServiceCategory === 'all' ? '' : currentServiceCategory.charAt(0).toUpperCase() + currentServiceCategory.slice(1) + ' ';
         servicesContainer.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
-                <i class="fas fa-stethoscope" style="font-size: 3.5rem; color: #cbd5e1; margin-bottom: 15px;"></i>
-                <h3 style="color: #2c4964; margin-bottom: 8px;">No Medical Services Found</h3>
-                <p>Try searching for a different clinical specialty or clear your filter.</p>
+            <div class="no-services-message">
+                <div class="no-services-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <h3>No ${catName}Services Found</h3>
+                <p>There are no services matching your current filter${currentServiceSearchTerm ? ' and search term "' + currentServiceSearchTerm + '"' : ''}. Try a different category or clear your search.</p>
+                <button class="refresh-button" onclick="resetServiceFilters()">
+                    <i class="fas fa-sync-alt"></i> Show All Services
+                </button>
             </div>
         `;
         return;
     }
 
-    servicesContainer.innerHTML = displayedServices.map(service => {
-        const catTag = service.category ? service.category.charAt(0).toUpperCase() + service.category.slice(1) : 'Clinical';
+    servicesContainer.innerHTML = displayedServices.map((service, index) => {
+        const displayCat = getDisplayCategory(service.category);
+        const catLabel = displayCat.charAt(0).toUpperCase() + displayCat.slice(1);
 
         return `
-            <div class="service-card ${service.category || 'clinical'}" id="${service.slug || service.id}">
+            <div class="service-card ${displayCat}" id="${service.slug || service.id}" style="animation-delay: ${index * 0.1}s">
                 <div class="service-image">
                     <img src="${service.image || 'img/imagestheatre.jpg'}" alt="${service.title}" loading="lazy" onerror="this.src='img/about.jpg'">
                     <div class="service-overlay">
-                        <span class="service-tag">${catTag}</span>
+                        <span class="service-tag">${catLabel}</span>
                         <h3>${service.title}</h3>
                     </div>
                 </div>
@@ -148,15 +192,27 @@ function renderServicesGrid() {
     }).join('');
 }
 
+// Reset filters helper (used by "Show All Services" button in empty state)
+window.resetServiceFilters = function() {
+    currentServiceCategory = 'all';
+    currentServiceSearchTerm = '';
+    if (servicesSearch) servicesSearch.value = '';
+    if (svcFilterBtns && svcFilterBtns.length > 0) {
+        svcFilterBtns.forEach(b => b.classList.remove('active'));
+        svcFilterBtns[0].classList.add('active'); // "All Services" button
+    }
+    filterServices();
+};
+
 window.openServiceModal = function(id) {
     const service = allServices.find(s => String(s.id) === String(id));
-    if (!service || !serviceModal || !modalBody) return;
+    if (!service || !serviceModal || !svcModalBody) return;
 
     const featuresList = Array.isArray(service.features)
         ? service.features.map(f => `<li><i class="fas fa-check-circle" style="color: #1977cc; margin-right: 8px;"></i>${f}</li>`).join('')
         : `<li>${service.features || 'Advanced clinical diagnostics and specialist care'}</li>`;
 
-    modalBody.innerHTML = `
+    svcModalBody.innerHTML = `
         <div style="padding: 10px;">
             <div style="height: 240px; overflow: hidden; border-radius: 8px; margin-bottom: 20px;">
                 <img src="${service.image || 'img/imagestheatre.jpg'}" alt="${service.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='img/about.jpg'">
@@ -183,10 +239,44 @@ window.openServiceModal = function(id) {
     `;
 
     serviceModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
 };
 
 function closeServiceModal() {
     if (serviceModal) {
         serviceModal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scroll
     }
+}
+
+// ---- Services Summary Section ----
+function renderServicesSummary() {
+    const summaryGrid = document.getElementById('summaryGrid');
+    if (!summaryGrid) return;
+
+    const totalServices = allServices.length;
+    const stats = window.KTRHStore ? window.KTRHStore.getStats() : {};
+
+    summaryGrid.innerHTML = `
+        <div class="summary-card">
+            <div class="summary-icon"><i class="fas fa-stethoscope"></i></div>
+            <h3>${totalServices || '6'}+</h3>
+            <p>Medical Service Lines</p>
+        </div>
+        <div class="summary-card">
+            <div class="summary-icon"><i class="fas fa-user-md"></i></div>
+            <h3>${stats.specialistDoctors || '45+'}</h3>
+            <p>Specialist Doctors</p>
+        </div>
+        <div class="summary-card">
+            <div class="summary-icon"><i class="fas fa-hospital"></i></div>
+            <h3>${stats.departments || '28+'}</h3>
+            <p>Departments</p>
+        </div>
+        <div class="summary-card">
+            <div class="summary-icon"><i class="fas fa-clock"></i></div>
+            <h3>24/7</h3>
+            <p>Emergency Services Available</p>
+        </div>
+    `;
 }

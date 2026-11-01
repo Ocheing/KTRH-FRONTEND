@@ -981,41 +981,8 @@
                 currentYearElement.textContent = new Date().getFullYear();
             }
             
-            // Services search functionality
-            const servicesSearchInput = document.getElementById('servicesSearch');
-            if (servicesSearchInput) {
-                servicesSearchInput.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    console.log('Searching for:', searchTerm);
-                    // This will be integrated with the services.js functionality
-                });
-                
-                // Search button functionality
-                const searchButton = servicesSearchInput.nextElementSibling;
-                if (searchButton) {
-                    searchButton.addEventListener('click', function() {
-                        const searchTerm = servicesSearchInput.value.toLowerCase();
-                        console.log('Search button clicked:', searchTerm);
-                        // This will be integrated with the services.js functionality
-                    });
-                }
-            }
-            
-            // Services filter buttons
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            if (filterButtons) {
-                filterButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        // Remove active class from all buttons
-                        filterButtons.forEach(btn => btn.classList.remove('active'));
-                        // Add active class to clicked button
-                        this.classList.add('active');
-                        const filter = this.getAttribute('data-filter');
-                        console.log('Filter selected:', filter);
-                        // This will be integrated with the services.js functionality
-                    });
-                });
-            }
+            // NOTE: Services search and filter button functionality is handled by js/services.js
+            // Do not add duplicate event listeners here.
             
             // Emergency call button enhancement
             const emergencyCallBtn = document.querySelector('.emergency-call');
