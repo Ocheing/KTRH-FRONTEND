@@ -653,12 +653,20 @@ function renderGalleryGrid(searchTerm = '') {
     }
 
     container.innerHTML = items.map(item => {
-        const isVideo = item.mediaType === 'video';
-        const thumb = isVideo ? 'img/about.jpg' : (item.url || 'img/about.jpg');
+        const isVideo = item.mediaType === 'video' || (item.category && item.category.toLowerCase() === 'videos');
+        let thumb = item.url || 'img/about.jpg';
+        if (isVideo) {
+            const ytRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+            const match = item.url ? item.url.match(ytRegex) : null;
+            thumb = (match && match[1]) ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : 'img/about.jpg';
+        }
 
         return `
             <div class="admin-gallery-card">
-                <img src="${thumb}" alt="${item.title}" onerror="this.src='img/about.jpg'">
+                <div style="position: relative; height: 160px; overflow: hidden;">
+                    <img src="${thumb}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='img/about.jpg'">
+                    ${isVideo ? '<span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;"><i class="fas fa-video"></i> Video</span>' : ''}
+                </div>
                 <div class="admin-gallery-info">
                     <span class="status-pill status-ongoing">${capitalize(item.category || 'facilities')}</span>
                     <h4 style="margin-top:8px;">${item.title}</h4>

@@ -635,7 +635,30 @@ const DEFAULT_KTRH_DATA = {
             url: "https://www.youtube.com/embed/IzZeZbr7Jf0",
             description: "An official video walkthrough of KTRH healthcare facilities, clinical departments, and patient care wards.",
             date: "2026-09-15",
+            duration: "12:45",
             views: 1250
+        },
+        {
+            id: "gal-8",
+            title: "Modern Mother & Child Hospital Documentary",
+            category: "videos",
+            mediaType: "video",
+            url: "https://www.youtube.com/embed/V1yW5Mvc-Bo",
+            description: "A comprehensive tour of the newly commissioned 250-bed maternal health and neonatal ICU wing.",
+            date: "2026-10-02",
+            duration: "08:20",
+            views: 980
+        },
+        {
+            id: "gal-9",
+            title: "Emergency Trauma & Surgical Response Showcase",
+            category: "videos",
+            mediaType: "video",
+            url: "https://www.youtube.com/embed/2eebf0r8YV0",
+            description: "Go behind the scenes with our rapid trauma response teams and state-of-the-art operating theatres.",
+            date: "2026-10-18",
+            duration: "15:30",
+            views: 1420
         }
     ],
     appointments: [
@@ -709,6 +732,16 @@ class KTRHDataStore {
                     parsed[key] = DEFAULT_KTRH_DATA[key];
                 }
             }
+            // Merge missing default items into existing collections without overwriting user changes
+            ['gallery', 'services', 'departments'].forEach(coll => {
+                if (Array.isArray(parsed[coll]) && Array.isArray(DEFAULT_KTRH_DATA[coll])) {
+                    DEFAULT_KTRH_DATA[coll].forEach(defaultItem => {
+                        if (!parsed[coll].some(item => String(item.id) === String(defaultItem.id))) {
+                            parsed[coll].push(defaultItem);
+                        }
+                    });
+                }
+            });
             return parsed;
         } catch (e) {
             console.error('Error loading KTRH data store, falling back to defaults:', e);

@@ -751,7 +751,7 @@
     </section>
 
     <!-- Video Gallery -->
-    <!-- <section class="video-gallery">
+    <section class="video-gallery" id="videoGallerySection">
         <div class="container">
             <div class="section-header">
                 <h2><i class="fas fa-video"></i> Featured Videos</h2>
@@ -759,14 +759,13 @@
             </div>
             
             <div class="video-grid" id="featuredVideosGrid">
-                <!-- Featured videos will be dynamically loaded --> 
-                <div class="video-loading" style="text-align: center; padding: 30px; width: 100%;">
+                <div class="video-loading" style="text-align: center; padding: 30px; width: 100%; grid-column: 1 / -1;">
                     <div class="loader" style="margin: 0 auto;"></div>
                     <p style="margin-top: 15px; color: #666;">Loading featured videos...</p>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <!-- Social Media -->
     <section class="social-media-section">
@@ -1054,45 +1053,8 @@
                 currentYearElement.textContent = new Date().getFullYear();
             }
             
-            // Gallery category buttons functionality
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            if (categoryButtons) {
-                categoryButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        // Remove active class from all buttons
-                        categoryButtons.forEach(btn => btn.classList.remove('active'));
-                        // Add active class to clicked button
-                        this.classList.add('active');
-                        const category = this.getAttribute('data-category');
-                        console.log('Category selected:', category);
-                    });
-                });
-            }
-            
-            // Gallery search functionality
-            const mediaSearchInput = document.getElementById('mediaSearch');
-            const searchButton = document.getElementById('searchButton');
-            if (mediaSearchInput && searchButton) {
-                searchButton.addEventListener('click', function() {
-                    const searchTerm = mediaSearchInput.value.toLowerCase();
-                    console.log('Searching for:', searchTerm);
-                });
-                
-                // Allow pressing Enter to search
-                mediaSearchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        searchButton.click();
-                    }
-                });
-            }
-            
-            // Load more button functionality
-            const loadMoreBtn = document.getElementById('loadMore');
-            if (loadMoreBtn) {
-                loadMoreBtn.addEventListener('click', function() {
-                    console.log('Load more media clicked');
-                });
-            }
+            // NOTE: Gallery category filtering, search, load more, and video playback
+            // are fully managed by js/gallery.js to prevent duplicate or conflicting event listeners.
             
             // Social media card hover effect enhancement
             const socialCards = document.querySelectorAll('.social-card');
